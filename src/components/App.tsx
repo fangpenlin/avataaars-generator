@@ -2,7 +2,7 @@ import '../assets/App.css'
 
 import * as React from 'react'
 
-import Avatar from './avatars'
+import Avatar from './avatar'
 
 const logo = require('../assets/logo.svg')
 
