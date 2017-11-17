@@ -1,7 +1,7 @@
 import * as React from 'react'
 
+import Eyebrow, { Type as EyebrowType } from './eyebrow'
 import Eyes, { Type as EyeType } from './eyes'
-import { default as DefaultEyebrow } from './eyebrow/Default'
 import { default as DefaultMouth } from './mouth/Default'
 import { default as DefaultNose } from './nose/Default'
 
@@ -12,7 +12,7 @@ export default class Face extends React.Component {
         <DefaultMouth />
         <DefaultNose />
         <Eyes type={EyeType.Default} />
-        <DefaultEyebrow />
+        <Eyebrow type={EyebrowType.Default} />
       </g>
     )
   }
