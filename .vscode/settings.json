@@ -1,0 +1,36 @@
+{
+    "files.exclude": {
+      "**/.git": true,
+      "**/.svn": true,
+      "**/.hg": true,
+      "**/CVS": true,
+      "**/.DS_Store": true,
+      "**/dist": true,
+      "**/ios/build": true,
+      "**/.jest": true,
+      "**/node_modules": true
+    },
+    "search.exclude": {
+      "**/node_modules": true,
+      "**/bower_components": true,
+      "**/dist": true,
+      "**/ios/build": true,
+      "**/.jest": true,
+      "**/coverage": true
+    },
+    "editor.formatOnSave": true,
+    "prettier.jsxSingleQuote": true,
+    "prettier.useTabs": false,
+    "prettier.tabWidth": 2,
+    "prettier.typescriptEnable": ["typescript", "typescriptreact"],
+    "prettier.jsonEnable": ["json"],
+    "prettier.singleQuote": true,
+    "prettier.semi": false,
+    "prettier.spaceBeforeFunctionParen": true,
+    "prettier.bracketSpacing": false,
+    "prettier.printWidth": 80,
+    "prettier.arrowParens": false,
+    "prettier.jsxBracketSameLine": true,
+    "editor.tabSize": 2
+  }
+  
