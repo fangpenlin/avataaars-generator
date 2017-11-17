@@ -88,6 +88,11 @@ export default class AvatarForm extends React.Component<Props> {
         </FormGroup>
         <FormGroup className='row'>
           <Col className='offset-sm-2' smOffset={2} sm={10}>
+            More options coming soon ...
+          </Col>
+        </FormGroup>
+        <FormGroup className='row'>
+          <Col className='offset-sm-2' smOffset={2} sm={10}>
             <Button type='submit'>Download</Button>
           </Col>
         </FormGroup>
