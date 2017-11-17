@@ -18,13 +18,13 @@ export default class BlazerSweater extends React.Component {
           />
         </defs>
         <mask id={mask1} fill='white'>
-          <use xlinkHref={path1} />
+          <use xlinkHref={'#' + path1} />
         </mask>
         <use
           id='Clothes'
           fill='#E6E6E6'
           fill-rule='evenodd'
-          xlinkHref={path1}
+          xlinkHref={'#' + path1}
         />
         <g
           id='Color/Palette/Black'
