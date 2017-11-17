@@ -3,8 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "bootstrap": "3",
     "lodash": "^4.17.4",
     "react": "^16.1.1",
+    "react-bootstrap": "^0.31.5",
     "react-dom": "^16.1.1",
     "react-scripts-ts": "2.8.0"
   },
@@ -19,6 +21,7 @@
     "@types/lodash": "^4.14.85",
     "@types/node": "^8.0.53",
     "@types/react": "^16.0.24",
+    "@types/react-bootstrap": "^0.31.8",
     "@types/react-dom": "^16.0.3",
     "import-sort-style-renke": "^3.0.0",
     "tslint-config-standard": "^7.0.0",

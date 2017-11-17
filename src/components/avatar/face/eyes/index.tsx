@@ -28,6 +28,21 @@ export enum Type {
   WinkWacky = 'WinkWacky'
 }
 
+export const AllEyeTypes = [
+  Type.Close,
+  Type.Cry,
+  Type.Default,
+  Type.Dizzy,
+  Type.EyeRoll,
+  Type.Happy,
+  Type.Hearts,
+  Type.Side,
+  Type.Squint,
+  Type.Surprised,
+  Type.Wink,
+  Type.WinkWacky
+]
+
 export interface Props {
   type: Type
 }
