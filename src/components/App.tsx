@@ -37,6 +37,7 @@ export default class App extends React.Component<{}, State> {
           onEyeChange={this.onEyeChange}
           onEyebrowChange={this.onEyebrowChange}
           onClotheChange={this.onClotheChange}
+          onDownload={this.onDownload}
         />
       </div>
     )
@@ -52,5 +53,9 @@ export default class App extends React.Component<{}, State> {
 
   private onClotheChange = (clotheType: ClotheType) => {
     this.setState({ clotheType })
+  }
+
+  private onDownload = () => {
+    console.info('@@@@@@')
   }
 }

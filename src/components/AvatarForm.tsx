@@ -25,6 +25,7 @@ export interface Props {
   onEyeChange?: (eyeType: EyeType) => void
   onEyebrowChange?: (eyebrowType: EyebrowType) => void
   onClotheChange?: (clotheType: ClotheType) => void
+  onDownload?: () => void
 }
 
 export default class AvatarForm extends React.Component<Props> {
@@ -45,7 +46,10 @@ export default class AvatarForm extends React.Component<Props> {
       </option>
     ))
     return (
-      <Form horizontal style={{ width: '1000px', margin: '0 auto' }}>
+      <Form
+        horizontal
+        style={{ width: '1000px', margin: '0 auto' }}
+        onSubmit={this.onDownload}>
         <FormGroup controlId='eyebrow'>
           <Col componentClass={ControlLabel} sm={2}>
             ✏️ Eyebrow
@@ -112,6 +116,13 @@ export default class AvatarForm extends React.Component<Props> {
     if (this.props.onClotheChange) {
       this.props.onClotheChange(((event.target as any) as HTMLSelectElement)
         .value as ClotheType)
+    }
+  }
+
+  private onDownload = (event: React.FormEvent<FormControl>) => {
+    event.preventDefault()
+    if (this.props.onDownload) {
+      this.props.onDownload()
     }
   }
 }
