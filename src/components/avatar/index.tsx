@@ -1,7 +1,7 @@
 import * as React from 'react'
 
-import BlazerShirt from './clothe/BlazerShirt'
 import LongHairStraight from './top/LongHairStraight'
+import Clothe, { Type as ClotheType } from './clothe'
 import Face, { EyeType, EyebrowType } from './face'
 
 export { EyeType, EyebrowType } from './face'
@@ -9,6 +9,7 @@ export { EyeType, EyebrowType } from './face'
 export interface Props {
   eyeType: EyeType
   eyebrowType: EyebrowType
+  clotheType: ClotheType
 }
 
 export default class Avatar extends React.Component<Props> {
@@ -90,7 +91,7 @@ export default class Avatar extends React.Component<Props> {
                     mask='url(#mask-6)'
                   />
                 </g>
-                <BlazerShirt />
+                <Clothe type={this.props.clotheType} />
                 <Face
                   eyeType={this.props.eyeType}
                   eyebrowType={this.props.eyebrowType}

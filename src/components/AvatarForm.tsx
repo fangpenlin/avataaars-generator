@@ -8,6 +8,10 @@ import {
   FormGroup
 } from 'react-bootstrap'
 
+import {
+  AllTypes as AllClotheTypes,
+  Type as ClotheType
+} from './avatar/clothes'
 import { AllTypes as AllEyeTypes, Type as EyeType } from './avatar/face/eyes'
 import {
   AllTypes as AllEyebrowTypes,
@@ -17,8 +21,10 @@ import {
 export interface Props {
   eyeType: EyeType
   eyebrowType: EyebrowType
+  clotheType: ClotheType
   onEyeChange?: (eyeType: EyeType) => void
   onEyebrowChange?: (eyebrowType: EyebrowType) => void
+  onClotheChange?: (clotheType: ClotheType) => void
 }
 
 export default class AvatarForm extends React.Component<Props> {
@@ -29,6 +35,11 @@ export default class AvatarForm extends React.Component<Props> {
       </option>
     ))
     const eyebrowOptions = AllEyebrowTypes.map(type => (
+      <option key={type} value={type}>
+        {type}
+      </option>
+    ))
+    const clotheOptions = AllClotheTypes.map(type => (
       <option key={type} value={type}>
         {type}
       </option>
@@ -61,6 +72,19 @@ export default class AvatarForm extends React.Component<Props> {
             </FormControl>
           </Col>
         </FormGroup>
+        <FormGroup controlId='clothe'>
+          <Col componentClass={ControlLabel} sm={2}>
+            👔 Clothes
+          </Col>
+          <Col sm={10}>
+            <FormControl
+              componentClass='select'
+              value={this.props.clotheType}
+              onChange={this.onClotheChange}>
+              {clotheOptions}
+            </FormControl>
+          </Col>
+        </FormGroup>
         <FormGroup>
           <Col smOffset={2} sm={10}>
             <Button type='submit'>Download</Button>
@@ -81,6 +105,13 @@ export default class AvatarForm extends React.Component<Props> {
     if (this.props.onEyebrowChange) {
       this.props.onEyebrowChange(((event.target as any) as HTMLSelectElement)
         .value as EyebrowType)
+    }
+  }
+
+  private onClotheChange = (event: React.FormEvent<FormControl>) => {
+    if (this.props.onClotheChange) {
+      this.props.onClotheChange(((event.target as any) as HTMLSelectElement)
+        .value as ClotheType)
     }
   }
 }
