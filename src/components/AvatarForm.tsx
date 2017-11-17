@@ -8,12 +8,19 @@ import {
   FormGroup
 } from 'react-bootstrap'
 
-import { AllEyeTypes } from './avatar/face/eyes'
+import { AllEyeTypes, Type as EyeType } from './avatar/face/eyes'
 
-export default class AvatarForm extends React.Component {
+export interface Props {
+  eyeType: EyeType
+  onEyeChange?: (eyeType: EyeType) => void
+}
+
+export default class AvatarForm extends React.Component<Props> {
   render () {
     const eyeOptions = AllEyeTypes.map(type => (
-      <option value={type}>{type}</option>
+      <option key={type} value={type}>
+        {type}
+      </option>
     ))
     return (
       <Form horizontal style={{ width: '1000px', margin: '0 auto' }}>
@@ -22,7 +29,12 @@ export default class AvatarForm extends React.Component {
             👁 Eyes
           </Col>
           <Col sm={10}>
-            <FormControl componentClass='select'>{eyeOptions}</FormControl>
+            <FormControl
+              componentClass='select'
+              value={this.props.eyeType}
+              onChange={this.onEyeChange}>
+              {eyeOptions}
+            </FormControl>
           </Col>
         </FormGroup>
         <FormGroup>
@@ -32,5 +44,14 @@ export default class AvatarForm extends React.Component {
         </FormGroup>
       </Form>
     )
+  }
+
+  private onEyeChange = (event: React.FormEvent<FormControl>) => {
+    if (this.props.onEyeChange) {
+      this.props.onEyeChange(((event.target as any) as HTMLSelectElement)
+        .value as EyeType)
+    }
+    console.info('!!!!', ((event.target as any) as HTMLSelectElement)
+      .value as EyeType)
   }
 }

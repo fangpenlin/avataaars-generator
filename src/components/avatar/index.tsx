@@ -36,17 +36,17 @@ export default class Avatar extends React.Component<Props> {
         <g
           id='How-To-Use'
           stroke='none'
-          stroke-width='1'
+          strokeWidth='1'
           fill='none'
-          fill-rule='evenodd'>
+          fillRule='evenodd'>
           <g
             transform='translate(-546.000000, -1118.000000)'
             id='Avataaar/Circle'>
             <g transform='translate(534.000000, 1100.000000)'>
               <g
                 id='Circle'
-                stroke-width='1'
-                fill-rule='evenodd'
+                strokeWidth='1'
+                fillRule='evenodd'
                 transform='translate(12.000000, 40.000000)'>
                 <mask id='mask-2' fill='white'>
                   <use xlinkHref='#path-1' />
@@ -69,8 +69,8 @@ export default class Avatar extends React.Component<Props> {
               <g id='Mask' />
               <g
                 id='Avataaar'
-                stroke-width='1'
-                fill-rule='evenodd'
+                strokeWidth='1'
+                fillRule='evenodd'
                 mask='url(#mask-4)'>
                 <g id='Body' transform='translate(32.000000, 36.000000)'>
                   <mask id='mask-6' fill='white'>
@@ -85,15 +85,15 @@ export default class Avatar extends React.Component<Props> {
                   <path
                     d='M156,79 L156,102 C156,132.927946 130.927946,158 100,158 C69.072054,158 44,132.927946 44,102 L44,79 L44,94 C44,124.927946 69.072054,150 100,150 C130.927946,150 156,124.927946 156,94 L156,79 Z'
                     id='Neck-Shadow'
-                    fill-opacity='0.100000001'
+                    fillOpacity='0.100000001'
                     fill='#000000'
                     mask='url(#mask-6)'
                   />
                 </g>
                 <BlazerShirt />
                 <Face
-                  eyeType={EyeType.Default}
-                  eyebrowType={EyebrowType.Default}
+                  eyeType={this.props.eyeType}
+                  eyebrowType={this.props.eyebrowType}
                 />
                 <LongHairStraight />
               </g>

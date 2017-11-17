@@ -3,7 +3,7 @@ import * as React from 'react'
 export default class DefaultNatural extends React.Component {
   render () {
     return (
-      <g id='Eyebrow/Natural/Default-Natural' fill-opacity='0.599999964'>
+      <g id='Eyebrow/Natural/Default-Natural' fillOpacity='0.599999964'>
         <path
           d='M26.0390934,6.21012364 C20.2775554,6.98346216 11.2929313,12.0052479 12.04426,17.8178111 C12.0689481,18.0080543 12.3567302,18.0673468 12.4809077,17.9084937 C14.9674041,14.7203351 34.1927973,10.0365481 41.1942673,11.0147151 C41.8350523,11.1044465 42.2580662,10.4430343 41.8210501,10.0302067 C38.0765663,6.49485426 31.2003792,5.51224825 26.0390934,6.21012364'
           id='Eyebrow'

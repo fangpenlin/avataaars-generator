@@ -31,7 +31,7 @@ export default class BlazerShirt extends React.Component {
             id='Shadowy'
             opacity='0.599999964'
             mask={`url(#${mask1})`}
-            fill-opacity='0.16'
+            fillOpacity='0.16'
             fill='#000000'>
             <g transform='translate(60.000000, -25.000000)' id='Hola-👋🏼'>
               <ellipse

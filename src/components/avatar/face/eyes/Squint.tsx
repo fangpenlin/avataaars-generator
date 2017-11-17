@@ -27,7 +27,7 @@ export default class Squint extends React.Component {
           </mask>
           <use id='The-white-stuff' fill='#FFFFFF' xlinkHref={'#' + path1} />
           <circle
-            fill-opacity='0.699999988'
+            fillOpacity='0.699999988'
             fill='#000000'
             mask={`url(#${mask1})`}
             cx='14'
@@ -41,7 +41,7 @@ export default class Squint extends React.Component {
           </mask>
           <use id='Eyeball-Mask' fill='#FFFFFF' xlinkHref={'#' + path2} />
           <circle
-            fill-opacity='0.699999988'
+            fillOpacity='0.699999988'
             fill='#000000'
             mask={`url(#${mask2})`}
             cx='14'

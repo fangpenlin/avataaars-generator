@@ -3,7 +3,7 @@ import * as React from 'react'
 export default class SadConcernedNatural extends React.Component {
   render () {
     return (
-      <g id='Eyebrow/Natural/Sad-Concerned-Natural' fill-opacity='0.599999964'>
+      <g id='Eyebrow/Natural/Sad-Concerned-Natural' fillOpacity='0.599999964'>
         <path
           d='M22.7663531,5.57844898 L23.6772984,5.17582144 C28.9190996,3.09473425 36.8645466,3.96712704 41.7227321,6.29911638 C42.2897848,6.57148957 41.9021563,7.4519421 41.3211012,7.40711006 C26.4021788,6.25602197 16.3582869,15.5525942 12.9460869,21.8470939 C12.8449215,22.0337142 12.5391523,22.05489 12.4635344,21.8808353 C10.156283,16.5620676 16.9134476,7.89614725 22.7663531,5.57844898 Z'
           id='Eyebrow'
