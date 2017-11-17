@@ -28,7 +28,7 @@ export enum Type {
   WinkWacky = 'WinkWacky'
 }
 
-export const AllEyeTypes = [
+export const AllTypes = [
   Type.Close,
   Type.Cry,
   Type.Default,

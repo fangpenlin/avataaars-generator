@@ -28,6 +28,21 @@ export enum Type {
   UpDownNatural = 'UpDownNatural'
 }
 
+export const AllTypes = [
+  Type.Angry,
+  Type.AngryNatural,
+  Type.Default,
+  Type.DefaultNatural,
+  Type.FlatNatural,
+  Type.RaisedExcited,
+  Type.RaisedExcitedNatural,
+  Type.SadConcerned,
+  Type.SadConcernedNatural,
+  Type.UnibrowNatural,
+  Type.UpDown,
+  Type.UpDownNatural
+]
+
 export interface Props {
   type: Type
 }
