@@ -1,8 +1,8 @@
 import * as React from 'react'
 
 import BlazerShirt from './clothe/BlazerShirt'
-import Face from './face'
 import LongHairStraight from './top/LongHairStraight'
+import Face, { EyeType, EyebrowType } from './face'
 
 export default class Avatar extends React.Component {
   render () {
@@ -112,7 +112,10 @@ export default class Avatar extends React.Component {
                   />
                 </g>
                 <BlazerShirt />
-                <Face />
+                <Face
+                  eyeType={EyeType.Default}
+                  eyebrowType={EyebrowType.Default}
+                />
                 <LongHairStraight />
               </g>
             </g>
