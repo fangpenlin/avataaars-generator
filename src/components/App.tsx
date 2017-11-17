@@ -26,8 +26,8 @@ export default class App extends React.Component<{}, State> {
   render () {
     const { eyeType, eyebrowType, clotheType } = this.state
     return (
-      <div className='App'>
-        <div style={{ textAlign: 'center' }}>
+      <main role='main'>
+        <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
           <Avatar
             eyeType={eyeType}
             eyebrowType={eyebrowType}
@@ -50,7 +50,7 @@ export default class App extends React.Component<{}, State> {
           height='262'
           ref={this.onCanvasRef}
         />
-      </div>
+      </main>
     )
   }
 

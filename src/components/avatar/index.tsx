@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import LongHairStraight from './top/LongHairStraight'
-import Clothe, { Type as ClotheType } from './clothe'
+import Clothe, { Type as ClotheType } from './clothes'
 import Face, { EyeType, EyebrowType } from './face'
 
 export { EyeType, EyebrowType } from './face'

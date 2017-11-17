@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "bootstrap": "3",
+    "bootstrap": "4",
     "lodash": "^4.17.4",
     "react": "^16.1.1",
     "react-bootstrap": "^0.31.5",

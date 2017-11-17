@@ -46,11 +46,8 @@ export default class AvatarForm extends React.Component<Props> {
       </option>
     ))
     return (
-      <Form
-        horizontal
-        style={{ width: '1000px', margin: '0 auto' }}
-        onSubmit={this.onDownload}>
-        <FormGroup controlId='eyebrow'>
+      <Form horizontal onSubmit={this.onDownload}>
+        <FormGroup className='row' controlId='eyebrow'>
           <Col componentClass={ControlLabel} sm={2}>
             ✏️ Eyebrow
           </Col>
@@ -63,7 +60,7 @@ export default class AvatarForm extends React.Component<Props> {
             </FormControl>
           </Col>
         </FormGroup>
-        <FormGroup controlId='eyes'>
+        <FormGroup className='row' controlId='eyes'>
           <Col componentClass={ControlLabel} sm={2}>
             👁 Eyes
           </Col>
@@ -76,7 +73,7 @@ export default class AvatarForm extends React.Component<Props> {
             </FormControl>
           </Col>
         </FormGroup>
-        <FormGroup controlId='clothe'>
+        <FormGroup className='row' controlId='clothe'>
           <Col componentClass={ControlLabel} sm={2}>
             👔 Clothes
           </Col>
@@ -89,8 +86,8 @@ export default class AvatarForm extends React.Component<Props> {
             </FormControl>
           </Col>
         </FormGroup>
-        <FormGroup>
-          <Col smOffset={2} sm={10}>
+        <FormGroup className='row'>
+          <Col className='offset-sm-2' smOffset={2} sm={10}>
             <Button type='submit'>Download</Button>
           </Col>
         </FormGroup>
