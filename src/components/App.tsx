@@ -2,6 +2,8 @@ import '../assets/App.css'
 
 import * as React from 'react'
 
+import Avatar from './avatars'
+
 const logo = require('../assets/logo.svg')
 
 export default class App extends React.Component {
@@ -15,6 +17,7 @@ export default class App extends React.Component {
         <p className='App-intro'>
           To get started, edit <code>src/App.tsx</code> and save to reload.
         </p>
+        <Avatar />
       </div>
     )
   }
