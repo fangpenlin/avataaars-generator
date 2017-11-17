@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import { default as DefaultEyebrow } from './eyebrow/Default'
-import { default as DefaultEyes } from './eyes/Default'
+import { default as DefaultEyes } from './eyes/Squint'
 import { default as DefaultMouth } from './mouth/Default'
 import { default as DefaultNose } from './nose/Default'
 
