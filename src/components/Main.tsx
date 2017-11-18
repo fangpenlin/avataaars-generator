@@ -2,6 +2,7 @@ import '../assets/App.css'
 
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
+import { Helmet } from 'react-helmet'
 import {
   UrlQueryParamTypes,
   UrlUpdateTypes,
@@ -50,8 +51,26 @@ export class Main extends React.Component<Props> {
 
   render () {
     const { eyeType, eyebrowType, clotheType } = this.props
+    const title = 'avataaars generator - Generate your own avataaars!'
+    // XXX: find a way to render the SVG on server side to png
+    const imageURL = 'https://example.com/img.png'
     return (
       <main role='main'>
+        <Helmet>
+          <meta property='og:title' content={title} />
+          <meta property='og:site_name' content='avataaars generator' />
+          <meta property='og:url' content={document.location.href} />
+          <meta property='og:image' content={imageURL} />
+          <meta
+            property='og:description'
+            content='avataaars generator is a free online tool for generating your own avatar'
+          />
+          <meta name='twitter:card' content='photo' />
+          <meta name='twitter:site' content='avataaars generator' />
+          <meta name='twitter:title' content={title} />
+          <meta name='twitter:image' content={imageURL} />
+          <meta name='twitter:url' content={document.location.href} />
+        </Helmet>
         <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
           <Avatar
             eyeType={eyeType}
