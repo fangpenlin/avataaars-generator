@@ -16,21 +16,25 @@ import {
   AllEyeTypes,
   AllEyebrowTypes,
   AllMouthTypes,
+  AllTopTypes,
   ClotheColor,
   ClotheColorValues,
   ClotheType,
   EyeType,
   EyebrowType,
-  MouthType
+  MouthType,
+  TopType
 } from './avatar'
 
 export interface Props {
+  topType: TopType
   eyeType: EyeType
   eyebrowType: EyebrowType
   mouthType: MouthType
   clotheType: ClotheType
   clotheColor: ClotheColor
   accessoriesType: AccessoriesType
+  onTopChange?: (topType: TopType) => void
   onEyeChange?: (eyeType: EyeType) => void
   onEyebrowChange?: (eyebrowType: EyebrowType) => void
   onMouthChange?: (mouthType: MouthType) => void
@@ -42,6 +46,11 @@ export interface Props {
 
 export default class AvatarForm extends React.Component<Props> {
   render () {
+    const topOptions = AllTopTypes.map(type => (
+      <option key={type} value={type}>
+        {type}
+      </option>
+    ))
     const accessoriesOptions = AllAccessoriesTypes.map(type => (
       <option key={type} value={type}>
         {type}
@@ -76,6 +85,19 @@ export default class AvatarForm extends React.Component<Props> {
     const inputCol = 9
     return (
       <Form horizontal onSubmit={this.onDownload}>
+        <FormGroup className='row' controlId='top'>
+          <Col componentClass={ControlLabel} sm={labelCol}>
+            Top
+          </Col>
+          <Col sm={inputCol}>
+            <FormControl
+              componentClass='select'
+              value={this.props.topType}
+              onChange={this.onTopChange}>
+              {topOptions}
+            </FormControl>
+          </Col>
+        </FormGroup>
         <FormGroup className='row' controlId='accessories'>
           <Col componentClass={ControlLabel} sm={labelCol}>
             👓 Accessories
@@ -182,6 +204,13 @@ export default class AvatarForm extends React.Component<Props> {
         </FormGroup>
       </Form>
     )
+  }
+
+  private onTopChange = (event: React.FormEvent<FormControl>) => {
+    if (this.props.onTopChange) {
+      this.props.onTopChange(((event.target as any) as HTMLSelectElement)
+        .value as TopType)
+    }
   }
 
   private onAccessoriesChange = (event: React.FormEvent<FormControl>) => {

@@ -16,10 +16,12 @@ import Avatar, {
   ClotheType,
   EyeType,
   EyebrowType,
-  MouthType
+  MouthType,
+  TopType
 } from './avatar'
 
 interface Props {
+  topType: TopType
   eyeType: EyeType
   eyebrowType: EyebrowType
   mouthType: MouthType
@@ -27,6 +29,7 @@ interface Props {
   clotheColor: ClotheColor
   accessoriesType: AccessoriesType
   __render__?: string
+  onChangeTopType: (topType: TopType) => void
   onChangeEyeType: (eyeType: EyeType) => void
   onChangeEyebrowType: (eyebrowType: EyebrowType) => void
   onChangeMouthType: (mouthType: MouthType) => void
@@ -38,6 +41,10 @@ interface Props {
 
 const updateType = UrlUpdateTypes.pushIn
 const urlPropsQueryConfig = {
+  topType: {
+    type: UrlQueryParamTypes.string,
+    updateType
+  },
   eyeType: {
     type: UrlQueryParamTypes.string,
     updateType
@@ -69,6 +76,7 @@ const urlPropsQueryConfig = {
 
 export class Main extends React.Component<Props> {
   static defaultProps = {
+    topType: TopType.LongHairStraight,
     eyeType: EyeType.Default,
     eyebrowType: EyebrowType.Default,
     mouthType: MouthType.Default,
@@ -89,6 +97,7 @@ export class Main extends React.Component<Props> {
 
   render () {
     const {
+      topType,
       eyeType,
       eyebrowType,
       mouthType,
@@ -119,6 +128,7 @@ export class Main extends React.Component<Props> {
         {__render__ !== '1' ? (
           <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
             <Avatar
+              topType={topType}
               eyeType={eyeType}
               eyebrowType={eyebrowType}
               mouthType={mouthType}
@@ -139,6 +149,7 @@ export class Main extends React.Component<Props> {
               width: '100%',
               height: '100%'
             }}
+            topType={topType}
             eyeType={eyeType}
             eyebrowType={eyebrowType}
             mouthType={mouthType}
@@ -150,12 +161,14 @@ export class Main extends React.Component<Props> {
         )}
         {__render__ !== '1' ? (
           <AvatarForm
+            topType={topType}
             eyeType={eyeType}
             eyebrowType={eyebrowType}
             mouthType={mouthType}
             clotheType={clotheType}
             clotheColor={clotheColor}
             accessoriesType={accessoriesType}
+            onTopChange={this.onTopChange}
             onEyeChange={this.onEyeChange}
             onEyebrowChange={this.onEyebrowChange}
             onMouthChange={this.onMouthChange}
@@ -181,6 +194,10 @@ export class Main extends React.Component<Props> {
 
   private onCanvasRef = (ref: HTMLCanvasElement) => {
     this.canvasRef = ref
+  }
+
+  private onTopChange = (topType: TopType) => {
+    this.props.onChangeTopType(topType)
   }
 
   private onEyeChange = (eyeType: EyeType) => {
