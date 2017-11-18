@@ -2,7 +2,11 @@ import '../assets/App.css'
 
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import { UrlQueryParamTypes, addUrlProps } from 'react-url-query'
+import {
+  UrlQueryParamTypes,
+  UrlUpdateTypes,
+  addUrlProps
+} from 'react-url-query'
 
 import AvatarForm from './AvatarForm'
 import Avatar, { EyeType, EyebrowType } from './avatar'
@@ -12,13 +16,26 @@ interface Props {
   eyeType: EyeType
   eyebrowType: EyebrowType
   clotheType: ClotheType
+  onChangeEyeType: (eyeType: EyeType) => void
+  onChangeEyebrowType: (eyebrowType: EyebrowType) => void
+  onChangeClotheType: (clotheType: ClotheType) => void
   onChangeUrlQueryParams: (params: any) => void
 }
 
+const updateType = UrlUpdateTypes.pushIn
 const urlPropsQueryConfig = {
-  eyeType: { type: UrlQueryParamTypes.string },
-  eyebrowType: { type: UrlQueryParamTypes.string },
-  clotheType: { type: UrlQueryParamTypes.string }
+  eyeType: {
+    type: UrlQueryParamTypes.string,
+    updateType
+  },
+  eyebrowType: {
+    type: UrlQueryParamTypes.string,
+    updateType
+  },
+  clotheType: {
+    type: UrlQueryParamTypes.string,
+    updateType
+  }
 }
 
 export class Main extends React.Component<Props> {
@@ -71,30 +88,15 @@ export class Main extends React.Component<Props> {
   }
 
   private onEyeChange = (eyeType: EyeType) => {
-    const { eyebrowType, clotheType } = this.props
-    this.props.onChangeUrlQueryParams({
-      eyebrowType,
-      clotheType,
-      eyeType
-    })
+    this.props.onChangeEyeType(eyeType)
   }
 
   private onEyebrowChange = (eyebrowType: EyebrowType) => {
-    const { eyeType, clotheType } = this.props
-    this.props.onChangeUrlQueryParams({
-      eyebrowType,
-      clotheType,
-      eyeType
-    })
+    this.props.onChangeEyebrowType(eyebrowType)
   }
 
   private onClotheChange = (clotheType: ClotheType) => {
-    const { eyeType, eyebrowType } = this.props
-    this.props.onChangeUrlQueryParams({
-      eyebrowType,
-      clotheType,
-      eyeType
-    })
+    this.props.onChangeClotheType(clotheType)
   }
 
   private onDownload = () => {

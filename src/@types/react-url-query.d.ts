@@ -14,4 +14,11 @@ declare module 'react-url-query' {
   export function addUrlProps (options: any): HOC
 
   export function configureUrlQuery (options: any): void
+
+  namespace UrlUpdateTypes {
+    const replace: string
+    const replaceIn: string
+    const push: string
+    const pushIn: string
+  }
 }
