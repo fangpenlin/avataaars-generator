@@ -10,18 +10,20 @@ import {
 } from 'react-url-query'
 
 import AvatarForm from './AvatarForm'
-import Avatar, { EyeType, EyebrowType } from './avatar'
+import Avatar, { EyeType, EyebrowType, MouthType } from './avatar'
 import { Type as AccesoriesType } from './avatar/top/accessories'
 import { Type as ClotheType } from './avatar/clothes'
 
 interface Props {
   eyeType: EyeType
   eyebrowType: EyebrowType
+  mouthType: MouthType
   clotheType: ClotheType
   accesoriesType: AccesoriesType
   __render__?: string
   onChangeEyeType: (eyeType: EyeType) => void
   onChangeEyebrowType: (eyebrowType: EyebrowType) => void
+  onChangeMouthType: (mouthType: MouthType) => void
   onChangeClotheType: (clotheType: ClotheType) => void
   onChangeAccesoriesType: (accesoriesType: AccesoriesType) => void
   onChangeUrlQueryParams: (params: any) => void
@@ -34,6 +36,10 @@ const urlPropsQueryConfig = {
     updateType
   },
   eyebrowType: {
+    type: UrlQueryParamTypes.string,
+    updateType
+  },
+  mouthType: {
     type: UrlQueryParamTypes.string,
     updateType
   },
@@ -54,6 +60,7 @@ export class Main extends React.Component<Props> {
   static defaultProps = {
     eyeType: EyeType.Default,
     eyebrowType: EyebrowType.Default,
+    mouthType: MouthType.Default,
     clotheType: ClotheType.BlazerShirt,
     accesoriesType: AccesoriesType.Blank
   }
@@ -72,6 +79,7 @@ export class Main extends React.Component<Props> {
     const {
       eyeType,
       eyebrowType,
+      mouthType,
       clotheType,
       accesoriesType,
       __render__
@@ -100,6 +108,7 @@ export class Main extends React.Component<Props> {
             <Avatar
               eyeType={eyeType}
               eyebrowType={eyebrowType}
+              mouthType={mouthType}
               clotheType={clotheType}
               accesoriesType={accesoriesType}
               ref={this.onAvatarRef}
@@ -118,6 +127,7 @@ export class Main extends React.Component<Props> {
             }}
             eyeType={eyeType}
             eyebrowType={eyebrowType}
+            mouthType={mouthType}
             clotheType={clotheType}
             accesoriesType={accesoriesType}
             ref={this.onAvatarRef}
@@ -127,10 +137,12 @@ export class Main extends React.Component<Props> {
           <AvatarForm
             eyeType={eyeType}
             eyebrowType={eyebrowType}
+            mouthType={mouthType}
             clotheType={clotheType}
             accessoriesType={accesoriesType}
             onEyeChange={this.onEyeChange}
             onEyebrowChange={this.onEyebrowChange}
+            onMouthChange={this.onMouthChange}
             onClotheChange={this.onClotheChange}
             onAccessoriesChange={this.onAccessoriesChange}
             onDownload={this.onDownload}
@@ -160,6 +172,10 @@ export class Main extends React.Component<Props> {
 
   private onEyebrowChange = (eyebrowType: EyebrowType) => {
     this.props.onChangeEyebrowType(eyebrowType)
+  }
+
+  private onMouthChange = (mouthType: MouthType) => {
+    this.props.onChangeMouthType(mouthType)
   }
 
   private onClotheChange = (clotheType: ClotheType) => {

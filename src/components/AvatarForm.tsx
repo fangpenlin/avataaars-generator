@@ -21,14 +21,20 @@ import {
   AllTypes as AllEyebrowTypes,
   Type as EyebrowType
 } from './avatar/face/eyebrow'
+import {
+  AllTypes as AllMouthTypes,
+  Type as MouthType
+} from './avatar/face/mouth'
 
 export interface Props {
   eyeType: EyeType
   eyebrowType: EyebrowType
+  mouthType: MouthType
   clotheType: ClotheType
   accessoriesType: AccessoriesType
   onEyeChange?: (eyeType: EyeType) => void
   onEyebrowChange?: (eyebrowType: EyebrowType) => void
+  onMouthChange?: (mouthType: MouthType) => void
   onClotheChange?: (clotheType: ClotheType) => void
   onAccessoriesChange?: (accessoriesType: AccessoriesType) => void
   onDownload?: () => void
@@ -47,6 +53,11 @@ export default class AvatarForm extends React.Component<Props> {
       </option>
     ))
     const eyebrowOptions = AllEyebrowTypes.map(type => (
+      <option key={type} value={type}>
+        {type}
+      </option>
+    ))
+    const mouthOptions = AllMouthTypes.map(type => (
       <option key={type} value={type}>
         {type}
       </option>
@@ -96,6 +107,19 @@ export default class AvatarForm extends React.Component<Props> {
               value={this.props.eyeType}
               onChange={this.onEyeChange}>
               {eyeOptions}
+            </FormControl>
+          </Col>
+        </FormGroup>
+        <FormGroup className='row' controlId='mouth'>
+          <Col componentClass={ControlLabel} sm={labelCol}>
+            👄 Mouth
+          </Col>
+          <Col sm={inputCol}>
+            <FormControl
+              componentClass='select'
+              value={this.props.mouthType}
+              onChange={this.onMouthChange}>
+              {mouthOptions}
             </FormControl>
           </Col>
         </FormGroup>
@@ -164,6 +188,12 @@ export default class AvatarForm extends React.Component<Props> {
     }
   }
 
+  private onMouthChange = (event: React.FormEvent<FormControl>) => {
+    if (this.props.onMouthChange) {
+      this.props.onMouthChange(((event.target as any) as HTMLSelectElement)
+        .value as MouthType)
+    }
+  }
   private onClotheChange = (event: React.FormEvent<FormControl>) => {
     if (this.props.onClotheChange) {
       this.props.onClotheChange(((event.target as any) as HTMLSelectElement)
