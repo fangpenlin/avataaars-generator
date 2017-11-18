@@ -20,15 +20,15 @@ export default class Tongue extends React.Component {
         </mask>
         <use
           id='Mouth'
-          fill-opacity='0.699999988'
+          fillOpacity='0.699999988'
           fill='#000000'
-          fill-rule='evenodd'
+          fillRule='evenodd'
           xlinkHref={'#' + path1}
         />
         <rect
           id='Teeth'
           fill='#FFFFFF'
-          fill-rule='evenodd'
+          fillRule='evenodd'
           mask={`url(#${mask1})`}
           x='39'
           y='2'
@@ -40,7 +40,7 @@ export default class Tongue extends React.Component {
           d='M65.9841079,23.7466656 C65.9945954,23.8296335 66,23.9141856 66,24 L66,33 C66,39.0751322 61.0751322,44 55,44 L54,44 C47.9248678,44 43,39.0751322 43,33 L43,24 L43,24 C43,23.9141856 43.0054046,23.8296335 43.0158921,23.7466656 C43.0053561,23.6651805 43,23.5829271 43,23.5 C43,21.5670034 45.9101491,20 49.5,20 C51.510438,20 53.3076958,20.4914717 54.5,21.2634601 C55.6923042,20.4914717 57.489562,20 59.5,20 C63.0898509,20 66,21.5670034 66,23.5 C66,23.5829271 65.9946439,23.6651805 65.9841079,23.7466656 Z'
           id='Tongue'
           fill='#FF4F6D'
-          fill-rule='evenodd'
+          fillRule='evenodd'
         />
       </g>
     )

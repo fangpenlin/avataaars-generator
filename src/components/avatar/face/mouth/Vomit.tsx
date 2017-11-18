@@ -56,16 +56,16 @@ export default class Vomit extends React.Component {
         </mask>
         <use
           id='Mouth'
-          fill-opacity='0.699999988'
+          fillOpacity='0.699999988'
           fill='#000000'
-          fill-rule='evenodd'
+          fillRule='evenodd'
           transform='translate(54.000000, 21.499998) scale(1, -1) translate(-54.000000, -21.499998) '
           xlinkHref={'#' + path1}
         />
         <rect
           id='Teeth'
           fill='#FFFFFF'
-          fill-rule='evenodd'
+          fillRule='evenodd'
           mask={`url(#${mask1})`}
           x='39'
           y='0'
@@ -74,10 +74,10 @@ export default class Vomit extends React.Component {
           rx='5'
         />
         <g id='Vomit-Stuff'>
-          <use fill='#88C553' fill-rule='evenodd' xlinkHref={'#' + path2} />
+          <use fill='#88C553' fillRule='evenodd' xlinkHref={'#' + path2} />
           <use
             fill='black'
-            fill-opacity='1'
+            fillOpacity='1'
             filter={`url(#${filter1})`}
             xlinkHref={'#' + path2}
           />

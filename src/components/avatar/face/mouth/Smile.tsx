@@ -20,15 +20,15 @@ export default class Smile extends React.Component {
         </mask>
         <use
           id='Mouth'
-          fill-opacity='0.699999988'
+          fillOpacity='0.699999988'
           fill='#000000'
-          fill-rule='evenodd'
+          fillRule='evenodd'
           xlinkHref={'#' + path1}
         />
         <rect
           id='Teeth'
           fill='#FFFFFF'
-          fill-rule='evenodd'
+          fillRule='evenodd'
           mask={`url(#${mask1})`}
           x='39'
           y='2'
@@ -38,8 +38,8 @@ export default class Smile extends React.Component {
         />
         <g
           id='Tongue'
-          stroke-width='1'
-          fill-rule='evenodd'
+          strokeWidth='1'
+          fillRule='evenodd'
           mask={`url(#${mask1})`}
           fill='#FF4F6D'>
           <g transform='translate(38.000000, 24.000000)'>

@@ -23,16 +23,16 @@ export default class ScreamOpen extends React.Component {
         </mask>
         <use
           id='Mouth'
-          fill-opacity='0.699999988'
+          fillOpacity='0.699999988'
           fill='#000000'
-          fill-rule='evenodd'
+          fillRule='evenodd'
           transform='translate(54.000000, 26.999998) scale(1, -1) translate(-54.000000, -26.999998) '
           xlinkHref={'#' + path1}
         />
         <rect
           id='Teeth'
           fill='#FFFFFF'
-          fill-rule='evenodd'
+          fillRule='evenodd'
           mask={`url(#${mask1})`}
           x='39'
           y='2'
@@ -42,8 +42,8 @@ export default class ScreamOpen extends React.Component {
         />
         <g
           id='Tongue'
-          stroke-width='1'
-          fill-rule='evenodd'
+          strokeWidth='1'
+          fillRule='evenodd'
           mask={`url(#${mask1})`}
           fill='#FF4F6D'>
           <g transform='translate(38.000000, 32.000000)' id='Say-ahhhh'>
