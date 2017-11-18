@@ -1,14 +1,20 @@
 import * as React from 'react'
 
+import Hat from './Hat'
 import LongHairMiaWallace from './LongHairMiaWallace'
 import LongHairStraight from './LongHairStraight'
 
 export enum Type {
   LongHairMiaWallace = 'LongHairMiaWallace',
-  LongHairStraight = 'LongHairStraight'
+  LongHairStraight = 'LongHairStraight',
+  Hat = 'Hat'
 }
 
-export const AllTypes = [Type.LongHairMiaWallace, Type.LongHairStraight]
+export const AllTypes = [
+  Type.LongHairMiaWallace,
+  Type.LongHairStraight,
+  Type.Hat
+]
 
 // TODO:
 export enum Color {
@@ -78,6 +84,8 @@ export default class Top extends React.Component<Props> {
         return <LongHairMiaWallace>{this.props.children}</LongHairMiaWallace>
       case Type.LongHairStraight:
         return <LongHairStraight>{this.props.children}</LongHairStraight>
+      case Type.Hat:
+        return <Hat>{this.props.children}</Hat>
     }
     return null
   }

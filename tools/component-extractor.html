@@ -22,11 +22,15 @@
           var id = value.substr(1)
           defs.add(id) 
           value = (idMap) => "'#' + " + idMap[id]
+        } else if (attr.name === 'id' && node.nodeName === 'mask') {
+          var id = attr.value
+          defs.add(id) 
+          value = (idMap) => idMap[id]
         } else {
           var found = value.match(re);
           if (found) {
             var id = found[1]
-            value = (idMap) => '`url(${' + idMap[id] +'})`'
+            value = (idMap) => '`url(#${' + idMap[id] +'})`'
             defs.add(id)
           }
         }
@@ -101,6 +105,9 @@
           value = value(idMap)
           attrs.push(`${name}={${value}}`)
         } else {
+          if (name === 'id' && value.startsWith('Top/_Resources/')) {
+            return '{this.props.children}'
+          }
           attrs.push(`${name}='${value}'`)
         }
       }
@@ -162,7 +169,7 @@
 import * as React from 'react'
 import { uniqueId } from 'lodash'
 
-export default class LongHairStraight extends React.Component {
+export default class FIXME extends React.Component {
   ${idProps.join('\n')} 
 
   render () {
