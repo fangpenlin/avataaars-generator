@@ -96,6 +96,15 @@ export default class AvatarForm extends React.Component<Props> {
             <Button bsStyle='primary' type='submit'>
               <i className='fa fa-download' /> Download
             </Button>
+            <a
+              className='twitter-share-button'
+              href={
+                'https://twitter.com/intent/tweet?text=' +
+                encodeURI('I just created my avataaars here 😆')
+              }
+              data-size='large'>
+              Tweet
+            </a>
           </Col>
         </FormGroup>
       </Form>
