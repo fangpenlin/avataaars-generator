@@ -46,12 +46,50 @@
       }
       treeNode.childNodes = children
     }
+
+    function convertDef (node, treeNode) {
+      if (node.nodeName === '#text') {
+        return
+      }
+      treeNode.nodeName = node.nodeName
+      var attrs = []
+      for (var attr of node.attributes) {
+        var value = attr.value
+        if (attr.name === 'id') {
+          value = (id) => id
+        }
+        attrs.push({
+          name: attr.name,
+          value
+        })
+      }
+      treeNode.attrs = attrs
+
+      var children = []
+      for (var child of node.childNodes) {
+        var childNode = {}
+        convertDef(child, childNode)
+        if (childNode.nodeName) {
+          children.push(childNode)
+        }
+      }
+      treeNode.childNodes = children
+    }
   
     document.addEventListener('DOMContentLoaded', () => {
       var top = document.getElementById('Top')
       var defs = new Set()
       var treeNode = {}
       collectDefs(top, defs, treeNode) 
+
+      var defsNodes = []
+      for (var id of defs) {
+        var node = document.getElementById(id)
+        var defTreeNode = {}
+        convertDef(node, defTreeNode)
+        defsNodes.push(defTreeNode)
+      }
+      console.info('$$$$$', defsNodes)
       console.info(defs, treeNode)
     })
   
