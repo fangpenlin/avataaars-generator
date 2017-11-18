@@ -79,11 +79,24 @@
       treeNode.childNodes = children
     }
 
+    function capitalizeFirstLetter(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
     function outputNode(node, idMap) {
       var result = `<${node.nodeName} `
       var attrs = []
       for (var attr of node.attrs) {
         var { name, value } = attr
+        var nameParts = name.split('-')
+        if (nameParts.length > 1) {
+          name = nameParts[0] + nameParts.slice(1).map(n => capitalizeFirstLetter(n))
+        }
+        var nameParts2 = name.split(':')
+        if (nameParts2.length > 1) {
+          name = nameParts2[0] + nameParts2.slice(1).map(n => capitalizeFirstLetter(n))
+        }
+
         if (typeof value === 'function') {
           value = value(idMap)
           attrs.push(`${name}={${value}}`)
@@ -125,14 +138,17 @@
           typeCount[type] += 1
         }
         idMap[id] = type + typeCount[type]
-        console.info('@@@@', parts, type + typeCount[type])
       }
 
-      const defsStr = defsNodes.filter(n => n.nodeName !== 'mask').map(n => outputNode(n, idMap))
-
       //console.info('$$$$$', defsNodes)
-      console.info('$$$$$', defsStr)
-      console.info(defs, treeNode)
+      // console.info('$$$$$', defsStr)
+      // console.info(defs, treeNode)
+      treeNode.childNodes.unshift({
+        nodeName: 'defs',
+        attrs: [],
+        childNodes: defsNodes.filter(n => n.nodeName !== 'mask')
+      })
+      console.info(outputNode(treeNode, idMap))
     })
   
   </script>
