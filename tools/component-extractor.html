@@ -8,35 +8,31 @@
   <meta name="description" content="The HTML5 Herald">
   <meta name="author" content="SitePoint">
 
-
-  <!--[if lt IE 9]>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
-  <![endif]-->
-
   <script>
     function collectDefs (node, defs, treeNode) {
       if (node.nodeName === '#text') {
         return
       }
       treeNode.nodeName = node.nodeName
-      if (node.nodeName === 'use') {
-        var href = node.attributes['xlink:href']
-        if (href) {
-          defs.add(href.value)
-        }
-      }
       var re = /^url\(#(.*)\)/i;
       var attrs = []
       for (var attr of node.attributes) {
+        var value = attr.value
+        if (attr.name === 'xlink:href') {
+          defs.add(value.substr(1)) 
+          value = (id) => "'#' + " + id
+        } else {
+          var found = value.match(re);
+          if (found) {
+            value = (id) => '`url(${' + id +'})`'
+            defs.add(found[1])
+          }
+        }
+
         attrs.push({
           name: attr.name,
-          value: attr.value
+          value
         })
-
-        var found = attr.value.match(re);
-        if (found) {
-          defs.add(found[1])
-        }
       }
       treeNode.attrs = attrs
 
