@@ -5,13 +5,15 @@ import Prescription01 from './Prescription01'
 import Prescription02 from './Prescription02'
 import Round from './Round'
 import Sunglasses from './Sunglasses'
+import Wayfarers from './Wayfarers'
 
 export enum Type {
   Kurt = 'Kurt',
   Prescription01 = 'Prescription01',
   Prescription02 = 'Prescription02',
   Round = 'Round',
-  Sunglasses = 'Sunglasses'
+  Sunglasses = 'Sunglasses',
+  Wayfarers = 'Wayfarers'
 }
 
 export const AllTypes = [Type.Kurt, Type.Prescription01]
@@ -33,6 +35,8 @@ export default class Accessories extends React.Component<Props> {
         return <Round />
       case Type.Sunglasses:
         return <Sunglasses />
+      case Type.Wayfarers:
+        return <Wayfarers />
     }
     return null
   }

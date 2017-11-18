@@ -40,11 +40,11 @@ export default class Round extends React.Component {
         <g id='Lennon-Glasses'>
           <use
             fill='black'
-            fill-opacity='1'
+            fillOpacity='1'
             filter={`url(#${filter1})`}
             xlinkHref={'#' + path1}
           />
-          <use fill='#252C2F' fill-rule='evenodd' xlinkHref={'#' + path1} />
+          <use fill='#252C2F' fillRule='evenodd' xlinkHref={'#' + path1} />
         </g>
       </g>
     )

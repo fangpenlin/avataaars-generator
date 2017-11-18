@@ -15,7 +15,7 @@ export default class Sunglasses extends React.Component {
         id='Top/_Resources/Sunglasses'
         fill='none'
         transform='translate(62.000000, 85.000000)'
-        stroke-width='1'>
+        strokeWidth='1'>
         <defs>
           <filter
             x='-0.8%'
@@ -55,8 +55,8 @@ export default class Sunglasses extends React.Component {
             x2='50%'
             y2='70.5058195%'
             id={linearGradient1}>
-            <stop stop-color='#FFFFFF' stop-opacity='0.5' offset='0%' />
-            <stop stop-color='#000000' stop-opacity='0.5' offset='100%' />
+            <stop stopColor='#FFFFFF' stopOpacity='0.5' offset='0%' />
+            <stop stopColor='#000000' stopOpacity='0.5' offset='100%' />
           </linearGradient>
           <linearGradient
             x1='50%'
@@ -64,12 +64,8 @@ export default class Sunglasses extends React.Component {
             x2='50%'
             y2='100%'
             id={linearGradient2}>
-            <stop stop-color='#FFFFFF' stop-opacity='0.5' offset='0%' />
-            <stop
-              stop-color='#000000'
-              stop-opacity='0.5'
-              offset='70.5058195%'
-            />
+            <stop stopColor='#FFFFFF' stopOpacity='0.5' offset='0%' />
+            <stop stopColor='#000000' stopOpacity='0.5' offset='70.5058195%' />
           </linearGradient>
         </defs>
         <g
@@ -78,7 +74,7 @@ export default class Sunglasses extends React.Component {
           transform='translate(8.000000, 8.000000)'>
           <g id='shades'>
             <use
-              fill-opacity='0.700000048'
+              fillOpacity='0.700000048'
               fill='#000000'
               xlinkHref={'#' + path1}
             />
@@ -90,7 +86,7 @@ export default class Sunglasses extends React.Component {
           </g>
           <g id='shades'>
             <use
-              fill-opacity='0.700000048'
+              fillOpacity='0.700000048'
               fill='#000000'
               xlinkHref={'#' + path2}
             />

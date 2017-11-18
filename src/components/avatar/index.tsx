@@ -100,7 +100,7 @@ export default class Avatar extends React.Component<Props> {
                   eyebrowType={this.props.eyebrowType}
                 />
                 <LongHairStraight>
-                  <Accesories type={AccesoriesType.Sunglasses} />
+                  <Accesories type={AccesoriesType.Wayfarers} />
                 </LongHairStraight>
               </g>
             </g>
