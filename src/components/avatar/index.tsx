@@ -1,18 +1,37 @@
 import * as React from 'react'
 
 import LongHairStraight from './top/LongHairStraight'
-import Accesories, { Type as AccesoriesType } from './top/accessories'
-import Clothe, { Type as ClotheType } from './clothes'
+import Accesories, { Type as AccessoriesType } from './top/accessories'
+import Clothe, { Color as ClothColor, Type as ClotheType } from './clothes'
 import Face, { EyeType, EyebrowType, MouthType } from './face'
 
-export { EyeType, EyebrowType, MouthType } from './face'
+export {
+  AllTypes as AllAccessoriesTypes,
+  Type as AccessoriesType
+} from './top/accessories'
+export {
+  AllTypes as AllClotheTypes,
+  AllColors as AllClotheColors,
+  Color as ClotheColor,
+  ColorValues as ClotheColorValues,
+  Type as ClotheType
+} from './clothes'
+export {
+  AllEyebrowTypes,
+  AllEyeTypes,
+  AllMouthTypes,
+  EyeType,
+  EyebrowType,
+  MouthType
+} from './face'
 
 export interface Props {
   eyeType: EyeType
   eyebrowType: EyebrowType
   mouthType: MouthType
   clotheType: ClotheType
-  accesoriesType: AccesoriesType
+  clotheColor: ClothColor
+  accessoriesType: AccessoriesType
   style?: React.CSSProperties
 }
 
@@ -96,14 +115,17 @@ export default class Avatar extends React.Component<Props> {
                     mask='url(#mask-6)'
                   />
                 </g>
-                <Clothe type={this.props.clotheType} />
+                <Clothe
+                  type={this.props.clotheType}
+                  color={this.props.clotheColor}
+                />
                 <Face
                   eyeType={this.props.eyeType}
                   eyebrowType={this.props.eyebrowType}
                   mouthType={this.props.mouthType}
                 />
                 <LongHairStraight>
-                  <Accesories type={this.props.accesoriesType} />
+                  <Accesories type={this.props.accessoriesType} />
                 </LongHairStraight>
               </g>
             </g>

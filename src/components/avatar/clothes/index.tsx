@@ -34,8 +34,21 @@ export const AllTypes = [
   Type.ShirtVNeck
 ]
 
+export enum Color {
+  Black = 'Black',
+  Blue01 = 'Blue01'
+}
+
+export const AllColors = [Color.Black, Color.Blue01]
+
+export const ColorValues: { [index: string]: string } = {
+  [Color.Black]: '#262E33',
+  [Color.Blue01]: '#65C9FF'
+}
+
 export interface Props {
   type: Type
+  color: string
 }
 
 export default class Clothes extends React.Component<Props> {
@@ -46,19 +59,19 @@ export default class Clothes extends React.Component<Props> {
       case Type.BlazerSweater:
         return <BlazerSweater />
       case Type.CollarSweater:
-        return <CollarSweater />
+        return <CollarSweater color={this.props.color} />
       case Type.GraphicShirt:
-        return <GraphicShirt />
+        return <GraphicShirt color={this.props.color} />
       case Type.Hoodie:
-        return <Hoodie />
+        return <Hoodie color={this.props.color} />
       case Type.Overall:
-        return <Overall />
+        return <Overall color={this.props.color} />
       case Type.ShirtCrewNeck:
-        return <ShirtCrewNeck />
+        return <ShirtCrewNeck color={this.props.color} />
       case Type.ShirtScoopNeck:
-        return <ShirtScoopNeck />
+        return <ShirtScoopNeck color={this.props.color} />
       case Type.ShirtVNeck:
-        return <ShirtVNeck />
+        return <ShirtVNeck color={this.props.color} />
     }
     return null
   }

@@ -5,9 +5,9 @@ import Eyes, { Type as EyeType } from './eyes'
 import Mouth, { Type as MouthType } from './mouth'
 import { default as DefaultNose } from './nose/Default'
 
-export { Type as EyebrowType } from './eyebrow'
-export { Type as EyeType } from './eyes'
-export { Type as MouthType } from './mouth'
+export { AllTypes as AllEyebrowTypes, Type as EyebrowType } from './eyebrow'
+export { AllTypes as AllEyeTypes, Type as EyeType } from './eyes'
+export { AllTypes as AllMouthTypes, Type as MouthType } from './mouth'
 
 export interface Props {
   eyeType: EyeType

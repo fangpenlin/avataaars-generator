@@ -9,33 +9,33 @@ import {
 } from 'react-bootstrap'
 
 import {
-  AllTypes as AllAccessoriesTypes,
-  Type as AccessoriesType
-} from './avatar/top/accessories'
-import {
-  AllTypes as AllClotheTypes,
-  Type as ClotheType
-} from './avatar/clothes'
-import { AllTypes as AllEyeTypes, Type as EyeType } from './avatar/face/eyes'
-import {
-  AllTypes as AllEyebrowTypes,
-  Type as EyebrowType
-} from './avatar/face/eyebrow'
-import {
-  AllTypes as AllMouthTypes,
-  Type as MouthType
-} from './avatar/face/mouth'
+  AccessoriesType,
+  AllAccessoriesTypes,
+  AllClotheColors,
+  AllClotheTypes,
+  AllEyeTypes,
+  AllEyebrowTypes,
+  AllMouthTypes,
+  ClotheColor,
+  ClotheColorValues,
+  ClotheType,
+  EyeType,
+  EyebrowType,
+  MouthType
+} from './avatar'
 
 export interface Props {
   eyeType: EyeType
   eyebrowType: EyebrowType
   mouthType: MouthType
   clotheType: ClotheType
+  clotheColor: ClotheColor
   accessoriesType: AccessoriesType
   onEyeChange?: (eyeType: EyeType) => void
   onEyebrowChange?: (eyebrowType: EyebrowType) => void
   onMouthChange?: (mouthType: MouthType) => void
   onClotheChange?: (clotheType: ClotheType) => void
+  onClotheColorChange?: (clotheColor: ClotheColor) => void
   onAccessoriesChange?: (accessoriesType: AccessoriesType) => void
   onDownload?: () => void
 }
@@ -64,6 +64,11 @@ export default class AvatarForm extends React.Component<Props> {
     ))
     const clotheOptions = AllClotheTypes.map(type => (
       <option key={type} value={type}>
+        {type}
+      </option>
+    ))
+    const clotheColorOptions = AllClotheColors.map(type => (
+      <option key={type} value={ClotheColorValues[type]}>
         {type}
       </option>
     ))
@@ -136,6 +141,19 @@ export default class AvatarForm extends React.Component<Props> {
             </FormControl>
           </Col>
         </FormGroup>
+        <FormGroup className='row' controlId='clotheColor'>
+          <Col componentClass={ControlLabel} sm={labelCol}>
+            ↳ Color Fabric
+          </Col>
+          <Col sm={inputCol}>
+            <FormControl
+              componentClass='select'
+              value={this.props.clotheColor}
+              onChange={this.onClotheColorChange}>
+              {clotheColorOptions}
+            </FormControl>
+          </Col>
+        </FormGroup>
         <FormGroup className='row'>
           <Col className='offset-sm-2' smOffset={labelCol} sm={inputCol}>
             More options coming soon ...
@@ -194,10 +212,19 @@ export default class AvatarForm extends React.Component<Props> {
         .value as MouthType)
     }
   }
+
   private onClotheChange = (event: React.FormEvent<FormControl>) => {
     if (this.props.onClotheChange) {
       this.props.onClotheChange(((event.target as any) as HTMLSelectElement)
         .value as ClotheType)
+    }
+  }
+
+  private onClotheColorChange = (event: React.FormEvent<FormControl>) => {
+    if (this.props.onClotheColorChange) {
+      this.props.onClotheColorChange(
+        ((event.target as any) as HTMLSelectElement).value as ClotheColor
+      )
     }
   }
 

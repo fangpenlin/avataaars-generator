@@ -10,22 +10,29 @@ import {
 } from 'react-url-query'
 
 import AvatarForm from './AvatarForm'
-import Avatar, { EyeType, EyebrowType, MouthType } from './avatar'
-import { Type as AccesoriesType } from './avatar/top/accessories'
-import { Type as ClotheType } from './avatar/clothes'
+import Avatar, {
+  AccessoriesType,
+  ClotheColor,
+  ClotheType,
+  EyeType,
+  EyebrowType,
+  MouthType
+} from './avatar'
 
 interface Props {
   eyeType: EyeType
   eyebrowType: EyebrowType
   mouthType: MouthType
   clotheType: ClotheType
-  accesoriesType: AccesoriesType
+  clotheColor: ClotheColor
+  accessoriesType: AccessoriesType
   __render__?: string
   onChangeEyeType: (eyeType: EyeType) => void
   onChangeEyebrowType: (eyebrowType: EyebrowType) => void
   onChangeMouthType: (mouthType: MouthType) => void
   onChangeClotheType: (clotheType: ClotheType) => void
-  onChangeAccesoriesType: (accesoriesType: AccesoriesType) => void
+  onChangeClotheColor: (clotheColor: ClotheColor) => void
+  onChangeAccessoriesType: (accessoriesType: AccessoriesType) => void
   onChangeUrlQueryParams: (params: any) => void
 }
 
@@ -47,7 +54,11 @@ const urlPropsQueryConfig = {
     type: UrlQueryParamTypes.string,
     updateType
   },
-  accesoriesType: {
+  clotheColor: {
+    type: UrlQueryParamTypes.string,
+    updateType
+  },
+  accessoriesType: {
     type: UrlQueryParamTypes.string,
     updateType
   },
@@ -62,7 +73,8 @@ export class Main extends React.Component<Props> {
     eyebrowType: EyebrowType.Default,
     mouthType: MouthType.Default,
     clotheType: ClotheType.BlazerShirt,
-    accesoriesType: AccesoriesType.Blank
+    clotheColor: ClotheColor.Black,
+    accessoriesType: AccessoriesType.Blank
   }
 
   private avatarRef: Avatar | null = null
@@ -81,7 +93,8 @@ export class Main extends React.Component<Props> {
       eyebrowType,
       mouthType,
       clotheType,
-      accesoriesType,
+      clotheColor,
+      accessoriesType,
       __render__
     } = this.props
     const title = 'Avataaars Generator - Generate your own avataaars!'
@@ -110,7 +123,8 @@ export class Main extends React.Component<Props> {
               eyebrowType={eyebrowType}
               mouthType={mouthType}
               clotheType={clotheType}
-              accesoriesType={accesoriesType}
+              clotheColor={clotheColor}
+              accessoriesType={accessoriesType}
               ref={this.onAvatarRef}
             />
           </div>
@@ -129,7 +143,8 @@ export class Main extends React.Component<Props> {
             eyebrowType={eyebrowType}
             mouthType={mouthType}
             clotheType={clotheType}
-            accesoriesType={accesoriesType}
+            clotheColor={clotheColor}
+            accessoriesType={accessoriesType}
             ref={this.onAvatarRef}
           />
         )}
@@ -139,11 +154,13 @@ export class Main extends React.Component<Props> {
             eyebrowType={eyebrowType}
             mouthType={mouthType}
             clotheType={clotheType}
-            accessoriesType={accesoriesType}
+            clotheColor={clotheColor}
+            accessoriesType={accessoriesType}
             onEyeChange={this.onEyeChange}
             onEyebrowChange={this.onEyebrowChange}
             onMouthChange={this.onMouthChange}
             onClotheChange={this.onClotheChange}
+            onClotheColorChange={this.onClotheColorChange}
             onAccessoriesChange={this.onAccessoriesChange}
             onDownload={this.onDownload}
           />
@@ -182,8 +199,12 @@ export class Main extends React.Component<Props> {
     this.props.onChangeClotheType(clotheType)
   }
 
-  private onAccessoriesChange = (accesoriesType: AccesoriesType) => {
-    this.props.onChangeAccesoriesType(accesoriesType)
+  private onClotheColorChange = (clotheColor: ClotheColor) => {
+    this.props.onChangeClotheColor(clotheColor)
+  }
+
+  private onAccessoriesChange = (accesoriesType: AccessoriesType) => {
+    this.props.onChangeAccessoriesType(accesoriesType)
   }
 
   private onDownload = () => {
