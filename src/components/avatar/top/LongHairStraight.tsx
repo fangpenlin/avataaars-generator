@@ -58,11 +58,7 @@ export default class LongHairStraight extends React.Component {
               />
               <use fill='#AE5D29' fillRule='evenodd' xlinkHref={'#' + path2} />
             </g>
-            <g
-              id='Top/_Resources/Blank'
-              fill='none'
-              transform='translate(62.000000, 85.000000)'
-            />
+            {this.props.children}
           </g>
         </g>
       </g>

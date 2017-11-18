@@ -1,6 +1,7 @@
 import * as React from 'react'
 
 import LongHairStraight from './top/LongHairStraight'
+import Accesories, { Type as AccesoriesType } from './top/accessories'
 import Clothe, { Type as ClotheType } from './clothes'
 import Face, { EyeType, EyebrowType } from './face'
 
@@ -98,7 +99,9 @@ export default class Avatar extends React.Component<Props> {
                   eyeType={this.props.eyeType}
                   eyebrowType={this.props.eyebrowType}
                 />
-                <LongHairStraight />
+                <LongHairStraight>
+                  <Accesories type={AccesoriesType.Prescription02} />
+                </LongHairStraight>
               </g>
             </g>
           </g>
