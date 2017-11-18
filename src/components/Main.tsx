@@ -1,5 +1,6 @@
 import '../assets/App.css'
 
+import * as FileSaver from 'file-saver'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import { Helmet } from 'react-helmet'
@@ -239,26 +240,15 @@ export class Main extends React.Component<Props> {
     img.onload = () => {
       ctx.drawImage(img, 0, 0)
       DOMURL.revokeObjectURL(url)
-      const imageURI = this.canvasRef!
-        .toDataURL('image/png')
-        .replace('image/png', 'image/octet-stream')
-      this.triggerDownload(imageURI)
+      this.canvasRef!.toBlob(imageBlob => {
+        this.triggerDownload(imageBlob!)
+      })
     }
     img.src = url
   }
 
-  private triggerDownload (imgURI: string) {
-    const event = new MouseEvent('click', {
-      view: window,
-      bubbles: false,
-      cancelable: true
-    })
-
-    const a = document.createElement('a')
-    a.setAttribute('download', 'avataaars.png')
-    a.setAttribute('href', imgURI)
-    a.setAttribute('target', '_blank')
-    a.dispatchEvent(event)
+  private triggerDownload (imageBlob: Blob) {
+    FileSaver.saveAs(imageBlob, 'avataaars.png')
   }
 }
 
