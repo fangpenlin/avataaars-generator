@@ -53,6 +53,13 @@ export class Main extends React.Component<Props> {
   private avatarRef: Avatar | null = null
   private canvasRef: HTMLCanvasElement | null = null
 
+  componentDidMount () {
+    const anyWindow = window as any
+    setTimeout(() => {
+      anyWindow.prerenderReady = true
+    }, 500)
+  }
+
   render () {
     const { eyeType, eyebrowType, clotheType, __render__ } = this.props
     const title = 'avataaars generator - Generate your own avataaars!'
