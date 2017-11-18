@@ -10,12 +10,14 @@ export interface Props {
   eyeType: EyeType
   eyebrowType: EyebrowType
   clotheType: ClotheType
+  style?: React.CSSProperties
 }
 
 export default class Avatar extends React.Component<Props> {
   render () {
     return (
       <svg
+        style={this.props.style}
         width='240px'
         height='262px'
         viewBox='0 0 240 262'

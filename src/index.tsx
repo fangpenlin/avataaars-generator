@@ -8,8 +8,15 @@ import App from './components/App'
 import history from './history'
 import registerServiceWorker from './registerServiceWorker'
 
-// link the history used in our app to url-query so it can update the URL with it.
-configureUrlQuery({ history })
+const params = new URL(document.location.href).searchParams
 
-ReactDOM.render(<App />, document.getElementById('root') as HTMLElement)
-registerServiceWorker()
+if (params.get('__render__') !== '1') {
+  // link the history used in our app to url-query so it can update the URL with it.
+  configureUrlQuery({ history })
+
+  ReactDOM.render(<App />, document.getElementById('root') as HTMLElement)
+  registerServiceWorker()
+  // server rendering mode
+} else {
+  ReactDOM.render(<App />, document.body)
+}

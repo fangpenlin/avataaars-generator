@@ -17,6 +17,7 @@ interface Props {
   eyeType: EyeType
   eyebrowType: EyebrowType
   clotheType: ClotheType
+  __render__?: string
   onChangeEyeType: (eyeType: EyeType) => void
   onChangeEyebrowType: (eyebrowType: EyebrowType) => void
   onChangeClotheType: (clotheType: ClotheType) => void
@@ -36,6 +37,9 @@ const urlPropsQueryConfig = {
   clotheType: {
     type: UrlQueryParamTypes.string,
     updateType
+  },
+  __render__: {
+    type: UrlQueryParamTypes.string
   }
 }
 
@@ -50,7 +54,8 @@ export class Main extends React.Component<Props> {
   private canvasRef: HTMLCanvasElement | null = null
 
   render () {
-    const { eyeType, eyebrowType, clotheType } = this.props
+    console.info('@@@@@@', this.props)
+    const { eyeType, eyebrowType, clotheType, __render__ } = this.props
     const title = 'avataaars generator - Generate your own avataaars!'
     // XXX: find a way to render the SVG on server side to png
     const imageURL = 'https://example.com/img.png'
@@ -71,23 +76,43 @@ export class Main extends React.Component<Props> {
           <meta name='twitter:image' content={imageURL} />
           <meta name='twitter:url' content={document.location.href} />
         </Helmet>
-        <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
+        {__render__ !== '1' ? (
+          <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
+            <Avatar
+              eyeType={eyeType}
+              eyebrowType={eyebrowType}
+              clotheType={clotheType}
+              ref={this.onAvatarRef}
+            />
+          </div>
+        ) : (
           <Avatar
+            style={{
+              position: 'absolute',
+              left: '0',
+              right: '0',
+              bottom: '0',
+              top: '0',
+              width: '100%',
+              height: '100%'
+            }}
             eyeType={eyeType}
             eyebrowType={eyebrowType}
             clotheType={clotheType}
             ref={this.onAvatarRef}
           />
-        </div>
-        <AvatarForm
-          eyeType={eyeType}
-          eyebrowType={eyebrowType}
-          clotheType={clotheType}
-          onEyeChange={this.onEyeChange}
-          onEyebrowChange={this.onEyebrowChange}
-          onClotheChange={this.onClotheChange}
-          onDownload={this.onDownload}
-        />
+        )}
+        {__render__ !== '1' ? (
+          <AvatarForm
+            eyeType={eyeType}
+            eyebrowType={eyebrowType}
+            clotheType={clotheType}
+            onEyeChange={this.onEyeChange}
+            onEyebrowChange={this.onEyebrowChange}
+            onClotheChange={this.onClotheChange}
+            onDownload={this.onDownload}
+          />
+        ) : null}
         <canvas
           style={{ display: 'none' }}
           width='240'
