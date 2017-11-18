@@ -14,33 +14,49 @@
   <![endif]-->
 
   <script>
-    function collectDefs (node, defs) {
+    function collectDefs (node, defs, treeNode) {
+      if (node.nodeName === '#text') {
+        return
+      }
+      treeNode.nodeName = node.nodeName
       if (node.nodeName === 'use') {
         var href = node.attributes['xlink:href']
         if (href) {
           defs.add(href.value)
         }
       }
-      if (node.attributes) {
-        var re = /^url\(#(.*)\)/i;
-        for (var attr of node.attributes) {
-          var found = attr.value.match(re);
-          if (!found) {
-            continue
-          }
+      var re = /^url\(#(.*)\)/i;
+      var attrs = []
+      for (var attr of node.attributes) {
+        attrs.push({
+          name: attr.name,
+          value: attr.value
+        })
+
+        var found = attr.value.match(re);
+        if (found) {
           defs.add(found[1])
         }
       }
+      treeNode.attrs = attrs
+
+      var children = []
       for (var child of node.childNodes) {
-        collectDefs(child, defs)
+        var childNode = {}
+        collectDefs(child, defs, childNode)
+        if (childNode.nodeName) {
+          children.push(childNode)
+        }
       }
+      treeNode.childNodes = children
     }
   
     document.addEventListener('DOMContentLoaded', () => {
       var top = document.getElementById('Top')
       var defs = new Set()
-      collectDefs(top, defs) 
-      console.info(defs)
+      var treeNode = {}
+      collectDefs(top, defs, treeNode) 
+      console.info(defs, treeNode)
     })
   
   </script>
