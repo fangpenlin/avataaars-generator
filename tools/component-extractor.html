@@ -19,13 +19,15 @@
       for (var attr of node.attributes) {
         var value = attr.value
         if (attr.name === 'xlink:href') {
-          defs.add(value.substr(1)) 
-          value = (id) => "'#' + " + id
+          var id = value.substr(1)
+          defs.add(id) 
+          value = (idMap) => "'#' + " + idMap[id]
         } else {
           var found = value.match(re);
           if (found) {
-            value = (id) => '`url(${' + id +'})`'
-            defs.add(found[1])
+            var id = found[1]
+            value = (idMap) => '`url(${' + idMap[id] +'})`'
+            defs.add(id)
           }
         }
 
@@ -56,7 +58,8 @@
       for (var attr of node.attributes) {
         var value = attr.value
         if (attr.name === 'id') {
-          value = (id) => id
+          var id = attr.value
+          value = (idMap) => idMap[id]
         }
         attrs.push({
           name: attr.name,
@@ -75,6 +78,26 @@
       }
       treeNode.childNodes = children
     }
+
+    function outputNode(node, idMap) {
+      var result = `<${node.nodeName} `
+      var attrs = []
+      for (var attr of node.attrs) {
+        var { name, value } = attr
+        if (typeof value === 'function') {
+          value = value(idMap)
+          attrs.push(`${name}={${value}}`)
+        } else {
+          attrs.push(`${name}='${value}'`)
+        }
+      }
+      result += attrs.join(' ') + '>'
+      for (var child of node.childNodes) {
+        result += outputNode(child, idMap) 
+      }
+      result += `</${node.nodeName}>`
+      return result
+    }
   
     document.addEventListener('DOMContentLoaded', () => {
       var top = document.getElementById('Top')
@@ -89,7 +112,26 @@
         convertDef(node, defTreeNode)
         defsNodes.push(defTreeNode)
       }
-      console.info('$$$$$', defsNodes)
+
+      var typeCount = {}
+      var idMap = {}
+      for (var id of defs) {
+        var parts = id.split('-')
+        var type = parts[0]
+        var num = parts[1]
+        if (!(type in typeCount)) {
+          typeCount[type] = 1
+        } else {
+          typeCount[type] += 1
+        }
+        idMap[id] = type + typeCount[type]
+        console.info('@@@@', parts, type + typeCount[type])
+      }
+
+      const defsStr = defsNodes.filter(n => n.nodeName !== 'mask').map(n => outputNode(n, idMap))
+
+      //console.info('$$$$$', defsNodes)
+      console.info('$$$$$', defsStr)
       console.info(defs, treeNode)
     })
   
