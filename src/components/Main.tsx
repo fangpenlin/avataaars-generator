@@ -54,11 +54,9 @@ export class Main extends React.Component<Props> {
   private canvasRef: HTMLCanvasElement | null = null
 
   render () {
-    console.info('@@@@@@', this.props)
     const { eyeType, eyebrowType, clotheType, __render__ } = this.props
     const title = 'avataaars generator - Generate your own avataaars!'
-    // XXX: find a way to render the SVG on server side to png
-    const imageURL = 'https://example.com/img.png'
+    const imageURL = process.env.REACT_APP_IMG_RENDERER_URL + location.search
     return (
       <main role='main'>
         <Helmet>
