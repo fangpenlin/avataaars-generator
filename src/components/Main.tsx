@@ -62,21 +62,21 @@ export class Main extends React.Component<Props> {
 
   render () {
     const { eyeType, eyebrowType, clotheType, __render__ } = this.props
-    const title = 'avataaars generator - Generate your own avataaars!'
+    const title = 'Avataaars Generator - Generate your own avataaars!'
     const imageURL = process.env.REACT_APP_IMG_RENDERER_URL + location.search
     return (
       <main role='main'>
         <Helmet>
           <meta property='og:title' content={title} />
-          <meta property='og:site_name' content='avataaars generator' />
+          <meta property='og:site_name' content='Avataaars Generator' />
           <meta property='og:url' content={document.location.href} />
           <meta property='og:image' content={imageURL} />
           <meta
             property='og:description'
-            content='avataaars generator is a free online tool for generating your own avatar'
+            content='Avataaars Generator is a free online tool for generating your own avatar'
           />
           <meta name='twitter:card' content='photo' />
-          <meta name='twitter:site' content='avataaars generator' />
+          <meta name='twitter:site' content='Avataaars Generator' />
           <meta name='twitter:title' content={title} />
           <meta name='twitter:image' content={imageURL} />
           <meta name='twitter:url' content={document.location.href} />
