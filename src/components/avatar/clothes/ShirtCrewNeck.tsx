@@ -27,21 +27,21 @@ export default class ShirtCrewNeck extends React.Component<Props> {
         <use
           id='Clothes'
           fill='#E6E6E6'
-          fill-rule='evenodd'
+          fillRule='evenodd'
           xlinkHref={'#' + path1}
         />
         <g
           id='Color/Palette/Gray-01'
           mask={`url(#${mask1})`}
-          fill-rule='evenodd'
+          fillRule='evenodd'
           fill={this.props.color}>
           <rect id='🖍Color' x='0' y='0' width='264' height='110' />
         </g>
         <g
           id='Shadowy'
           opacity='0.599999964'
-          stroke-width='1'
-          fill-rule='evenodd'
+          strokeWidth='1'
+          fillRule='evenodd'
           mask={`url(#${mask1})`}
           fill-opacity='0.16'
           fill='#000000'>

@@ -25,13 +25,13 @@ export default class ShirtVNeck extends React.Component<Props> {
         <use
           id='Clothes'
           fill='#E6E6E6'
-          fill-rule='evenodd'
+          fillRule='evenodd'
           xlinkHref={'#' + path1}
         />
         <g
           id='Color/Palette/Gray-01'
           mask={`url(#${mask1})`}
-          fill-rule='evenodd'
+          fillRule='evenodd'
           fill={this.props.color}>
           <rect id='🖍Color' x='0' y='0' width='264' height='110' />
         </g>

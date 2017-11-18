@@ -25,20 +25,20 @@ export default class Overall extends React.Component<Props> {
         <use
           id='Overall'
           fill='#B7C1DB'
-          fill-rule='evenodd'
+          fillRule='evenodd'
           xlinkHref={'#' + path1}
         />
         <g
           id='Color/Palette/Gray-01'
           mask={`url(#${mask1})`}
-          fill-rule='evenodd'
+          fillRule='evenodd'
           fill={this.props.color}>
           <rect id='🖍Color' x='0' y='0' width='264' height='110' />
         </g>
         <circle
           id='Button'
           fill='#F4F4F4'
-          fill-rule='evenodd'
+          fillRule='evenodd'
           cx='81'
           cy='83'
           r='5'
@@ -46,7 +46,7 @@ export default class Overall extends React.Component<Props> {
         <circle
           id='Button'
           fill='#F4F4F4'
-          fill-rule='evenodd'
+          fillRule='evenodd'
           cx='183'
           cy='83'
           r='5'

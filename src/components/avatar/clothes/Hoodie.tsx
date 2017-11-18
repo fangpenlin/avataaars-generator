@@ -25,13 +25,13 @@ export default class Hoodie extends React.Component<Props> {
         <use
           id='Hoodie'
           fill='#B7C1DB'
-          fill-rule='evenodd'
+          fillRule='evenodd'
           xlinkHref={'#' + path1}
         />
         <g
           id='Color/Palette/Gray-01'
           mask={`url(#${mask1})`}
-          fill-rule='evenodd'
+          fillRule='evenodd'
           fill={this.props.color}>
           <rect id='🖍Color' x='0' y='0' width='264' height='110' />
         </g>
@@ -39,7 +39,7 @@ export default class Hoodie extends React.Component<Props> {
           d='M102,61.7390531 L102,110 L95,110 L95,58.1502625 C97.2037542,59.4600576 99.5467694,60.6607878 102,61.7390531 Z M169,58.1502625 L169,98.5 C169,100.432997 167.432997,102 165.5,102 C163.567003,102 162,100.432997 162,98.5 L162,61.7390531 C164.453231,60.6607878 166.796246,59.4600576 169,58.1502625 Z'
           id='Straps'
           fill='#F4F4F4'
-          fill-rule='evenodd'
+          fillRule='evenodd'
           mask={`url(#${mask1})`}
         />
         <path
@@ -47,7 +47,7 @@ export default class Hoodie extends React.Component<Props> {
           id='Shadow'
           fill-opacity='0.16'
           fill='#000000'
-          fill-rule='evenodd'
+          fillRule='evenodd'
           mask={`url(#${mask1})`}
         />
       </g>
