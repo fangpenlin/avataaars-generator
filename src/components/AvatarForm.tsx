@@ -9,6 +9,10 @@ import {
 } from 'react-bootstrap'
 
 import {
+  AllTypes as AllAccessoriesTypes,
+  Type as AccessoriesType
+} from './avatar/top/accessories'
+import {
   AllTypes as AllClotheTypes,
   Type as ClotheType
 } from './avatar/clothes'
@@ -22,14 +26,21 @@ export interface Props {
   eyeType: EyeType
   eyebrowType: EyebrowType
   clotheType: ClotheType
+  accessoriesType: AccessoriesType
   onEyeChange?: (eyeType: EyeType) => void
   onEyebrowChange?: (eyebrowType: EyebrowType) => void
   onClotheChange?: (clotheType: ClotheType) => void
+  onAccessoriesChange?: (accessoriesType: AccessoriesType) => void
   onDownload?: () => void
 }
 
 export default class AvatarForm extends React.Component<Props> {
   render () {
+    const accessoriesOptions = AllAccessoriesTypes.map(type => (
+      <option key={type} value={type}>
+        {type}
+      </option>
+    ))
     const eyeOptions = AllEyeTypes.map(type => (
       <option key={type} value={type}>
         {type}
@@ -45,13 +56,28 @@ export default class AvatarForm extends React.Component<Props> {
         {type}
       </option>
     ))
+    const labelCol = 3
+    const inputCol = 9
     return (
       <Form horizontal onSubmit={this.onDownload}>
+        <FormGroup className='row' controlId='accessories'>
+          <Col componentClass={ControlLabel} sm={labelCol}>
+            👓 Accessories
+          </Col>
+          <Col sm={inputCol}>
+            <FormControl
+              componentClass='select'
+              value={this.props.accessoriesType}
+              onChange={this.onAccessoriesChange}>
+              {accessoriesOptions}
+            </FormControl>
+          </Col>
+        </FormGroup>
         <FormGroup className='row' controlId='eyebrow'>
-          <Col componentClass={ControlLabel} sm={2}>
+          <Col componentClass={ControlLabel} sm={labelCol}>
             ✏️ Eyebrow
           </Col>
-          <Col sm={10}>
+          <Col sm={inputCol}>
             <FormControl
               componentClass='select'
               value={this.props.eyebrowType}
@@ -61,10 +87,10 @@ export default class AvatarForm extends React.Component<Props> {
           </Col>
         </FormGroup>
         <FormGroup className='row' controlId='eyes'>
-          <Col componentClass={ControlLabel} sm={2}>
+          <Col componentClass={ControlLabel} sm={labelCol}>
             👁 Eyes
           </Col>
-          <Col sm={10}>
+          <Col sm={inputCol}>
             <FormControl
               componentClass='select'
               value={this.props.eyeType}
@@ -74,10 +100,10 @@ export default class AvatarForm extends React.Component<Props> {
           </Col>
         </FormGroup>
         <FormGroup className='row' controlId='clothe'>
-          <Col componentClass={ControlLabel} sm={2}>
+          <Col componentClass={ControlLabel} sm={labelCol}>
             👔 Clothes
           </Col>
-          <Col sm={10}>
+          <Col sm={inputCol}>
             <FormControl
               componentClass='select'
               value={this.props.clotheType}
@@ -87,12 +113,15 @@ export default class AvatarForm extends React.Component<Props> {
           </Col>
         </FormGroup>
         <FormGroup className='row'>
-          <Col className='offset-sm-2' smOffset={2} sm={10}>
+          <Col className='offset-sm-2' smOffset={labelCol} sm={inputCol}>
             More options coming soon ...
           </Col>
         </FormGroup>
         <FormGroup className='row'>
-          <Col className='offset-sm-2' smOffset={2} sm={10}>
+          <Col
+            className={'offset-sm-' + labelCol}
+            smOffset={labelCol}
+            sm={inputCol}>
             <Button bsStyle='primary' type='submit'>
               <i className='fa fa-download' /> Download
             </Button>
@@ -111,6 +140,14 @@ export default class AvatarForm extends React.Component<Props> {
         </FormGroup>
       </Form>
     )
+  }
+
+  private onAccessoriesChange = (event: React.FormEvent<FormControl>) => {
+    if (this.props.onAccessoriesChange) {
+      this.props.onAccessoriesChange(
+        ((event.target as any) as HTMLSelectElement).value as AccessoriesType
+      )
+    }
   }
 
   private onEyeChange = (event: React.FormEvent<FormControl>) => {

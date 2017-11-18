@@ -11,6 +11,7 @@ export interface Props {
   eyeType: EyeType
   eyebrowType: EyebrowType
   clotheType: ClotheType
+  accesoriesType: AccesoriesType
   style?: React.CSSProperties
 }
 
@@ -100,7 +101,7 @@ export default class Avatar extends React.Component<Props> {
                   eyebrowType={this.props.eyebrowType}
                 />
                 <LongHairStraight>
-                  <Accesories type={AccesoriesType.Wayfarers} />
+                  <Accesories type={this.props.accesoriesType} />
                 </LongHairStraight>
               </g>
             </g>

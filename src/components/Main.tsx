@@ -11,16 +11,19 @@ import {
 
 import AvatarForm from './AvatarForm'
 import Avatar, { EyeType, EyebrowType } from './avatar'
+import { Type as AccesoriesType } from './avatar/top/accessories'
 import { Type as ClotheType } from './avatar/clothes'
 
 interface Props {
   eyeType: EyeType
   eyebrowType: EyebrowType
   clotheType: ClotheType
+  accesoriesType: AccesoriesType
   __render__?: string
   onChangeEyeType: (eyeType: EyeType) => void
   onChangeEyebrowType: (eyebrowType: EyebrowType) => void
   onChangeClotheType: (clotheType: ClotheType) => void
+  onChangeAccesoriesType: (accesoriesType: AccesoriesType) => void
   onChangeUrlQueryParams: (params: any) => void
 }
 
@@ -38,6 +41,10 @@ const urlPropsQueryConfig = {
     type: UrlQueryParamTypes.string,
     updateType
   },
+  accesoriesType: {
+    type: UrlQueryParamTypes.string,
+    updateType
+  },
   __render__: {
     type: UrlQueryParamTypes.string
   }
@@ -47,7 +54,8 @@ export class Main extends React.Component<Props> {
   static defaultProps = {
     eyeType: EyeType.Default,
     eyebrowType: EyebrowType.Default,
-    clotheType: ClotheType.BlazerShirt
+    clotheType: ClotheType.BlazerShirt,
+    accesoriesType: AccesoriesType.Blank
   }
 
   private avatarRef: Avatar | null = null
@@ -61,7 +69,13 @@ export class Main extends React.Component<Props> {
   }
 
   render () {
-    const { eyeType, eyebrowType, clotheType, __render__ } = this.props
+    const {
+      eyeType,
+      eyebrowType,
+      clotheType,
+      accesoriesType,
+      __render__
+    } = this.props
     const title = 'Avataaars Generator - Generate your own avataaars!'
     const imageURL = process.env.REACT_APP_IMG_RENDERER_URL + location.search
     return (
@@ -87,6 +101,7 @@ export class Main extends React.Component<Props> {
               eyeType={eyeType}
               eyebrowType={eyebrowType}
               clotheType={clotheType}
+              accesoriesType={accesoriesType}
               ref={this.onAvatarRef}
             />
           </div>
@@ -104,6 +119,7 @@ export class Main extends React.Component<Props> {
             eyeType={eyeType}
             eyebrowType={eyebrowType}
             clotheType={clotheType}
+            accesoriesType={accesoriesType}
             ref={this.onAvatarRef}
           />
         )}
@@ -112,9 +128,11 @@ export class Main extends React.Component<Props> {
             eyeType={eyeType}
             eyebrowType={eyebrowType}
             clotheType={clotheType}
+            accessoriesType={accesoriesType}
             onEyeChange={this.onEyeChange}
             onEyebrowChange={this.onEyebrowChange}
             onClotheChange={this.onClotheChange}
+            onAccessoriesChange={this.onAccessoriesChange}
             onDownload={this.onDownload}
           />
         ) : null}
@@ -146,6 +164,10 @@ export class Main extends React.Component<Props> {
 
   private onClotheChange = (clotheType: ClotheType) => {
     this.props.onChangeClotheType(clotheType)
+  }
+
+  private onAccessoriesChange = (accesoriesType: AccesoriesType) => {
+    this.props.onChangeAccesoriesType(accesoriesType)
   }
 
   private onDownload = () => {
