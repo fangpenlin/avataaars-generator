@@ -44,6 +44,34 @@ export interface Props {
   onDownload?: () => void
 }
 
+interface SelectProps {
+  controlId: string
+  label: string
+  value: string
+  onChange: (event: React.FormEvent<FormControl>) => void
+}
+
+class OptionSelect extends React.Component<SelectProps> {
+  render () {
+    const { controlId, label, value, onChange, children } = this.props
+    return (
+      <FormGroup className='row' controlId={controlId}>
+        <Col componentClass={ControlLabel} sm={3}>
+          {label}
+        </Col>
+        <Col sm={9}>
+          <FormControl
+            componentClass='select'
+            value={value}
+            onChange={onChange as any}>
+            {children}
+          </FormControl>
+        </Col>
+      </FormGroup>
+    )
+  }
+}
+
 export default class AvatarForm extends React.Component<Props> {
   render () {
     const topOptions = AllTopTypes.map(type => (
@@ -85,97 +113,55 @@ export default class AvatarForm extends React.Component<Props> {
     const inputCol = 9
     return (
       <Form horizontal onSubmit={this.onDownload}>
-        <FormGroup className='row' controlId='top'>
-          <Col componentClass={ControlLabel} sm={labelCol}>
-            Top
-          </Col>
-          <Col sm={inputCol}>
-            <FormControl
-              componentClass='select'
-              value={this.props.topType}
-              onChange={this.onTopChange}>
-              {topOptions}
-            </FormControl>
-          </Col>
-        </FormGroup>
-        <FormGroup className='row' controlId='accessories'>
-          <Col componentClass={ControlLabel} sm={labelCol}>
-            👓 Accessories
-          </Col>
-          <Col sm={inputCol}>
-            <FormControl
-              componentClass='select'
-              value={this.props.accessoriesType}
-              onChange={this.onAccessoriesChange}>
-              {accessoriesOptions}
-            </FormControl>
-          </Col>
-        </FormGroup>
-        <FormGroup className='row' controlId='eyebrow'>
-          <Col componentClass={ControlLabel} sm={labelCol}>
-            ✏️ Eyebrow
-          </Col>
-          <Col sm={inputCol}>
-            <FormControl
-              componentClass='select'
-              value={this.props.eyebrowType}
-              onChange={this.onEyebrowChange}>
-              {eyebrowOptions}
-            </FormControl>
-          </Col>
-        </FormGroup>
-        <FormGroup className='row' controlId='eyes'>
-          <Col componentClass={ControlLabel} sm={labelCol}>
-            👁 Eyes
-          </Col>
-          <Col sm={inputCol}>
-            <FormControl
-              componentClass='select'
-              value={this.props.eyeType}
-              onChange={this.onEyeChange}>
-              {eyeOptions}
-            </FormControl>
-          </Col>
-        </FormGroup>
-        <FormGroup className='row' controlId='mouth'>
-          <Col componentClass={ControlLabel} sm={labelCol}>
-            👄 Mouth
-          </Col>
-          <Col sm={inputCol}>
-            <FormControl
-              componentClass='select'
-              value={this.props.mouthType}
-              onChange={this.onMouthChange}>
-              {mouthOptions}
-            </FormControl>
-          </Col>
-        </FormGroup>
-        <FormGroup className='row' controlId='clothe'>
-          <Col componentClass={ControlLabel} sm={labelCol}>
-            👔 Clothes
-          </Col>
-          <Col sm={inputCol}>
-            <FormControl
-              componentClass='select'
-              value={this.props.clotheType}
-              onChange={this.onClotheChange}>
-              {clotheOptions}
-            </FormControl>
-          </Col>
-        </FormGroup>
-        <FormGroup className='row' controlId='clotheColor'>
-          <Col componentClass={ControlLabel} sm={labelCol}>
-            ↳ Color Fabric
-          </Col>
-          <Col sm={inputCol}>
-            <FormControl
-              componentClass='select'
-              value={this.props.clotheColor}
-              onChange={this.onClotheColorChange}>
-              {clotheColorOptions}
-            </FormControl>
-          </Col>
-        </FormGroup>
+        <OptionSelect
+          controlId='top'
+          label='Top'
+          value={this.props.topType}
+          onChange={this.onTopChange}>
+          {topOptions}
+        </OptionSelect>
+        <OptionSelect
+          controlId='accessories'
+          label='👓 Accessories'
+          value={this.props.accessoriesType}
+          onChange={this.onAccessoriesChange}>
+          {accessoriesOptions}
+        </OptionSelect>
+        <OptionSelect
+          controlId='eyebrow'
+          label='✏️ Eyebrow'
+          value={this.props.eyebrowType}
+          onChange={this.onEyebrowChange}>
+          {eyebrowOptions}
+        </OptionSelect>
+        <OptionSelect
+          controlId='eyes'
+          label='👁 Eyes'
+          value={this.props.eyeType}
+          onChange={this.onEyeChange}>
+          {eyeOptions}
+        </OptionSelect>
+        <OptionSelect
+          controlId='mouth'
+          label='👄 Mouth'
+          value={this.props.mouthType}
+          onChange={this.onMouthChange}>
+          {mouthOptions}
+        </OptionSelect>
+        <OptionSelect
+          controlId='clothe'
+          label='👔 Clothes'
+          value={this.props.clotheType}
+          onChange={this.onClotheChange}>
+          {clotheOptions}
+        </OptionSelect>
+        <OptionSelect
+          controlId='clotheColor'
+          label='↳ Color Fabric'
+          value={this.props.clotheColor}
+          onChange={this.onClotheColorChange}>
+          {clotheColorOptions}
+        </OptionSelect>
         <FormGroup className='row'>
           <Col className='offset-sm-2' smOffset={labelCol} sm={inputCol}>
             More options coming soon ...
