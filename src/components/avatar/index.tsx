@@ -42,9 +42,9 @@ export default class Avatar extends React.Component<Props> {
     return (
       <svg
         style={this.props.style}
-        width='240px'
-        height='262px'
-        viewBox='0 0 240 262'
+        width='264px'
+        height='280px'
+        viewBox='0 0 264 280'
         version='1.1'
         xmlns='http://www.w3.org/2000/svg'
         xmlnsXlink='http://www.w3.org/1999/xlink'>
@@ -67,9 +67,9 @@ export default class Avatar extends React.Component<Props> {
           fill='none'
           fillRule='evenodd'>
           <g
-            transform='translate(-546.000000, -1118.000000)'
+            transform='translate(-825.000000, -1100.000000)'
             id='Avataaar/Circle'>
-            <g transform='translate(534.000000, 1100.000000)'>
+            <g transform='translate(825.000000, 1100.000000)'>
               <g
                 id='Circle'
                 strokeWidth='1'

@@ -181,8 +181,8 @@ export class Main extends React.Component<Props> {
         ) : null}
         <canvas
           style={{ display: 'none' }}
-          width='240'
-          height='262'
+          width='264'
+          height='280'
           ref={this.onCanvasRef}
         />
       </main>
