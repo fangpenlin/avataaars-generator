@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { uniqueId } from 'lodash'
 
-export default class FIXME extends React.Component {
+export default class LongHairFro extends React.Component {
   private mask1 = uniqueId('react-mask-')
   private mask2 = uniqueId('react-mask-')
   private path1 = uniqueId('react-path-')

@@ -7,8 +7,13 @@ import LongHairBun from './LongHairBun'
 import LongHairCurly from './LongHairCurly'
 import LongHairFrida from './LongHairFrida'
 import LongHairFro from './LongHairFro'
+import LongHairFroBand from './LongHairFroBand'
 import LongHairMiaWallace from './LongHairMiaWallace'
+import LongHairNotTooLong from './LongHairNotTooLong'
+import LongHairShavedSides from './LongHairShavedSides'
 import LongHairStraight from './LongHairStraight'
+import LongHairStraight2 from './LongHairStraight2'
+import LongHairStraightStrand from './LongHairStraightStrand'
 import Turban from './Turban'
 
 export enum Type {
@@ -21,7 +26,12 @@ export enum Type {
   LongHairBun = 'LongHairBun',
   LongHairCurly = 'LongHairCurly',
   LongHairFrida = 'LongHairFrida',
-  LongHairFro = 'LongHairFro'
+  LongHairFro = 'LongHairFro',
+  LongHairFroBand = 'LongHairFroBand',
+  LongHairNotTooLong = 'LongHairNotTooLong',
+  LongHairShavedSides = 'LongHairShavedSides',
+  LongHairStraight2 = 'LongHairStraight2',
+  LongHairStraightStrand = 'LongHairStraightStrand'
 }
 
 export const AllTypes = [
@@ -34,7 +44,12 @@ export const AllTypes = [
   Type.LongHairBun,
   Type.LongHairCurly,
   Type.LongHairFrida,
-  Type.LongHairFro
+  Type.LongHairFro,
+  Type.LongHairFroBand,
+  Type.LongHairNotTooLong,
+  Type.LongHairShavedSides,
+  Type.LongHairStraight2,
+  Type.LongHairStraightStrand
 ]
 
 // TODO:
@@ -121,6 +136,18 @@ export default class Top extends React.Component<Props> {
         return <LongHairFrida>{this.props.children}</LongHairFrida>
       case Type.LongHairFro:
         return <LongHairFro>{this.props.children}</LongHairFro>
+      case Type.LongHairFroBand:
+        return <LongHairFroBand>{this.props.children}</LongHairFroBand>
+      case Type.LongHairNotTooLong:
+        return <LongHairNotTooLong>{this.props.children}</LongHairNotTooLong>
+      case Type.LongHairShavedSides:
+        return <LongHairShavedSides>{this.props.children}</LongHairShavedSides>
+      case Type.LongHairStraight2:
+        return <LongHairStraight2>{this.props.children}</LongHairStraight2>
+      case Type.LongHairStraightStrand:
+        return (
+          <LongHairStraightStrand>{this.props.children}</LongHairStraightStrand>
+        )
     }
     return null
   }

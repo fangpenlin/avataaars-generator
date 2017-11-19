@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { uniqueId } from 'lodash'
 
-export default class FIXME extends React.Component {
+export default class LongHairFrida extends React.Component {
   private filter1 = uniqueId('react-filter-')
   private filter2 = uniqueId('react-filter-')
   private filter3 = uniqueId('react-filter-')
