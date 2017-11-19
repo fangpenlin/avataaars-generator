@@ -2,6 +2,7 @@ import * as React from 'react'
 import { uniqueId } from 'lodash'
 
 export default class LongHairBigHair extends React.Component {
+  private filter1 = uniqueId('react-filter-')
   private mask1 = uniqueId('react-mask-')
   private mask2 = uniqueId('react-mask-')
   private mask3 = uniqueId('react-mask-')
@@ -10,40 +11,63 @@ export default class LongHairBigHair extends React.Component {
   private path3 = uniqueId('react-path-')
 
   render () {
-    const { mask1, mask2, mask3, path1, path2, path3 } = this
+    const { filter1, mask1, mask2, mask3, path1, path2, path3 } = this
     return (
       <g id='Top' strokeWidth='1' fillRule='evenodd'>
         <defs>
-          <rect id={path2} x='0' y='0' width='264' height='280' />
+          <rect id={path1} x='0' y='0' width='264' height='280' />
           <path
             d='M222.384814,182.806274 C217.011239,188.518122 211.648364,192.127879 211.831204,198 C212.148076,209.888877 255.439069,245.051165 216.999964,267.00001 L16.0053198,267 C-22.4337677,245.051165 20.8572256,209.888877 21.1740982,198 C21.3569373,192.127879 15.9940628,188.518122 10.6204878,182.806274 C5.24691269,177.094426 -0.137362978,169.280486 0.00267373922,155 C0.944497502,125.971596 31.3716806,128.588232 31.2026676,109 C31.3716806,89.9992744 19.8139454,82.1607482 31.2026676,46 C42.8395963,9.53932757 72.9165934,0.768171773 116.002651,0.0159928999 L116.002651,0 C116.16951,0.002426813 116.336177,0.0049705256 116.502651,0.0076322645 C116.669125,0.0049705256 116.835791,0.002426813 117.002651,0 L117.002651,0.0159928999 C160.088708,0.768171773 190.165705,9.53932757 201.802634,46 C213.191356,82.1607482 201.633621,89.9992744 201.802634,109 C201.633621,128.588232 232.060804,125.971596 233.002628,155 C233.142665,169.280486 227.758389,177.094426 222.384814,182.806274 Z M182.884023,95.3249541 C161.364085,83.7373848 142.890027,67.1442914 130.845581,48.302359 C112.763849,73.9237118 76.5299076,78.5347548 51.2240944,94.679971 C51.0770557,95.4306015 51,96.2063021 51,97 L51,110 C51,116.018625 55.4308707,121.002364 61.2085808,121.867187 C62.9518066,142.114792 75.4692178,159.282984 93,167.610951 L93,186 L89,186 L89,186 C49.235498,186 17,218.235498 17,258 L17,267 L217,267 L217,258 C217,218.235498 184.764502,186 145,186 L141,186 L141,167.610951 C158.530782,159.282984 171.048193,142.114792 172.791419,121.867187 C178.569129,121.002364 183,116.018625 183,110 L183,97 C183,96.4315537 182.960475,95.8723389 182.884023,95.3249541 Z'
-            id={path3}
+            id={path2}
           />
           <path
             d='M222.384814,182.806274 C217.011239,188.518122 211.648364,192.127879 211.831204,198 C212.148076,209.888877 255.439069,245.051165 216.999964,267.00001 L16.0053198,267 C-22.4337677,245.051165 20.8572256,209.888877 21.1740982,198 C21.3569373,192.127879 15.9940628,188.518122 10.6204878,182.806274 C5.24691269,177.094426 -0.137362978,169.280486 0.00267373922,155 C0.944497502,125.971596 31.3716806,128.588232 31.2026676,109 C31.3716806,89.9992744 19.8139454,82.1607482 31.2026676,46 C42.8395963,9.53932757 72.9165934,0.768171773 116.002651,0.0159928999 L116.002651,0 C116.16951,0.002426813 116.336177,0.0049705256 116.502651,0.0076322645 C116.669125,0.0049705256 116.835791,0.002426813 117.002651,0 L117.002651,0.0159928999 C160.088708,0.768171773 190.165705,9.53932757 201.802634,46 C213.191356,82.1607482 201.633621,89.9992744 201.802634,109 C201.633621,128.588232 232.060804,125.971596 233.002628,155 C233.142665,169.280486 227.758389,177.094426 222.384814,182.806274 Z M93,186 L89,186 L89,186 C49.235498,186 17,218.235498 17,258 L17,267 L217,267 L217,258 C217,218.235498 184.764502,186 145,186 L141,186 L141,140 L93,140 L93,186 Z'
-            id={path1}
+            id={path3}
           />
+          <filter
+            x='-0.8%'
+            y='-2.0%'
+            width='101.5%'
+            height='108.0%'
+            filterUnits='objectBoundingBox'
+            id={filter1}>
+            <feOffset
+              dx='0'
+              dy='2'
+              in='SourceAlpha'
+              result='shadowOffsetOuter1'
+            />
+            <feColorMatrix
+              values='0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.16 0'
+              type='matrix'
+              in='shadowOffsetOuter1'
+              result='shadowMatrixOuter1'
+            />
+            <feMerge>
+              <feMergeNode in='shadowMatrixOuter1' />
+              <feMergeNode in='SourceGraphic' />
+            </feMerge>
+          </filter>
         </defs>
-        <mask id={mask2} fill='white'>
-          <use xlinkHref={'#' + path2} />
+        <mask id={mask1} fill='white'>
+          <use xlinkHref={'#' + path1} />
         </mask>
         <g id='Mask' />
-        <g id='Top/Long-Hair/Big-Hair' mask={`url(#${mask2})`}>
+        <g id='Top/Long-Hair/Big-Hair' mask={`url(#${mask1})`}>
           <g transform='translate(-1.000000, 0.000000)'>
             <g
               id='Hair'
               strokeWidth='1'
               fill='none'
-              fillRule='evenodd'
               transform='translate(16.000000, 13.000000)'>
-              <mask id={mask3} fill='white'>
-                <use xlinkHref={'#' + path3} />
+              <mask id={mask2} fill='white'>
+                <use xlinkHref={'#' + path2} />
               </mask>
-              <use fill='#314756' xlinkHref={'#' + path3} />
+              <use fill='#314756' xlinkHref={'#' + path2} />
               <g
                 id='Color/Hair/Brown-Dark'
-                mask={`url(#${mask3})`}
-                fill='#4A312C'>
+                mask={`url(#${mask2})`}
+                fill={'RED'}>
                 <g transform='translate(-15.000000, -13.000000)' id='Color'>
                   <rect x='0' y='0' width='264' height='280' />
                 </g>
@@ -53,10 +77,9 @@ export default class LongHairBigHair extends React.Component {
               id='Shadow'
               strokeWidth='1'
               fill='none'
-              fillRule='evenodd'
               transform='translate(16.000000, 13.000000)'>
-              <mask id={mask1} fill='white'>
-                <use xlinkHref={'#' + path1} />
+              <mask id={mask3} fill='white'>
+                <use xlinkHref={'#' + path3} />
               </mask>
               <g id='Shape' />
               <path
@@ -64,7 +87,7 @@ export default class LongHairBigHair extends React.Component {
                 id='Shadow-Mask'
                 fillOpacity='0.16'
                 fill='#000000'
-                mask={`url(#${mask1})`}
+                mask={`url(#${mask3})`}
               />
             </g>
             <path
@@ -72,7 +95,6 @@ export default class LongHairBigHair extends React.Component {
               id='Light'
               fillOpacity='0.1'
               fill='#FFFFFF'
-              fillRule='evenodd'
             />
             {this.props.children}
           </g>

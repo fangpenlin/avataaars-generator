@@ -1,74 +1,11 @@
 import * as React from 'react'
 
-import Accesories, { Type as AccessoriesType } from './top/accessories'
-import Clothe, {
-  Color as ClothColor,
-  ColorValues,
-  Type as ClotheType
-} from './clothes'
-import Face, { EyeType, EyebrowType, MouthType } from './face'
-import Top, { Type as TopType } from './top'
-
-export { AllTypes as AllTopTypes, Type as TopType } from './top'
-export {
-  AllTypes as AllAccessoriesTypes,
-  Type as AccessoriesType
-} from './top/accessories'
-export {
-  AllTypes as AllClotheTypes,
-  AllColors as AllClotheColors,
-  Color as ClotheColor,
-  ColorValues as ClotheColorValues,
-  Type as ClotheType
-} from './clothes'
-export {
-  AllEyebrowTypes,
-  AllEyeTypes,
-  AllMouthTypes,
-  EyeType,
-  EyebrowType,
-  MouthType
-} from './face'
-
-export enum SkinColor {
-  Tanned = 'Tanned',
-  Yellow = 'Yellow',
-  Pale = 'Pale',
-  Light = 'Light',
-  Brown = 'Brown',
-  DarkBrown = 'DarkBrown',
-  Black = 'Black'
-}
-
-export const AllSkinColors = [
-  SkinColor.Tanned,
-  SkinColor.Yellow,
-  SkinColor.Pale,
-  SkinColor.Light,
-  SkinColor.Brown,
-  SkinColor.DarkBrown,
-  SkinColor.Black
-]
-
-export const SkinColorValues: { [index: string]: string } = {
-  [SkinColor.Tanned]: '#FD9841',
-  [SkinColor.Yellow]: '#F8D25C',
-  [SkinColor.Pale]: '#FFDBB4',
-  [SkinColor.Light]: '#EDB98A',
-  [SkinColor.Brown]: '#D08B5B',
-  [SkinColor.DarkBrown]: '#AE5D29',
-  [SkinColor.Black]: '#614335'
-}
+import Accesories from './top/accessories'
+import Clothe from './clothes'
+import Face from './face'
+import Top from './top'
 
 export interface Props {
-  topType: TopType
-  eyeType: EyeType
-  eyebrowType: EyebrowType
-  mouthType: MouthType
-  clotheType: ClotheType
-  clotheColor: ClothColor
-  accessoriesType: AccessoriesType
-  skinColor: SkinColor
   style?: React.CSSProperties
 }
 
@@ -155,17 +92,10 @@ export default class Avatar extends React.Component<Props> {
                     mask='url(#mask-6)'
                   />
                 </g>
-                <Clothe
-                  type={this.props.clotheType}
-                  color={ColorValues[this.props.clotheColor]}
-                />
-                <Face
-                  eyeType={this.props.eyeType}
-                  eyebrowType={this.props.eyebrowType}
-                  mouthType={this.props.mouthType}
-                />
-                <Top type={this.props.topType} color='FIXME'>
-                  <Accesories type={this.props.accessoriesType} />
+                <Clothe />
+                <Face />
+                <Top>
+                  <Accesories />
                 </Top>
               </g>
             </g>

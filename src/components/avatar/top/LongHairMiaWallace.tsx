@@ -44,7 +44,7 @@ export default class LongHairMiaWallace extends React.Component {
               <g
                 id='Color/Hair/Brown-Dark'
                 mask={`url(#${mask2})`}
-                fill='#4A312C'>
+                fill={'RED'}>
                 <g transform='translate(-40.000000, -19.000000)' id='Color'>
                   <rect x='0' y='0' width='266' height='280' />
                 </g>

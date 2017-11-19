@@ -16,6 +16,8 @@
       treeNode.nodeName = node.nodeName
       var re = /^url\(#(.*)\)/i;
       var attrs = []
+      var color = false
+
       for (var attr of node.attributes) {
         var value = attr.value
         if (attr.name === 'xlink:href') {
@@ -33,6 +35,14 @@
             value = (idMap) => '`url(#${' + idMap[id] +'})`'
             defs.add(id)
           }
+        }
+
+        if (color && attr.name === 'fill') {
+          value = () => 'color'
+        }
+        // xxx: it's possible id comes after color, but we didn't see it so far
+        if (attr.name === 'id' && attr.value.startsWith('Color/Hair/')) {
+          color = true
         }
 
         attrs.push({
@@ -169,11 +179,16 @@
 import * as React from 'react'
 import { uniqueId } from 'lodash'
 
-export default class FIXME extends React.Component {
+export interface Props {
+  color: string
+}
+
+export default class FIXME extends React.Component<Props> {
   ${idProps.join('\n')} 
 
   render () {
     const { ${newIDs.join(', ')} } = this
+    const { color } = this.props
     return (
       ${dom}
     )

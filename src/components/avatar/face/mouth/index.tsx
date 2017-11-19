@@ -12,69 +12,25 @@ import Smile from './Smile'
 import Tongue from './Tongue'
 import Twinkle from './Twinkle'
 import Vomit from './Vomit'
+import { Selector, mouthOption } from '../../../options'
 
-export enum Type {
-  Concerned = 'Concerned',
-  Default = 'Default',
-  Disbelief = 'Disbelief',
-  Eating = 'Eating',
-  Grimace = 'Grimace',
-  Sad = 'Sad',
-  ScreamOpen = 'ScreamOpen',
-  Serious = 'Serious',
-  Smile = 'Smile',
-  Tongue = 'Tongue',
-  Twinkle = 'Twinkle',
-  Vomit = 'Vomit'
-}
-
-export const AllTypes = [
-  Type.Concerned,
-  Type.Default,
-  Type.Disbelief,
-  Type.Eating,
-  Type.Grimace,
-  Type.Sad,
-  Type.ScreamOpen,
-  Type.Serious,
-  Type.Smile,
-  Type.Tongue,
-  Type.Twinkle,
-  Type.Vomit
-]
-
-export interface Props {
-  type: Type
-}
-
-export default class Mouth extends React.Component<Props> {
+export default class Mouth extends React.Component {
   render () {
-    switch (this.props.type) {
-      case Type.Concerned:
-        return <Concerned />
-      case Type.Default:
-        return <Default />
-      case Type.Disbelief:
-        return <Disbelief />
-      case Type.Eating:
-        return <Eating />
-      case Type.Grimace:
-        return <Grimace />
-      case Type.Sad:
-        return <Sad />
-      case Type.ScreamOpen:
-        return <ScreamOpen />
-      case Type.Serious:
-        return <Serious />
-      case Type.Smile:
-        return <Smile />
-      case Type.Tongue:
-        return <Tongue />
-      case Type.Twinkle:
-        return <Twinkle />
-      case Type.Vomit:
-        return <Vomit />
-    }
-    return null
+    return (
+      <Selector defaultOption={Default} option={mouthOption}>
+        <Concerned />
+        <Default />
+        <Disbelief />
+        <Eating />
+        <Grimace />
+        <Sad />
+        <ScreamOpen />
+        <Serious />
+        <Smile />
+        <Tongue />
+        <Twinkle />
+        <Vomit />
+      </Selector>
+    )
   }
 }

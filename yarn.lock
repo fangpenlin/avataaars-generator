@@ -22,6 +22,10 @@
   version "8.0.53"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-8.0.53.tgz#396b35af826fa66aad472c8cb7b8d5e277f4e6d8"
 
+"@types/prop-types@^15.5.2":
+  version "15.5.2"
+  resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.5.2.tgz#3c6b8dceb2906cc87fe4358e809f9d20c8d59be1"
+
 "@types/react-bootstrap@^0.31.8":
   version "0.31.8"
   resolved "https://registry.yarnpkg.com/@types/react-bootstrap/-/react-bootstrap-0.31.8.tgz#94152e76eed352017ca1f328ba680fde4ebc2a4e"

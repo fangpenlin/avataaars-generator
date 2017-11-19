@@ -43,7 +43,7 @@ export default class ShirtCrewNeck extends React.Component<Props> {
           strokeWidth='1'
           fillRule='evenodd'
           mask={`url(#${mask1})`}
-          fill-opacity='0.16'
+          fillOpacity='0.16'
           fill='#000000'>
           <g transform='translate(92.000000, 4.000000)' id='Hola-👋🏼'>
             <ellipse

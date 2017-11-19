@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { uniqueId } from 'lodash'
 
-export default class Prescription02 extends React.Component {
+export default class Prescription01 extends React.Component {
   private filter1 = uniqueId('react-filter-')
 
   render () {

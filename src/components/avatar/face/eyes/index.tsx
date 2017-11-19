@@ -12,69 +12,25 @@ import Squint from './Squint'
 import Surprised from './Surprised'
 import Wink from './Wink'
 import WinkWacky from './WinkWacky'
+import { EyesOption, Selector } from '../../../options'
 
-export enum Type {
-  Close = 'Close',
-  Cry = 'Cry',
-  Default = 'Default',
-  Dizzy = 'Dizzy',
-  EyeRoll = 'EyeRoll',
-  Happy = 'Happy',
-  Hearts = 'Hearts',
-  Side = 'Side',
-  Squint = 'Squint',
-  Surprised = 'Surprised',
-  Wink = 'Wink',
-  WinkWacky = 'WinkWacky'
-}
-
-export const AllTypes = [
-  Type.Close,
-  Type.Cry,
-  Type.Default,
-  Type.Dizzy,
-  Type.EyeRoll,
-  Type.Happy,
-  Type.Hearts,
-  Type.Side,
-  Type.Squint,
-  Type.Surprised,
-  Type.Wink,
-  Type.WinkWacky
-]
-
-export interface Props {
-  type: Type
-}
-
-export default class Eyes extends React.Component<Props> {
+export default class Eyes extends React.Component {
   render () {
-    switch (this.props.type) {
-      case Type.Close:
-        return <Close />
-      case Type.Cry:
-        return <Cry />
-      case Type.Default:
-        return <Default />
-      case Type.Dizzy:
-        return <Dizzy />
-      case Type.EyeRoll:
-        return <EyeRoll />
-      case Type.Happy:
-        return <Happy />
-      case Type.Hearts:
-        return <Hearts />
-      case Type.Side:
-        return <Side />
-      case Type.Squint:
-        return <Squint />
-      case Type.Surprised:
-        return <Surprised />
-      case Type.Wink:
-        return <Wink />
-      case Type.WinkWacky:
-        return <WinkWacky />
-    }
-    return null
+    return (
+      <Selector defaultOption={Default} option={EyesOption}>
+        <Close />
+        <Cry />
+        <Default />
+        <Dizzy />
+        <EyeRoll />
+        <Happy />
+        <Hearts />
+        <Side />
+        <Squint />
+        <Surprised />
+        <Wink />
+        <WinkWacky />
+      </Selector>
+    )
   }
 }
