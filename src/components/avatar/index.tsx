@@ -1,7 +1,11 @@
 import * as React from 'react'
 
 import Accesories, { Type as AccessoriesType } from './top/accessories'
-import Clothe, { Color as ClothColor, Type as ClotheType } from './clothes'
+import Clothe, {
+  Color as ClothColor,
+  ColorValues,
+  Type as ClotheType
+} from './clothes'
 import Face, { EyeType, EyebrowType, MouthType } from './face'
 import Top, { Type as TopType } from './top'
 
@@ -138,7 +142,7 @@ export default class Avatar extends React.Component<Props> {
                   <g
                     id='Skin/👶🏽-03-Brown'
                     mask='url(#mask-6)'
-                    fill={this.props.skinColor}>
+                    fill={SkinColorValues[this.props.skinColor]}>
                     <g transform='translate(-32.000000, 0.000000)' id='Color'>
                       <rect x='0' y='0' width='264' height='244' />
                     </g>
@@ -153,7 +157,7 @@ export default class Avatar extends React.Component<Props> {
                 </g>
                 <Clothe
                   type={this.props.clotheType}
-                  color={this.props.clotheColor}
+                  color={ColorValues[this.props.clotheColor]}
                 />
                 <Face
                   eyeType={this.props.eyeType}

@@ -90,7 +90,8 @@ export class Main extends React.Component<Props> {
     mouthType: MouthType.Default,
     clotheType: ClotheType.BlazerShirt,
     clotheColor: ClotheColor.Black,
-    accessoriesType: AccessoriesType.Blank
+    accessoriesType: AccessoriesType.Blank,
+    skinColor: SkinColor.Light
   }
 
   private avatarRef: Avatar | null = null

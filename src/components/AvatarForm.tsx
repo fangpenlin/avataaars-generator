@@ -19,13 +19,11 @@ import {
   AllSkinColors,
   AllTopTypes,
   ClotheColor,
-  ClotheColorValues,
   ClotheType,
   EyeType,
   EyebrowType,
   MouthType,
   SkinColor,
-  SkinColorValues,
   TopType
 } from './avatar'
 
@@ -110,12 +108,12 @@ export default class AvatarForm extends React.Component<Props> {
       </option>
     ))
     const clotheColorOptions = AllClotheColors.map(type => (
-      <option key={type} value={ClotheColorValues[type]}>
+      <option key={type} value={type}>
         {type}
       </option>
     ))
     const skinColorOptions = AllSkinColors.map(type => (
-      <option key={type} value={SkinColorValues[type]}>
+      <option key={type} value={type}>
         {type}
       </option>
     ))
