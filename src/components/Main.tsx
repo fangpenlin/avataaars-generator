@@ -18,6 +18,7 @@ import Avatar, {
   EyeType,
   EyebrowType,
   MouthType,
+  SkinColor,
   TopType
 } from './avatar'
 
@@ -29,6 +30,7 @@ interface Props {
   clotheType: ClotheType
   clotheColor: ClotheColor
   accessoriesType: AccessoriesType
+  skinColor: SkinColor
   __render__?: string
   onChangeTopType: (topType: TopType) => void
   onChangeEyeType: (eyeType: EyeType) => void
@@ -37,6 +39,7 @@ interface Props {
   onChangeClotheType: (clotheType: ClotheType) => void
   onChangeClotheColor: (clotheColor: ClotheColor) => void
   onChangeAccessoriesType: (accessoriesType: AccessoriesType) => void
+  onChangeSkinColor: (skinColor: SkinColor) => void
   onChangeUrlQueryParams: (params: any) => void
 }
 
@@ -67,6 +70,10 @@ const urlPropsQueryConfig = {
     updateType
   },
   accessoriesType: {
+    type: UrlQueryParamTypes.string,
+    updateType
+  },
+  skinColor: {
     type: UrlQueryParamTypes.string,
     updateType
   },
@@ -105,6 +112,7 @@ export class Main extends React.Component<Props> {
       clotheType,
       clotheColor,
       accessoriesType,
+      skinColor,
       __render__
     } = this.props
     const title = 'Avataaars Generator - Generate your own avataaars!'
@@ -136,6 +144,7 @@ export class Main extends React.Component<Props> {
               clotheType={clotheType}
               clotheColor={clotheColor}
               accessoriesType={accessoriesType}
+              skinColor={skinColor}
               ref={this.onAvatarRef}
             />
           </div>
@@ -157,6 +166,7 @@ export class Main extends React.Component<Props> {
             clotheType={clotheType}
             clotheColor={clotheColor}
             accessoriesType={accessoriesType}
+            skinColor={skinColor}
             ref={this.onAvatarRef}
           />
         )}
@@ -169,6 +179,7 @@ export class Main extends React.Component<Props> {
             clotheType={clotheType}
             clotheColor={clotheColor}
             accessoriesType={accessoriesType}
+            skinColor={skinColor}
             onTopChange={this.onTopChange}
             onEyeChange={this.onEyeChange}
             onEyebrowChange={this.onEyebrowChange}
@@ -176,6 +187,7 @@ export class Main extends React.Component<Props> {
             onClotheChange={this.onClotheChange}
             onClotheColorChange={this.onClotheColorChange}
             onAccessoriesChange={this.onAccessoriesChange}
+            onSkinColorChange={this.onSkinColorChange}
             onDownload={this.onDownload}
           />
         ) : null}
@@ -223,6 +235,10 @@ export class Main extends React.Component<Props> {
 
   private onAccessoriesChange = (accesoriesType: AccessoriesType) => {
     this.props.onChangeAccessoriesType(accesoriesType)
+  }
+
+  private onSkinColorChange = (skinColor: SkinColor) => {
+    this.props.onChangeSkinColor(skinColor)
   }
 
   private onDownload = () => {

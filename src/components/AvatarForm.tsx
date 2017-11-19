@@ -16,6 +16,7 @@ import {
   AllEyeTypes,
   AllEyebrowTypes,
   AllMouthTypes,
+  AllSkinColors,
   AllTopTypes,
   ClotheColor,
   ClotheColorValues,
@@ -23,6 +24,8 @@ import {
   EyeType,
   EyebrowType,
   MouthType,
+  SkinColor,
+  SkinColorValues,
   TopType
 } from './avatar'
 
@@ -34,6 +37,7 @@ export interface Props {
   clotheType: ClotheType
   clotheColor: ClotheColor
   accessoriesType: AccessoriesType
+  skinColor: SkinColor
   onTopChange?: (topType: TopType) => void
   onEyeChange?: (eyeType: EyeType) => void
   onEyebrowChange?: (eyebrowType: EyebrowType) => void
@@ -41,6 +45,7 @@ export interface Props {
   onClotheChange?: (clotheType: ClotheType) => void
   onClotheColorChange?: (clotheColor: ClotheColor) => void
   onAccessoriesChange?: (accessoriesType: AccessoriesType) => void
+  onSkinColorChange?: (skinColor: SkinColor) => void
   onDownload?: () => void
 }
 
@@ -109,6 +114,12 @@ export default class AvatarForm extends React.Component<Props> {
         {type}
       </option>
     ))
+    const skinColorOptions = AllSkinColors.map(type => (
+      <option key={type} value={SkinColorValues[type]}>
+        {type}
+      </option>
+    ))
+
     const labelCol = 3
     const inputCol = 9
     return (
@@ -161,6 +172,13 @@ export default class AvatarForm extends React.Component<Props> {
           value={this.props.clotheColor}
           onChange={this.onClotheColorChange}>
           {clotheColorOptions}
+        </OptionSelect>
+        <OptionSelect
+          controlId='skinColor'
+          label='🎨 Skin'
+          value={this.props.skinColor}
+          onChange={this.onSkinColorChange}>
+          {skinColorOptions}
         </OptionSelect>
         <FormGroup className='row'>
           <Col className='offset-sm-2' smOffset={labelCol} sm={inputCol}>
@@ -240,6 +258,13 @@ export default class AvatarForm extends React.Component<Props> {
       this.props.onClotheColorChange(
         ((event.target as any) as HTMLSelectElement).value as ClotheColor
       )
+    }
+  }
+
+  private onSkinColorChange = (event: React.FormEvent<FormControl>) => {
+    if (this.props.onSkinColorChange) {
+      this.props.onSkinColorChange(((event.target as any) as HTMLSelectElement)
+        .value as SkinColor)
     }
   }
 
