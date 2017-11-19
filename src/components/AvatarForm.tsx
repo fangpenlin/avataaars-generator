@@ -179,8 +179,11 @@ export default class AvatarForm extends React.Component<Props> {
           {skinColorOptions}
         </OptionSelect>
         <FormGroup className='row'>
-          <Col className='offset-sm-2' smOffset={labelCol} sm={inputCol}>
-            More options coming soon ...
+          <Col className='offset-sm-3' smOffset={labelCol} sm={inputCol}>
+            More options coming soon,{' '}
+            <a href='http://eepurl.com/c_7fN9' target='_blank'>
+              subscribe for updates
+            </a>
           </Col>
         </FormGroup>
         <FormGroup className='row'>
