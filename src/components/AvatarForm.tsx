@@ -49,34 +49,6 @@ export interface Props {
   onDownload?: () => void
 }
 
-interface SelectProps {
-  controlId: string
-  label: string
-  value: string
-  onChange: (event: React.FormEvent<FormControl>) => void
-}
-
-class OptionSelect extends React.Component<SelectProps> {
-  render () {
-    const { controlId, label, value, onChange, children } = this.props
-    return (
-      <FormGroup className='row' controlId={controlId}>
-        <Col componentClass={ControlLabel} sm={3}>
-          {label}
-        </Col>
-        <Col sm={9}>
-          <FormControl
-            componentClass='select'
-            value={value}
-            onChange={onChange as any}>
-            {children}
-          </FormControl>
-        </Col>
-      </FormGroup>
-    )
-  }
-}
-
 export default class AvatarForm extends React.Component<Props> {
   private onChangeCache: Array<(value: string) => void> = []
 

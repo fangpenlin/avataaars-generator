@@ -16,9 +16,12 @@ export default class Top extends React.Component {
     const { children } = this.props
     return (
       <Selector defaultOption={LongHairStraight} option={TopOption}>
+        <Eyepatch>{children}</Eyepatch>
         <LongHairMiaWallace>{children}</LongHairMiaWallace>
         <LongHairStraight>{children}</LongHairStraight>
         <LongHairBigHair>{children}</LongHairBigHair>
+        <LongHairNotTooLong>{children}</LongHairNotTooLong>
+        <LongHairShavedSides>{children}</LongHairShavedSides>
         <Hat>{children}</Hat>
         <Hijab>{children}</Hijab>
         <Turban>{children}</Turban>

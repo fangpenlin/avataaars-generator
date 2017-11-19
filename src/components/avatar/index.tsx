@@ -76,10 +76,7 @@ export default class Avatar extends React.Component<Props> {
                     <use xlinkHref='#path-5' />
                   </mask>
                   <use fill='#D0C6AC' xlinkHref='#path-5' />
-                  <g
-                    id='Skin/👶🏽-03-Brown'
-                    mask='url(#mask-6)'
-                    fill={SkinColorValues[this.props.skinColor]}>
+                  <g id='Skin/👶🏽-03-Brown' mask='url(#mask-6)' fill={'RED'}>
                     <g transform='translate(-32.000000, 0.000000)' id='Color'>
                       <rect x='0' y='0' width='264' height='244' />
                     </g>
