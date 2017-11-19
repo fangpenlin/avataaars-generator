@@ -22,6 +22,8 @@ import ShortHairShortCurly from './ShortHairShortCurly'
 import ShortHairShortFlat from './ShortHairShortFlat'
 import ShortHairShortRound from './ShortHairShortRound'
 import ShortHairShortWaved from './ShortHairShortWaved'
+import ShortHairTheCaesar from './ShortHairTheCaesar'
+import ShortHairTheCaesarSidePart from './ShortHairTheCaesarSidePart'
 import Turban from './Turban'
 
 export enum Type {
@@ -47,7 +49,9 @@ export enum Type {
   ShortHairShortCurly = 'ShortHairShortCurly',
   ShortHairShortFlat = 'ShortHairShortFlat',
   ShortHairShortRound = 'ShortHairShortRound',
-  ShortHairShortWaved = 'ShortHairShortWaved'
+  ShortHairShortWaved = 'ShortHairShortWaved',
+  ShortHairTheCaesar = 'ShortHairTheCaesar',
+  ShortHairTheCaesarSidePart = 'ShortHairTheCaesarSidePart'
 }
 
 export const AllTypes = [
@@ -74,7 +78,9 @@ export const AllTypes = [
   Type.ShortHairShortCurly,
   Type.ShortHairShortFlat,
   Type.ShortHairShortRound,
-  Type.ShortHairShortWaved
+  Type.ShortHairShortWaved,
+  Type.ShortHairTheCaesar,
+  Type.ShortHairTheCaesarSidePart
 ]
 
 // TODO:
@@ -191,6 +197,14 @@ export default class Top extends React.Component<Props> {
         return <ShortHairShortRound>{this.props.children}</ShortHairShortRound>
       case Type.ShortHairShortWaved:
         return <ShortHairShortWaved>{this.props.children}</ShortHairShortWaved>
+      case Type.ShortHairTheCaesar:
+        return <ShortHairTheCaesar>{this.props.children}</ShortHairTheCaesar>
+      case Type.ShortHairTheCaesarSidePart:
+        return (
+          <ShortHairTheCaesarSidePart>
+            {this.props.children}
+          </ShortHairTheCaesarSidePart>
+        )
     }
     return null
   }
