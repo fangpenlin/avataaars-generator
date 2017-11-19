@@ -14,6 +14,14 @@ import LongHairShavedSides from './LongHairShavedSides'
 import LongHairStraight from './LongHairStraight'
 import LongHairStraight2 from './LongHairStraight2'
 import LongHairStraightStrand from './LongHairStraightStrand'
+import NoHair from './NoHair'
+import ShortHairFrizzle from './ShortHairFrizzle'
+import ShortHairShaggy from './ShortHairShaggy'
+import ShortHairShaggyMullet from './ShortHairShaggyMullet'
+import ShortHairShortCurly from './ShortHairShortCurly'
+import ShortHairShortFlat from './ShortHairShortFlat'
+import ShortHairShortRound from './ShortHairShortRound'
+import ShortHairShortWaved from './ShortHairShortWaved'
 import Turban from './Turban'
 
 export enum Type {
@@ -31,7 +39,15 @@ export enum Type {
   LongHairNotTooLong = 'LongHairNotTooLong',
   LongHairShavedSides = 'LongHairShavedSides',
   LongHairStraight2 = 'LongHairStraight2',
-  LongHairStraightStrand = 'LongHairStraightStrand'
+  LongHairStraightStrand = 'LongHairStraightStrand',
+  NoHair = 'NoHair',
+  ShortHairFrizzle = 'ShortHairFrizzle',
+  ShortHairShaggy = 'ShortHairShaggy',
+  ShortHairShaggyMullet = 'ShortHairShaggyMullet',
+  ShortHairShortCurly = 'ShortHairShortCurly',
+  ShortHairShortFlat = 'ShortHairShortFlat',
+  ShortHairShortRound = 'ShortHairShortRound',
+  ShortHairShortWaved = 'ShortHairShortWaved'
 }
 
 export const AllTypes = [
@@ -49,7 +65,16 @@ export const AllTypes = [
   Type.LongHairNotTooLong,
   Type.LongHairShavedSides,
   Type.LongHairStraight2,
-  Type.LongHairStraightStrand
+  Type.LongHairStraightStrand,
+  Type.NoHair,
+  Type.ShortHairFrizzle,
+  Type.ShortHairShaggyMullet,
+  // XXX: broken
+  // Type.ShortHairShaggy
+  Type.ShortHairShortCurly,
+  Type.ShortHairShortFlat,
+  Type.ShortHairShortRound,
+  Type.ShortHairShortWaved
 ]
 
 // TODO:
@@ -148,6 +173,24 @@ export default class Top extends React.Component<Props> {
         return (
           <LongHairStraightStrand>{this.props.children}</LongHairStraightStrand>
         )
+      case Type.NoHair:
+        return <NoHair>{this.props.children}</NoHair>
+      case Type.ShortHairFrizzle:
+        return <ShortHairFrizzle>{this.props.children}</ShortHairFrizzle>
+      case Type.ShortHairShaggy:
+        return <ShortHairShaggy>{this.props.children}</ShortHairShaggy>
+      case Type.ShortHairShaggyMullet:
+        return (
+          <ShortHairShaggyMullet>{this.props.children}</ShortHairShaggyMullet>
+        )
+      case Type.ShortHairShortCurly:
+        return <ShortHairShortCurly>{this.props.children}</ShortHairShortCurly>
+      case Type.ShortHairShortFlat:
+        return <ShortHairShortFlat>{this.props.children}</ShortHairShortFlat>
+      case Type.ShortHairShortRound:
+        return <ShortHairShortRound>{this.props.children}</ShortHairShortRound>
+      case Type.ShortHairShortWaved:
+        return <ShortHairShortWaved>{this.props.children}</ShortHairShortWaved>
     }
     return null
   }
