@@ -1,19 +1,40 @@
 import * as React from 'react'
 
+import Eyepatch from './Eyepatch'
 import Hat from './Hat'
+import LongHairBigHair from './LongHairBigHair'
+import LongHairBun from './LongHairBun'
+import LongHairCurly from './LongHairCurly'
+import LongHairFrida from './LongHairFrida'
+import LongHairFro from './LongHairFro'
 import LongHairMiaWallace from './LongHairMiaWallace'
 import LongHairStraight from './LongHairStraight'
+import Turban from './Turban'
 
 export enum Type {
   LongHairMiaWallace = 'LongHairMiaWallace',
   LongHairStraight = 'LongHairStraight',
-  Hat = 'Hat'
+  Hat = 'Hat',
+  Eyepatch = 'Eyepatch',
+  Turban = 'Turban',
+  LongHairBigHair = 'LongHairBigHair',
+  LongHairBun = 'LongHairBun',
+  LongHairCurly = 'LongHairCurly',
+  LongHairFrida = 'LongHairFrida',
+  LongHairFro = 'LongHairFro'
 }
 
 export const AllTypes = [
   Type.LongHairMiaWallace,
   Type.LongHairStraight,
-  Type.Hat
+  Type.Hat,
+  Type.Eyepatch,
+  Type.Turban,
+  Type.LongHairBigHair,
+  Type.LongHairBun,
+  Type.LongHairCurly,
+  Type.LongHairFrida,
+  Type.LongHairFro
 ]
 
 // TODO:
@@ -86,6 +107,20 @@ export default class Top extends React.Component<Props> {
         return <LongHairStraight>{this.props.children}</LongHairStraight>
       case Type.Hat:
         return <Hat>{this.props.children}</Hat>
+      case Type.Eyepatch:
+        return <Eyepatch>{this.props.children}</Eyepatch>
+      case Type.Turban:
+        return <Turban>{this.props.children}</Turban>
+      case Type.LongHairBigHair:
+        return <LongHairBigHair>{this.props.children}</LongHairBigHair>
+      case Type.LongHairBun:
+        return <LongHairBun>{this.props.children}</LongHairBun>
+      case Type.LongHairCurly:
+        return <LongHairCurly>{this.props.children}</LongHairCurly>
+      case Type.LongHairFrida:
+        return <LongHairFrida>{this.props.children}</LongHairFrida>
+      case Type.LongHairFro:
+        return <LongHairFro>{this.props.children}</LongHairFro>
     }
     return null
   }
