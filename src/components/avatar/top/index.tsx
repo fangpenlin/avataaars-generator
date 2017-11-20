@@ -15,6 +15,9 @@ import LongHairShavedSides from './LongHairShavedSides'
 import LongHairStraight from './LongHairStraight'
 import LongHairStraight2 from './LongHairStraight2'
 import LongHairStraightStrand from './LongHairStraightStrand'
+import ShortHairFrizzle from './ShortHairFrizzle'
+import ShortHairShaggyMullet from './ShortHairShaggyMullet'
+import ShortHairShortCurly from './ShortHairShortCurly'
 import Turban from './Turban'
 import { Selector, TopOption } from '../../options'
 
@@ -38,6 +41,12 @@ export default class Top extends React.Component {
         <LongHairStraight>{children}</LongHairStraight>
         <LongHairStraight2>{children}</LongHairStraight2>
         <LongHairStraightStrand>{children}</LongHairStraightStrand>
+        <ShortHairFrizzle>{children}</ShortHairFrizzle>
+        {/*
+        XXX: broken, fix it later
+        <ShortHairShaggy>{children}</ShortHairShaggy>*/}
+        <ShortHairShaggyMullet>{children}</ShortHairShaggyMullet>
+        <ShortHairShortCurly>{children}</ShortHairShortCurly>
         <Hat>{children}</Hat>
       </Selector>
     )
