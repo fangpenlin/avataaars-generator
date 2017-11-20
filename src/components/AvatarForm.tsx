@@ -89,7 +89,7 @@ export default class AvatarForm extends React.Component<Props> {
     const labelCol = 3
     const inputCol = 9
     return (
-      <Form horizontal onSubmit={this.onDownload}>
+      <Form horizontal>
         {selects}
         <FormGroup className='row'>
           <Col
@@ -107,7 +107,7 @@ export default class AvatarForm extends React.Component<Props> {
             className={'offset-sm-' + labelCol}
             smOffset={labelCol}
             sm={inputCol}>
-            <Button bsStyle='primary' type='submit'>
+            <Button bsStyle='primary' type='submit' onClick={this.onDownload}>
               <i className='fa fa-download' /> Download
             </Button>
             <div style={{ marginTop: '10px' }}>
