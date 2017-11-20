@@ -199,7 +199,9 @@ export class Main extends React.Component<Props> {
 
   private onDownload = () => {
     const svgNode = ReactDOM.findDOMNode(this.avatarRef!)
-    const ctx = this.canvasRef!.getContext('2d')!
+    const canvas = this.canvasRef!
+    const ctx = canvas.getContext('2d')!
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
 
     const anyWindow = window as any
     const DOMURL = anyWindow.URL || anyWindow.webkitURL || window
