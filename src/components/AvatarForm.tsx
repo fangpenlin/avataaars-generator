@@ -91,7 +91,10 @@ export default class AvatarForm extends React.Component<Props> {
       <Form horizontal onSubmit={this.onDownload}>
         {selects}
         <FormGroup className='row'>
-          <Col className='offset-sm-3' smOffset={labelCol} sm={inputCol}>
+          <Col
+            className={`offset-sm-${labelCol}`}
+            smOffset={labelCol}
+            sm={inputCol}>
             More options coming soon,{' '}
             <a href='http://eepurl.com/c_7fN9' target='_blank'>
               subscribe for updates
