@@ -4,6 +4,7 @@ import * as FileSaver from 'file-saver'
 import * as PropTypes from 'prop-types'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
+import { Button } from 'react-bootstrap'
 import { Helmet } from 'react-helmet'
 import {
   UrlQueryParamTypes,
@@ -80,6 +81,18 @@ export class Main extends React.Component<Props> {
     const imageURL = process.env.REACT_APP_IMG_RENDERER_URL + location.search
     return (
       <main role='main'>
+        <header className='header clearfix'>
+          <h2 style={{ color: '#6A39D7' }}>
+            avataaars generator
+            <Button
+              type='submit'
+              bsStyle='secondary'
+              style={{ marginLeft: '1rem' }}
+              onClick={this.onRandom}>
+              <i className='fa fa-random' /> Random
+            </Button>
+          </h2>
+        </header>
         <Helmet>
           <meta property='og:title' content={title} />
           <meta property='og:site_name' content='Avataaars Generator' />
@@ -117,7 +130,6 @@ export class Main extends React.Component<Props> {
           <AvatarForm
             optionContext={this.optionContext}
             onDownload={this.onDownload}
-            onRandom={this.onRandom}
           />
         ) : null}
         <canvas

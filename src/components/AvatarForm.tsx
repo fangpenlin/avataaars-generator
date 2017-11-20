@@ -47,7 +47,6 @@ class OptionSelect extends React.Component<SelectProps> {
 export interface Props {
   optionContext: OptionContext
   onDownload?: () => void
-  onRandom?: () => void
 }
 
 export default class AvatarForm extends React.Component<Props> {
@@ -111,13 +110,6 @@ export default class AvatarForm extends React.Component<Props> {
             <Button bsStyle='primary' type='submit' onClick={this.onDownload}>
               <i className='fa fa-download' /> Download
             </Button>
-            <Button
-              type='submit'
-              bsStyle='secondary'
-              style={{ marginLeft: '1rem' }}
-              onClick={this.onRandom}>
-              <i className='fa fa-random' /> Random
-            </Button>
             <div style={{ marginTop: '10px' }}>
               <a
                 className='twitter-share-button'
@@ -144,13 +136,6 @@ export default class AvatarForm extends React.Component<Props> {
     event.preventDefault()
     if (this.props.onDownload) {
       this.props.onDownload()
-    }
-  }
-
-  private onRandom = (event: React.FormEvent<FormControl>) => {
-    event.preventDefault()
-    if (this.props.onRandom) {
-      this.props.onRandom()
     }
   }
 }
