@@ -47,6 +47,7 @@ class OptionSelect extends React.Component<SelectProps> {
 export interface Props {
   optionContext: OptionContext
   onDownload?: () => void
+  onRandom?: () => void
 }
 
 export default class AvatarForm extends React.Component<Props> {
@@ -89,7 +90,7 @@ export default class AvatarForm extends React.Component<Props> {
     const labelCol = 3
     const inputCol = 9
     return (
-      <Form horizontal onSubmit={this.onDownload}>
+      <Form horizontal>
         {selects}
         <FormGroup className='row'>
           <Col
@@ -107,8 +108,15 @@ export default class AvatarForm extends React.Component<Props> {
             className={'offset-sm-' + labelCol}
             smOffset={labelCol}
             sm={inputCol}>
-            <Button bsStyle='primary' type='submit'>
+            <Button bsStyle='primary' type='submit' onClick={this.onDownload}>
               <i className='fa fa-download' /> Download
+            </Button>
+            <Button
+              type='submit'
+              bsStyle='secondary'
+              style={{ marginLeft: '1rem' }}
+              onClick={this.onRandom}>
+              <i className='fa fa-random' /> Random
             </Button>
             <div style={{ marginTop: '10px' }}>
               <a
@@ -136,6 +144,13 @@ export default class AvatarForm extends React.Component<Props> {
     event.preventDefault()
     if (this.props.onDownload) {
       this.props.onDownload()
+    }
+  }
+
+  private onRandom = (event: React.FormEvent<FormControl>) => {
+    event.preventDefault()
+    if (this.props.onRandom) {
+      this.props.onRandom()
     }
   }
 }

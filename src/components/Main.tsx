@@ -10,7 +10,7 @@ import {
   UrlUpdateTypes,
   addUrlProps
 } from 'react-url-query'
-import { fromPairs } from 'lodash'
+import { fromPairs, sample } from 'lodash'
 
 import Avatar from './avatar'
 import AvatarForm from './AvatarForm'
@@ -18,7 +18,7 @@ import { OptionContext, allOptions } from './options'
 
 interface Props {
   __render__?: string
-  onChangeUrlQueryParams: (params: any) => void
+  onChangeUrlQueryParams: (params: any, updateType: string) => void
 }
 
 const updateType = UrlUpdateTypes.pushIn
@@ -117,6 +117,7 @@ export class Main extends React.Component<Props> {
           <AvatarForm
             optionContext={this.optionContext}
             onDownload={this.onDownload}
+            onRandom={this.onRandom}
           />
         ) : null}
         <canvas
@@ -146,6 +147,42 @@ export class Main extends React.Component<Props> {
 
   private updateOptionContext (nextProps: Props) {
     this.optionContext.setData(nextProps as any)
+  }
+
+  private onRandom = () => {
+    const { optionContext } = this
+    // still have option available but we didn't pick a random value for it
+    let stillAvailable = true
+    let values: { [index: string]: string } = {}
+    while (stillAvailable) {
+      for (const option of optionContext.options) {
+        if (option.key in values) {
+          continue
+        }
+        const optionState = optionContext.getOptionState(option.key)!
+        if (!optionState.available) {
+          continue
+        }
+        values[option.key] = sample(optionState.options)!
+      }
+
+      // update data to see more possible options
+      this.optionContext.setData(values)
+
+      // see if there is new option available but we haven't generate a
+      // random value for it
+      stillAvailable = false
+      for (const option of optionContext.options) {
+        if (option.key in values) {
+          continue
+        }
+        const optionState = optionContext.getOptionState(option.key)!
+        if (optionState.available) {
+          stillAvailable = true
+        }
+      }
+    }
+    this.props.onChangeUrlQueryParams!(values, UrlUpdateTypes.push)
   }
 
   private onDownload = () => {
