@@ -1,11 +1,9 @@
 import * as React from 'react'
 import { uniqueId } from 'lodash'
 
-export interface Props {
-  color: string
-}
+import Colors from './Colors'
 
-export default class Overall extends React.Component<Props> {
+export default class Overall extends React.Component {
   private path1 = uniqueId('react-path-')
   private mask1 = uniqueId('react-mask-')
 
@@ -28,13 +26,7 @@ export default class Overall extends React.Component<Props> {
           fillRule='evenodd'
           xlinkHref={'#' + path1}
         />
-        <g
-          id='Color/Palette/Gray-01'
-          mask={`url(#${mask1})`}
-          fillRule='evenodd'
-          fill={this.props.color}>
-          <rect id='🖍Color' x='0' y='0' width='264' height='110' />
-        </g>
+        <Colors maskID={mask1} />
         <circle
           id='Button'
           fill='#F4F4F4'

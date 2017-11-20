@@ -1,6 +1,8 @@
 import * as React from 'react'
 import { uniqueId } from 'lodash'
 
+import HairColor from './HairColor'
+
 export default class LongHairFroBand extends React.Component {
   private mask1 = uniqueId('react-mask-')
   private mask2 = uniqueId('react-mask-')
@@ -34,19 +36,7 @@ export default class LongHairFroBand extends React.Component {
               fillRule='evenodd'
               xlinkHref={'#' + path2}
             />
-            <g
-              id='Color/Hair/Black'
-              stroke='none'
-              fill='none'
-              mask={`url(#${mask2})`}
-              fillRule='evenodd'>
-              <g
-                transform='translate(1.000000, 0.000000)'
-                id='Color'
-                fill='#2C1B18'>
-                <rect x='0' y='0' width='264' height='280' />
-              </g>
-            </g>
+            <HairColor maskID={mask2} />
             <path
               d='M76.6313898,98.975 C76.2155465,96.423245 76,93.8109442 76,91.1521739 C76,62.3493236 101.295912,39 132.5,39 C163.704088,39 189,62.3493236 189,91.1521739 C189,93.8109442 188.784453,96.423245 188.36861,98.975 C184.279562,73.883217 160.823662,54.6456522 132.5,54.6456522 C104.176338,54.6456522 80.7204382,73.883217 76.6313898,98.975 Z'
               id='Band'

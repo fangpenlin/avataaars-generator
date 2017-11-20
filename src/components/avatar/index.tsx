@@ -1,74 +1,12 @@
 import * as React from 'react'
 
-import Accesories, { Type as AccessoriesType } from './top/accessories'
-import Clothe, {
-  Color as ClothColor,
-  ColorValues,
-  Type as ClotheType
-} from './clothes'
-import Face, { EyeType, EyebrowType, MouthType } from './face'
-import Top, { Type as TopType } from './top'
-
-export { AllTypes as AllTopTypes, Type as TopType } from './top'
-export {
-  AllTypes as AllAccessoriesTypes,
-  Type as AccessoriesType
-} from './top/accessories'
-export {
-  AllTypes as AllClotheTypes,
-  AllColors as AllClotheColors,
-  Color as ClotheColor,
-  ColorValues as ClotheColorValues,
-  Type as ClotheType
-} from './clothes'
-export {
-  AllEyebrowTypes,
-  AllEyeTypes,
-  AllMouthTypes,
-  EyeType,
-  EyebrowType,
-  MouthType
-} from './face'
-
-export enum SkinColor {
-  Tanned = 'Tanned',
-  Yellow = 'Yellow',
-  Pale = 'Pale',
-  Light = 'Light',
-  Brown = 'Brown',
-  DarkBrown = 'DarkBrown',
-  Black = 'Black'
-}
-
-export const AllSkinColors = [
-  SkinColor.Tanned,
-  SkinColor.Yellow,
-  SkinColor.Pale,
-  SkinColor.Light,
-  SkinColor.Brown,
-  SkinColor.DarkBrown,
-  SkinColor.Black
-]
-
-export const SkinColorValues: { [index: string]: string } = {
-  [SkinColor.Tanned]: '#FD9841',
-  [SkinColor.Yellow]: '#F8D25C',
-  [SkinColor.Pale]: '#FFDBB4',
-  [SkinColor.Light]: '#EDB98A',
-  [SkinColor.Brown]: '#D08B5B',
-  [SkinColor.DarkBrown]: '#AE5D29',
-  [SkinColor.Black]: '#614335'
-}
+import Accesories from './top/accessories'
+import Clothe from './clothes'
+import Face from './face'
+import Skin from './Skin'
+import Top from './top'
 
 export interface Props {
-  topType: TopType
-  eyeType: EyeType
-  eyebrowType: EyebrowType
-  mouthType: MouthType
-  clotheType: ClotheType
-  clotheColor: ClothColor
-  accessoriesType: AccessoriesType
-  skinColor: SkinColor
   style?: React.CSSProperties
 }
 
@@ -139,14 +77,7 @@ export default class Avatar extends React.Component<Props> {
                     <use xlinkHref='#path-5' />
                   </mask>
                   <use fill='#D0C6AC' xlinkHref='#path-5' />
-                  <g
-                    id='Skin/👶🏽-03-Brown'
-                    mask='url(#mask-6)'
-                    fill={SkinColorValues[this.props.skinColor]}>
-                    <g transform='translate(-32.000000, 0.000000)' id='Color'>
-                      <rect x='0' y='0' width='264' height='244' />
-                    </g>
-                  </g>
+                  <Skin maskID='mask-6' />
                   <path
                     d='M156,79 L156,102 C156,132.927946 130.927946,158 100,158 C69.072054,158 44,132.927946 44,102 L44,79 L44,94 C44,124.927946 69.072054,150 100,150 C130.927946,150 156,124.927946 156,94 L156,79 Z'
                     id='Neck-Shadow'
@@ -155,17 +86,10 @@ export default class Avatar extends React.Component<Props> {
                     mask='url(#mask-6)'
                   />
                 </g>
-                <Clothe
-                  type={this.props.clotheType}
-                  color={ColorValues[this.props.clotheColor]}
-                />
-                <Face
-                  eyeType={this.props.eyeType}
-                  eyebrowType={this.props.eyebrowType}
-                  mouthType={this.props.mouthType}
-                />
-                <Top type={this.props.topType} color='FIXME'>
-                  <Accesories type={this.props.accessoriesType} />
+                <Clothe />
+                <Face />
+                <Top>
+                  <Accesories />
                 </Top>
               </g>
             </g>

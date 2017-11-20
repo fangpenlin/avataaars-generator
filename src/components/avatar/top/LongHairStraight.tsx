@@ -2,21 +2,19 @@ import * as React from 'react'
 import { uniqueId } from 'lodash'
 
 export default class LongHairStraight extends React.Component {
+  private filter1 = uniqueId('react-filter-')
+  private filter2 = uniqueId('react-filter-')
+  private mask1 = uniqueId('react-mask-')
   private path1 = uniqueId('react-path-')
   private path2 = uniqueId('react-path-')
-  private mask1 = uniqueId('react-mask-')
-  private filter1 = uniqueId('react-filter-')
 
   render () {
-    const { path1, path2, mask1, filter1 } = this
+    const { filter1, filter2, mask1, path1, path2 } = this
+    // TODO: color is not supported here?
     return (
-      <g id='Top'>
+      <g id='Top' strokeWidth='1' fillRule='evenodd'>
         <defs>
           <rect id={path1} x='0' y='0' width='264' height='280' />
-          <path
-            d='M207,102.148232 C188.641593,101.85262 168.00524,88.2193123 155.110431,65.8848473 C152.175256,60.8009742 149.831069,55.5951441 148.066143,50.3970356 C139.431395,60.9409152 126.744547,71.6023901 111.341516,80.4953343 C101.777598,86.0170651 92.1467898,90.2910056 83,93.2659587 L83,248 L83,248 C83,262.105888 72.5691766,273.775526 59,275.716445 L59,92 L59,92 C59,51.1309285 92.1309285,18 133,18 L133,18 L133,18 C173.869071,18 207,51.1309285 207,92 L207,102.148232 Z'
-            id={path2}
-          />
           <filter
             x='-2.0%'
             y='-1.2%'
@@ -36,6 +34,34 @@ export default class LongHairStraight extends React.Component {
               in='shadowOffsetOuter1'
             />
           </filter>
+          <path
+            d='M207,102.148232 C188.641593,101.85262 168.00524,88.2193123 155.110431,65.8848473 C152.175256,60.8009742 149.831069,55.5951441 148.066143,50.3970356 C139.431395,60.9409152 126.744547,71.6023901 111.341516,80.4953343 C101.777598,86.0170651 92.1467898,90.2910056 83,93.2659587 L83,248 L83,248 C83,262.105888 72.5691766,273.775526 59,275.716445 L59,92 L59,92 C59,51.1309285 92.1309285,18 133,18 L133,18 L133,18 C173.869071,18 207,51.1309285 207,92 L207,102.148232 Z'
+            id={path2}
+          />
+          <filter
+            x='-0.8%'
+            y='-2.0%'
+            width='101.5%'
+            height='108.0%'
+            filterUnits='objectBoundingBox'
+            id={filter2}>
+            <feOffset
+              dx='0'
+              dy='2'
+              in='SourceAlpha'
+              result='shadowOffsetOuter1'
+            />
+            <feColorMatrix
+              values='0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.16 0'
+              type='matrix'
+              in='shadowOffsetOuter1'
+              result='shadowMatrixOuter1'
+            />
+            <feMerge>
+              <feMergeNode in='shadowMatrixOuter1' />
+              <feMergeNode in='SourceGraphic' />
+            </feMerge>
+          </filter>
         </defs>
         <mask id={mask1} fill='white'>
           <use xlinkHref={'#' + path1} />
@@ -53,7 +79,7 @@ export default class LongHairStraight extends React.Component {
               <use
                 fill='black'
                 fillOpacity='1'
-                filter={`url(#${filter1})`}
+                filter={`url(#${path2})`}
                 xlinkHref={'#' + path2}
               />
               <use fill='#AE5D29' fillRule='evenodd' xlinkHref={'#' + path2} />

@@ -8,55 +8,18 @@ import {
   FormGroup
 } from 'react-bootstrap'
 
-import {
-  AccessoriesType,
-  AllAccessoriesTypes,
-  AllClotheColors,
-  AllClotheTypes,
-  AllEyeTypes,
-  AllEyebrowTypes,
-  AllMouthTypes,
-  AllSkinColors,
-  AllTopTypes,
-  ClotheColor,
-  ClotheType,
-  EyeType,
-  EyebrowType,
-  MouthType,
-  SkinColor,
-  TopType
-} from './avatar'
-
-export interface Props {
-  topType: TopType
-  eyeType: EyeType
-  eyebrowType: EyebrowType
-  mouthType: MouthType
-  clotheType: ClotheType
-  clotheColor: ClotheColor
-  accessoriesType: AccessoriesType
-  skinColor: SkinColor
-  onTopChange?: (topType: TopType) => void
-  onEyeChange?: (eyeType: EyeType) => void
-  onEyebrowChange?: (eyebrowType: EyebrowType) => void
-  onMouthChange?: (mouthType: MouthType) => void
-  onClotheChange?: (clotheType: ClotheType) => void
-  onClotheColorChange?: (clotheColor: ClotheColor) => void
-  onAccessoriesChange?: (accessoriesType: AccessoriesType) => void
-  onSkinColorChange?: (skinColor: SkinColor) => void
-  onDownload?: () => void
-}
+import { Option, OptionContext } from './options'
 
 interface SelectProps {
   controlId: string
   label: string
   value: string
-  onChange: (event: React.FormEvent<FormControl>) => void
+  onChange?: (value: string) => void
 }
 
 class OptionSelect extends React.Component<SelectProps> {
   render () {
-    const { controlId, label, value, onChange, children } = this.props
+    const { controlId, label, value, children } = this.props
     return (
       <FormGroup className='row' controlId={controlId}>
         <Col componentClass={ControlLabel} sm={3}>
@@ -66,120 +29,73 @@ class OptionSelect extends React.Component<SelectProps> {
           <FormControl
             componentClass='select'
             value={value}
-            onChange={onChange as any}>
+            onChange={this.onChange}>
             {children}
           </FormControl>
         </Col>
       </FormGroup>
     )
   }
+
+  private onChange = (event: React.FormEvent<FormControl>) => {
+    if (this.props.onChange) {
+      this.props.onChange(((event.target as any) as HTMLSelectElement).value)
+    }
+  }
+}
+
+export interface Props {
+  optionContext: OptionContext
+  onDownload?: () => void
 }
 
 export default class AvatarForm extends React.Component<Props> {
-  render () {
-    const topOptions = AllTopTypes.map(type => (
-      <option key={type} value={type}>
-        {type}
-      </option>
-    ))
-    const accessoriesOptions = AllAccessoriesTypes.map(type => (
-      <option key={type} value={type}>
-        {type}
-      </option>
-    ))
-    const eyeOptions = AllEyeTypes.map(type => (
-      <option key={type} value={type}>
-        {type}
-      </option>
-    ))
-    const eyebrowOptions = AllEyebrowTypes.map(type => (
-      <option key={type} value={type}>
-        {type}
-      </option>
-    ))
-    const mouthOptions = AllMouthTypes.map(type => (
-      <option key={type} value={type}>
-        {type}
-      </option>
-    ))
-    const clotheOptions = AllClotheTypes.map(type => (
-      <option key={type} value={type}>
-        {type}
-      </option>
-    ))
-    const clotheColorOptions = AllClotheColors.map(type => (
-      <option key={type} value={type}>
-        {type}
-      </option>
-    ))
-    const skinColorOptions = AllSkinColors.map(type => (
-      <option key={type} value={type}>
-        {type}
-      </option>
-    ))
+  private onChangeCache: Array<(value: string) => void> = []
 
+  componentWillMount () {
+    const { optionContext } = this.props
+    optionContext.addStateChangeListener(() => {
+      this.forceUpdate()
+    })
+    this.onChangeCache = optionContext.options.map(option =>
+      this.onChange.bind(this, option)
+    )
+  }
+
+  render () {
+    const { optionContext } = this.props
+    const selects = optionContext.options.map((option, index) => {
+      const optionState = optionContext.getOptionState(option.key)!
+      if (optionState.available <= 0) {
+        return null
+      }
+      const selectOptions = optionState.options.map(type => (
+        <option key={type} value={type}>
+          {type}
+        </option>
+      ))
+      const value = optionContext.getValue(option.key)!
+      return (
+        <OptionSelect
+          key={option.key}
+          controlId={option.key}
+          label={option.label}
+          value={value}
+          onChange={this.onChangeCache[index]}>
+          {selectOptions}
+        </OptionSelect>
+      )
+    })
     const labelCol = 3
     const inputCol = 9
     return (
       <Form horizontal onSubmit={this.onDownload}>
-        <OptionSelect
-          controlId='top'
-          label='Top'
-          value={this.props.topType}
-          onChange={this.onTopChange}>
-          {topOptions}
-        </OptionSelect>
-        <OptionSelect
-          controlId='accessories'
-          label='👓 Accessories'
-          value={this.props.accessoriesType}
-          onChange={this.onAccessoriesChange}>
-          {accessoriesOptions}
-        </OptionSelect>
-        <OptionSelect
-          controlId='eyebrow'
-          label='✏️ Eyebrow'
-          value={this.props.eyebrowType}
-          onChange={this.onEyebrowChange}>
-          {eyebrowOptions}
-        </OptionSelect>
-        <OptionSelect
-          controlId='eyes'
-          label='👁 Eyes'
-          value={this.props.eyeType}
-          onChange={this.onEyeChange}>
-          {eyeOptions}
-        </OptionSelect>
-        <OptionSelect
-          controlId='mouth'
-          label='👄 Mouth'
-          value={this.props.mouthType}
-          onChange={this.onMouthChange}>
-          {mouthOptions}
-        </OptionSelect>
-        <OptionSelect
-          controlId='clothe'
-          label='👔 Clothes'
-          value={this.props.clotheType}
-          onChange={this.onClotheChange}>
-          {clotheOptions}
-        </OptionSelect>
-        <OptionSelect
-          controlId='clotheColor'
-          label='↳ Color Fabric'
-          value={this.props.clotheColor}
-          onChange={this.onClotheColorChange}>
-          {clotheColorOptions}
-        </OptionSelect>
-        <OptionSelect
-          controlId='skinColor'
-          label='🎨 Skin'
-          value={this.props.skinColor}
-          onChange={this.onSkinColorChange}>
-          {skinColorOptions}
-        </OptionSelect>
+        {selects}
         <FormGroup className='row'>
-          <Col className='offset-sm-3' smOffset={labelCol} sm={inputCol}>
+          <Col
+            className={`offset-sm-${labelCol}`}
+            smOffset={labelCol}
+            sm={inputCol}>
             More options coming soon,{' '}
             <a href='http://eepurl.com/c_7fN9' target='_blank'>
               subscribe for updates
@@ -211,62 +127,9 @@ export default class AvatarForm extends React.Component<Props> {
     )
   }
 
-  private onTopChange = (event: React.FormEvent<FormControl>) => {
-    if (this.props.onTopChange) {
-      this.props.onTopChange(((event.target as any) as HTMLSelectElement)
-        .value as TopType)
-    }
-  }
-
-  private onAccessoriesChange = (event: React.FormEvent<FormControl>) => {
-    if (this.props.onAccessoriesChange) {
-      this.props.onAccessoriesChange(
-        ((event.target as any) as HTMLSelectElement).value as AccessoriesType
-      )
-    }
-  }
-
-  private onEyeChange = (event: React.FormEvent<FormControl>) => {
-    if (this.props.onEyeChange) {
-      this.props.onEyeChange(((event.target as any) as HTMLSelectElement)
-        .value as EyeType)
-    }
-  }
-
-  private onEyebrowChange = (event: React.FormEvent<FormControl>) => {
-    if (this.props.onEyebrowChange) {
-      this.props.onEyebrowChange(((event.target as any) as HTMLSelectElement)
-        .value as EyebrowType)
-    }
-  }
-
-  private onMouthChange = (event: React.FormEvent<FormControl>) => {
-    if (this.props.onMouthChange) {
-      this.props.onMouthChange(((event.target as any) as HTMLSelectElement)
-        .value as MouthType)
-    }
-  }
-
-  private onClotheChange = (event: React.FormEvent<FormControl>) => {
-    if (this.props.onClotheChange) {
-      this.props.onClotheChange(((event.target as any) as HTMLSelectElement)
-        .value as ClotheType)
-    }
-  }
-
-  private onClotheColorChange = (event: React.FormEvent<FormControl>) => {
-    if (this.props.onClotheColorChange) {
-      this.props.onClotheColorChange(
-        ((event.target as any) as HTMLSelectElement).value as ClotheColor
-      )
-    }
-  }
-
-  private onSkinColorChange = (event: React.FormEvent<FormControl>) => {
-    if (this.props.onSkinColorChange) {
-      this.props.onSkinColorChange(((event.target as any) as HTMLSelectElement)
-        .value as SkinColor)
-    }
+  private onChange (option: Option, value: string) {
+    const { optionContext } = this.props
+    optionContext.setValue(option.key, value)
   }
 
   private onDownload = (event: React.FormEvent<FormControl>) => {

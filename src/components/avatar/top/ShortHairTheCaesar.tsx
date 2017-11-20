@@ -1,6 +1,9 @@
 import * as React from 'react'
 import { uniqueId } from 'lodash'
 
+import FacialHair from './facialHair'
+import HairColor from './HairColor'
+
 export default class ShortHairTheCaesar extends React.Component {
   private filter1 = uniqueId('react-filter-')
   private mask1 = uniqueId('react-mask-')
@@ -49,10 +52,7 @@ export default class ShortHairTheCaesar extends React.Component {
         <g id='Mask' />
         <g id='Top/Short-Hair/The-Caesar' mask={`url(#${mask1})`}>
           <g transform='translate(-1.000000, 0.000000)'>
-            <g
-              id='Facial-Hair/-Blank'
-              transform='translate(49.000000, 72.000000)'
-            />
+            <FacialHair />
             <g
               id='Hair'
               strokeWidth='1'
@@ -62,14 +62,7 @@ export default class ShortHairTheCaesar extends React.Component {
                 <use xlinkHref={'#' + path2} />
               </mask>
               <use id='Caesar' fill='#28354B' xlinkHref={'#' + path2} />
-              <g
-                id='Color/Hair/Brown-Dark'
-                mask={`url(#${mask2})`}
-                fill='#4A312C'>
-                <g transform='translate(-74.000000, -34.000000)' id='Color'>
-                  <rect x='0' y='0' width='264' height='280' />
-                </g>
-              </g>
+              <HairColor maskID={mask2} />
             </g>
             {this.props.children}
           </g>

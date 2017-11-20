@@ -12,69 +12,25 @@ import SadConcernedNatural from './SadConcernedNatural'
 import UnibrowNatural from './UnibrowNatural'
 import UpDown from './UpDown'
 import UpDownNatural from './UpDownNatural'
+import { EyebrowOption, Selector } from '../../../options'
 
-export enum Type {
-  Angry = 'Angry',
-  AngryNatural = 'AngryNatural',
-  Default = 'Default',
-  DefaultNatural = 'DefaultNatural',
-  FlatNatural = 'FlatNatural',
-  RaisedExcited = 'RaisedExcited',
-  RaisedExcitedNatural = 'RaisedExcitedNatural',
-  SadConcerned = 'SadConcerned',
-  SadConcernedNatural = 'SadConcernedNatural',
-  UnibrowNatural = 'UnibrowNatural',
-  UpDown = 'UpDown',
-  UpDownNatural = 'UpDownNatural'
-}
-
-export const AllTypes = [
-  Type.Angry,
-  Type.AngryNatural,
-  Type.Default,
-  Type.DefaultNatural,
-  Type.FlatNatural,
-  Type.RaisedExcited,
-  Type.RaisedExcitedNatural,
-  Type.SadConcerned,
-  Type.SadConcernedNatural,
-  Type.UnibrowNatural,
-  Type.UpDown,
-  Type.UpDownNatural
-]
-
-export interface Props {
-  type: Type
-}
-
-export default class Eyebrow extends React.Component<Props> {
+export default class Eyebrow extends React.Component {
   render () {
-    switch (this.props.type) {
-      case Type.Angry:
-        return <Angry />
-      case Type.AngryNatural:
-        return <AngryNatural />
-      case Type.Default:
-        return <Default />
-      case Type.DefaultNatural:
-        return <DefaultNatural />
-      case Type.FlatNatural:
-        return <FlatNatural />
-      case Type.RaisedExcited:
-        return <RaisedExcited />
-      case Type.RaisedExcitedNatural:
-        return <RaisedExcitedNatural />
-      case Type.SadConcerned:
-        return <SadConcerned />
-      case Type.SadConcernedNatural:
-        return <SadConcernedNatural />
-      case Type.UnibrowNatural:
-        return <UnibrowNatural />
-      case Type.UpDown:
-        return <UpDown />
-      case Type.UpDownNatural:
-        return <UpDownNatural />
-    }
-    return null
+    return (
+      <Selector defaultOption={Default} option={EyebrowOption}>
+        <Angry />
+        <AngryNatural />
+        <Default />
+        <DefaultNatural />
+        <FlatNatural />
+        <RaisedExcited />
+        <RaisedExcitedNatural />
+        <SadConcerned />
+        <SadConcernedNatural />
+        <UnibrowNatural />
+        <UpDown />
+        <UpDownNatural />
+      </Selector>
+    )
   }
 }

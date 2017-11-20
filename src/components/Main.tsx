@@ -1,6 +1,7 @@
 import '../assets/App.css'
 
 import * as FileSaver from 'file-saver'
+import * as PropTypes from 'prop-types'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import { Helmet } from 'react-helmet'
@@ -9,93 +10,58 @@ import {
   UrlUpdateTypes,
   addUrlProps
 } from 'react-url-query'
+import { fromPairs } from 'lodash'
 
+import Avatar from './avatar'
 import AvatarForm from './AvatarForm'
-import Avatar, {
-  AccessoriesType,
-  ClotheColor,
-  ClotheType,
-  EyeType,
-  EyebrowType,
-  MouthType,
-  SkinColor,
-  TopType
-} from './avatar'
+import { OptionContext, allOptions } from './options'
 
 interface Props {
-  topType: TopType
-  eyeType: EyeType
-  eyebrowType: EyebrowType
-  mouthType: MouthType
-  clotheType: ClotheType
-  clotheColor: ClotheColor
-  accessoriesType: AccessoriesType
-  skinColor: SkinColor
   __render__?: string
-  onChangeTopType: (topType: TopType) => void
-  onChangeEyeType: (eyeType: EyeType) => void
-  onChangeEyebrowType: (eyebrowType: EyebrowType) => void
-  onChangeMouthType: (mouthType: MouthType) => void
-  onChangeClotheType: (clotheType: ClotheType) => void
-  onChangeClotheColor: (clotheColor: ClotheColor) => void
-  onChangeAccessoriesType: (accessoriesType: AccessoriesType) => void
-  onChangeSkinColor: (skinColor: SkinColor) => void
   onChangeUrlQueryParams: (params: any) => void
 }
 
 const updateType = UrlUpdateTypes.pushIn
 const urlPropsQueryConfig = {
-  topType: {
-    type: UrlQueryParamTypes.string,
-    updateType
-  },
-  eyeType: {
-    type: UrlQueryParamTypes.string,
-    updateType
-  },
-  eyebrowType: {
-    type: UrlQueryParamTypes.string,
-    updateType
-  },
-  mouthType: {
-    type: UrlQueryParamTypes.string,
-    updateType
-  },
-  clotheType: {
-    type: UrlQueryParamTypes.string,
-    updateType
-  },
-  clotheColor: {
-    type: UrlQueryParamTypes.string,
-    updateType
-  },
-  accessoriesType: {
-    type: UrlQueryParamTypes.string,
-    updateType
-  },
-  skinColor: {
-    type: UrlQueryParamTypes.string,
-    updateType
-  },
+  ...fromPairs(
+    allOptions.map(option => [
+      option.key,
+      {
+        type: UrlQueryParamTypes.string,
+        updateType
+      }
+    ])
+  ),
   __render__: {
     type: UrlQueryParamTypes.string
   }
 }
 
+function capitalizeFirstLetter (text: string) {
+  return text.charAt(0).toUpperCase() + text.slice(1)
+}
+
 export class Main extends React.Component<Props> {
-  static defaultProps = {
-    topType: TopType.LongHairStraight,
-    eyeType: EyeType.Default,
-    eyebrowType: EyebrowType.Default,
-    mouthType: MouthType.Default,
-    clotheType: ClotheType.BlazerShirt,
-    clotheColor: ClotheColor.Black,
-    accessoriesType: AccessoriesType.Blank,
-    skinColor: SkinColor.Light
+  static childContextTypes = {
+    optionContext: PropTypes.instanceOf(OptionContext)
   }
 
   private avatarRef: Avatar | null = null
   private canvasRef: HTMLCanvasElement | null = null
+  private optionContext: OptionContext = new OptionContext(allOptions)
+
+  getChildContext () {
+    return { optionContext: this.optionContext }
+  }
+
+  componentWillReceiveProps (nextProps: Props) {
+    this.updateOptionContext(nextProps)
+  }
+
+  componentWillMount () {
+    this.optionContext.addValueChangeListener(this.onOptionValueChange)
+    this.updateOptionContext(this.props)
+  }
 
   componentDidMount () {
     const anyWindow = window as any
@@ -104,18 +70,12 @@ export class Main extends React.Component<Props> {
     }, 500)
   }
 
+  componentWillUnmount () {
+    this.optionContext.removeValueChangeListener(this.onOptionValueChange)
+  }
+
   render () {
-    const {
-      topType,
-      eyeType,
-      eyebrowType,
-      mouthType,
-      clotheType,
-      clotheColor,
-      accessoriesType,
-      skinColor,
-      __render__
-    } = this.props
+    const { __render__ } = this.props
     const title = 'Avataaars Generator - Generate your own avataaars!'
     const imageURL = process.env.REACT_APP_IMG_RENDERER_URL + location.search
     return (
@@ -137,17 +97,7 @@ export class Main extends React.Component<Props> {
         </Helmet>
         {__render__ !== '1' ? (
           <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
-            <Avatar
-              topType={topType}
-              eyeType={eyeType}
-              eyebrowType={eyebrowType}
-              mouthType={mouthType}
-              clotheType={clotheType}
-              clotheColor={clotheColor}
-              accessoriesType={accessoriesType}
-              skinColor={skinColor}
-              ref={this.onAvatarRef}
-            />
+            <Avatar ref={this.onAvatarRef} />
           </div>
         ) : (
           <Avatar
@@ -160,35 +110,12 @@ export class Main extends React.Component<Props> {
               width: '100%',
               height: '100%'
             }}
-            topType={topType}
-            eyeType={eyeType}
-            eyebrowType={eyebrowType}
-            mouthType={mouthType}
-            clotheType={clotheType}
-            clotheColor={clotheColor}
-            accessoriesType={accessoriesType}
-            skinColor={skinColor}
             ref={this.onAvatarRef}
           />
         )}
         {__render__ !== '1' ? (
           <AvatarForm
-            topType={topType}
-            eyeType={eyeType}
-            eyebrowType={eyebrowType}
-            mouthType={mouthType}
-            clotheType={clotheType}
-            clotheColor={clotheColor}
-            accessoriesType={accessoriesType}
-            skinColor={skinColor}
-            onTopChange={this.onTopChange}
-            onEyeChange={this.onEyeChange}
-            onEyebrowChange={this.onEyebrowChange}
-            onMouthChange={this.onMouthChange}
-            onClotheChange={this.onClotheChange}
-            onClotheColorChange={this.onClotheColorChange}
-            onAccessoriesChange={this.onAccessoriesChange}
-            onSkinColorChange={this.onSkinColorChange}
+            optionContext={this.optionContext}
             onDownload={this.onDownload}
           />
         ) : null}
@@ -210,36 +137,15 @@ export class Main extends React.Component<Props> {
     this.canvasRef = ref
   }
 
-  private onTopChange = (topType: TopType) => {
-    this.props.onChangeTopType(topType)
+  private onOptionValueChange = (key: string, value: string) => {
+    const name = capitalizeFirstLetter(key)
+    const handlerName = `onChange${name}`
+    const updateHandler = this.props[handlerName] as (value: string) => void
+    updateHandler(value)
   }
 
-  private onEyeChange = (eyeType: EyeType) => {
-    this.props.onChangeEyeType(eyeType)
-  }
-
-  private onEyebrowChange = (eyebrowType: EyebrowType) => {
-    this.props.onChangeEyebrowType(eyebrowType)
-  }
-
-  private onMouthChange = (mouthType: MouthType) => {
-    this.props.onChangeMouthType(mouthType)
-  }
-
-  private onClotheChange = (clotheType: ClotheType) => {
-    this.props.onChangeClotheType(clotheType)
-  }
-
-  private onClotheColorChange = (clotheColor: ClotheColor) => {
-    this.props.onChangeClotheColor(clotheColor)
-  }
-
-  private onAccessoriesChange = (accesoriesType: AccessoriesType) => {
-    this.props.onChangeAccessoriesType(accesoriesType)
-  }
-
-  private onSkinColorChange = (skinColor: SkinColor) => {
-    this.props.onChangeSkinColor(skinColor)
+  private updateOptionContext (nextProps: Props) {
+    this.optionContext.setData(nextProps as any)
   }
 
   private onDownload = () => {
