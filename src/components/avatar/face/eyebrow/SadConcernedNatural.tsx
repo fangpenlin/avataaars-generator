@@ -1,6 +1,8 @@
 import * as React from 'react'
 
 export default class SadConcernedNatural extends React.Component {
+  static optionValue = 'SadConcernedNatural'
+
   render () {
     return (
       <g id='Eyebrow/Natural/Sad-Concerned-Natural' fillOpacity='0.599999964'>

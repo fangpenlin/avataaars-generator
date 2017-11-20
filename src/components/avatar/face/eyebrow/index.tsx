@@ -15,6 +15,8 @@ import UpDownNatural from './UpDownNatural'
 import { EyebrowOption, Selector } from '../../../options'
 
 export default class Eyebrow extends React.Component {
+  static optionValue = 'Eyebrow'
+
   render () {
     return (
       <Selector defaultOption={Default} option={EyebrowOption}>

@@ -4,6 +4,8 @@ import { uniqueId } from 'lodash'
 import FacialHair from './facialHair'
 
 export default class Eyepatch extends React.Component {
+  static optionValue = 'Eyepatch'
+
   private mask1 = uniqueId('react-mask-')
   private path1 = uniqueId('react-path-')
 

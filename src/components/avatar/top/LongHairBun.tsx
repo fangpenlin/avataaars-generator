@@ -5,6 +5,8 @@ import FacialHair from './facialHair'
 import HairColor from './HairColor'
 
 export default class LongHairBun extends React.Component {
+  static optionValue = 'LongHairBun'
+
   private mask1 = uniqueId('react-mask-')
   private mask2 = uniqueId('react-mask-')
   private path1 = uniqueId('react-path-')

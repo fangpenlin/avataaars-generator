@@ -2,6 +2,8 @@ import * as React from 'react'
 import { uniqueId } from 'lodash'
 
 export default class Prescription02 extends React.Component {
+  static optionValue = 'Prescription02'
+
   private filter1 = uniqueId('react-filter-')
 
   render () {

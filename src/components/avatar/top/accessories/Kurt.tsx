@@ -2,6 +2,8 @@ import * as React from 'react'
 import { uniqueId } from 'lodash'
 
 export default class Kurt extends React.Component {
+  static optionValue = 'Kurt'
+
   private filter1 = uniqueId('react-filter-')
 
   render () {

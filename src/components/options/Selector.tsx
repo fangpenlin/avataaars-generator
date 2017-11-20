@@ -6,10 +6,10 @@ import OptionContext from './OptionContext'
 
 function getComponentOptionValue (component: React.ComponentClass) {
   const optionValue = (component as any).optionValue
-  if (optionValue) {
-    return optionValue
+  if (!optionValue) {
+    throw new Error(`optionValue should be provided for ${component}`)
   }
-  return component.displayName || component.name
+  return optionValue
 }
 
 export interface Props {
@@ -76,6 +76,9 @@ export default class Selector extends React.Component<Props> {
       // TODO: also validate and throw error if we don't see optionValue
       child => getComponentOptionValue((child as any).type)
     )
+    if (new Set(values).size !== values.length) {
+      throw new Error('Duplicate values')
+    }
     this.optionContext.setOptions(option.key, values)
   }
 }

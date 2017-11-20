@@ -1,6 +1,8 @@
 import * as React from 'react'
 
 export default class Wink extends React.Component {
+  static optionValue = 'Wink'
+
   render () {
     return (
       <g

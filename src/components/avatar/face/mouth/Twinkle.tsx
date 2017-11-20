@@ -1,6 +1,8 @@
 import * as React from 'react'
 
 export default class Twinkle extends React.Component {
+  static optionValue = 'Twinkle'
+
   render () {
     return (
       <g

@@ -8,6 +8,7 @@ export interface Props {
 }
 
 export class Skull extends React.Component<Props> {
+  static optionValue = 'Skull'
   render () {
     return (
       <g
@@ -24,6 +25,7 @@ export class Skull extends React.Component<Props> {
 }
 
 export class Bear extends React.Component<Props> {
+  static optionValue = 'Bear'
   private mask1 = uniqueId('react-mask-')
   private path1 = uniqueId('react-path-')
 

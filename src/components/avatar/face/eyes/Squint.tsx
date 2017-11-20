@@ -2,6 +2,8 @@ import * as React from 'react'
 import { uniqueId } from 'lodash'
 
 export default class Squint extends React.Component {
+  static optionValue = 'Squint'
+
   private path1 = uniqueId('react-path-')
   private path2 = uniqueId('react-path-')
   private mask1 = uniqueId('react-mask-')

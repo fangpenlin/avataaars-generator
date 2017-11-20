@@ -1,6 +1,8 @@
 import * as React from 'react'
 
 export default class WinkWacky extends React.Component {
+  static optionValue = 'WinkWacky'
+
   render () {
     return (
       <g id='Eyes/Wink-Wacky-😜' transform='translate(0.000000, 8.000000)'>

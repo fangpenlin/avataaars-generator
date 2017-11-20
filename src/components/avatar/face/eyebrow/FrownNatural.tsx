@@ -1,6 +1,8 @@
 import * as React from 'react'
 
 export default class FrownNatural extends React.Component {
+  static optionValue = 'FrownNatural'
+
   render () {
     return (
       <g id='Eyebrow/Natural/Frown-Natural' fillOpacity='0.599999964'>

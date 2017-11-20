@@ -1,6 +1,8 @@
 import * as React from 'react'
 
 export default class Disbelief extends React.Component {
+  static optionValue = 'Disbelief'
+
   render () {
     return (
       <g

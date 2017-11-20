@@ -4,6 +4,8 @@ import { uniqueId } from 'lodash'
 import Colors from './Colors'
 
 export default class Hoodie extends React.Component {
+  static optionValue = 'Hoodie'
+
   private path1 = uniqueId('react-path-')
   private mask1 = uniqueId('react-mask-')
 

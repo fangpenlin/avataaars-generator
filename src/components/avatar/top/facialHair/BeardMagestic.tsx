@@ -4,6 +4,8 @@ import { uniqueId } from 'lodash'
 import Colors from './Colors'
 
 export default class BeardMagestic extends React.Component {
+  static optionValue = 'BeardMagestic'
+
   private mask1 = uniqueId('react-mask-')
   private path1 = uniqueId('react-path-')
 

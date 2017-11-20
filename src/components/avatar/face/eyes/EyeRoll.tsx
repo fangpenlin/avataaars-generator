@@ -1,6 +1,8 @@
 import * as React from 'react'
 
 export default class EyeRoll extends React.Component {
+  static optionValue = 'EyeRoll'
+
   render () {
     return (
       <g id='Eyes/Eye-Roll-🙄' transform='translate(0.000000, 8.000000)'>

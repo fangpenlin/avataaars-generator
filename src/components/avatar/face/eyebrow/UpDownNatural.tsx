@@ -1,6 +1,8 @@
 import * as React from 'react'
 
 export default class UpDownNatural extends React.Component {
+  static optionValue = 'UpDownNatural'
+
   render () {
     return (
       <g id='Eyebrow/Natural/Up-Down-Natural' fillOpacity='0.599999964'>

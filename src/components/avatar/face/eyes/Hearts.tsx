@@ -1,6 +1,8 @@
 import * as React from 'react'
 
 export default class Hearts extends React.Component {
+  static optionValue = 'Hearts'
+
   render () {
     return (
       <g

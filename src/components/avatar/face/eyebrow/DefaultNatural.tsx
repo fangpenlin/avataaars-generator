@@ -1,6 +1,8 @@
 import * as React from 'react'
 
 export default class DefaultNatural extends React.Component {
+  static optionValue = 'DefaultNatural'
+
   render () {
     return (
       <g id='Eyebrow/Natural/Default-Natural' fillOpacity='0.599999964'>
