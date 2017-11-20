@@ -3,6 +3,7 @@ import * as React from 'react'
 import Accesories from './top/accessories'
 import Clothe from './clothes'
 import Face from './face'
+import Skin from './Skin'
 import Top from './top'
 
 export interface Props {
@@ -76,11 +77,7 @@ export default class Avatar extends React.Component<Props> {
                     <use xlinkHref='#path-5' />
                   </mask>
                   <use fill='#D0C6AC' xlinkHref='#path-5' />
-                  <g id='Skin/👶🏽-03-Brown' mask='url(#mask-6)' fill={'RED'}>
-                    <g transform='translate(-32.000000, 0.000000)' id='Color'>
-                      <rect x='0' y='0' width='264' height='244' />
-                    </g>
-                  </g>
+                  <Skin maskID='mask-6' />
                   <path
                     d='M156,79 L156,102 C156,132.927946 130.927946,158 100,158 C69.072054,158 44,132.927946 44,102 L44,79 L44,94 C44,124.927946 69.072054,150 100,150 C130.927946,150 156,124.927946 156,94 L156,79 Z'
                     id='Neck-Shadow'

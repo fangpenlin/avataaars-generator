@@ -40,9 +40,14 @@ export const EyebrowOption = new Option({
   label: '✏️ Eyebrow'
 })
 
-export const mouthOption = new Option({
+export const MouthOption = new Option({
   key: 'mouthType',
   label: '👄 Mouth'
+})
+
+export const SkinOption = new Option({
+  key: 'skinColor',
+  label: '🎨 Skin'
 })
 
 export const allOptions = [
@@ -53,5 +58,6 @@ export const allOptions = [
   GraphicOption,
   EyesOption,
   EyebrowOption,
-  mouthOption
+  MouthOption,
+  SkinOption
 ]

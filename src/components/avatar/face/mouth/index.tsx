@@ -12,12 +12,12 @@ import Smile from './Smile'
 import Tongue from './Tongue'
 import Twinkle from './Twinkle'
 import Vomit from './Vomit'
-import { Selector, mouthOption } from '../../../options'
+import { MouthOption, Selector } from '../../../options'
 
 export default class Mouth extends React.Component {
   render () {
     return (
-      <Selector defaultOption={Default} option={mouthOption}>
+      <Selector defaultOption={Default} option={MouthOption}>
         <Concerned />
         <Default />
         <Disbelief />
