@@ -163,37 +163,25 @@ export class Main extends React.Component<Props> {
 
   private onRandom = () => {
     const { optionContext } = this
-    // still have option available but we didn't pick a random value for it
-    let stillAvailable = true
     let values: { [index: string]: string } = {}
-    while (stillAvailable) {
-      for (const option of optionContext.options) {
-        if (option.key in values) {
-          continue
-        }
-        const optionState = optionContext.getOptionState(option.key)!
-        if (!optionState.available) {
-          continue
-        }
-        values[option.key] = sample(optionState.options)!
+    for (const option of optionContext.options) {
+      if (option.key in values) {
+        continue
       }
-
-      // update data to see more possible options
-      this.optionContext.setData(values)
-
-      // see if there is new option available but we haven't generate a
-      // random value for it
-      stillAvailable = false
-      for (const option of optionContext.options) {
-        if (option.key in values) {
-          continue
-        }
-        const optionState = optionContext.getOptionState(option.key)!
-        if (optionState.available) {
-          stillAvailable = true
-        }
+      const optionState = optionContext.getOptionState(option.key)!
+      // Notice, when the app just launch and we didn't explore too much
+      // options, some of these nested option is not added by the selector
+      // yet, so we won't be able to select value for them. But as they
+      // keep tapping random button, soon or later we will get all the
+      // options. So it should be fine. Ideally we should find a better
+      // way to collect all the options, but that's okay to just do it this
+      // way for now.
+      if (!optionState.options.length) {
+        continue
       }
+      values[option.key] = sample(optionState.options)!
     }
+    this.optionContext.setData(values)
     this.props.onChangeUrlQueryParams!(values, UrlUpdateTypes.push)
   }
 
