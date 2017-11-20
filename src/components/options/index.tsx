@@ -15,6 +15,11 @@ export const FacialHairOption = new Option({
   label: '↳ Facial Hair'
 })
 
+export const HairColorOption = new Option({
+  key: 'hairColor',
+  label: '↳ 💈 Hair Color'
+})
+
 export const AccessoriesOption = new Option({
   key: 'accessoriesType',
   label: '👓 Accessories'
@@ -58,6 +63,7 @@ export const SkinOption = new Option({
 export const allOptions = [
   TopOption,
   FacialHairOption,
+  HairColorOption,
   AccessoriesOption,
   ClotheOption,
   ClotheColorOption,

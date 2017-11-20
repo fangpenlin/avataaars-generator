@@ -1,6 +1,8 @@
 import * as React from 'react'
 import { uniqueId } from 'lodash'
 
+import HairColor from './HairColor'
+
 export default class LongHairMiaWallace extends React.Component {
   private path1 = uniqueId('react-path-')
   private path2 = uniqueId('react-path-')
@@ -41,14 +43,7 @@ export default class LongHairMiaWallace extends React.Component {
                 <use xlinkHref={'#' + path2} />
               </mask>
               <use id='Combined-Shape' fill='#E6E6E6' xlinkHref={'#' + path2} />
-              <g
-                id='Color/Hair/Brown-Dark'
-                mask={`url(#${mask2})`}
-                fill={'RED'}>
-                <g transform='translate(-40.000000, -19.000000)' id='Color'>
-                  <rect x='0' y='0' width='266' height='280' />
-                </g>
-              </g>
+              <HairColor maskID={mask2} />
             </g>
             {this.props.children}
           </g>
