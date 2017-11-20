@@ -54,7 +54,7 @@ export default class AvatarForm extends React.Component<Props> {
 
   componentWillMount () {
     const { optionContext } = this.props
-    optionContext.addListener(() => {
+    optionContext.addStateChangeListener(() => {
       this.forceUpdate()
     })
     this.onChangeCache = optionContext.options.map(option =>
@@ -74,12 +74,13 @@ export default class AvatarForm extends React.Component<Props> {
           {type}
         </option>
       ))
+      const value = optionContext.getValue(option.key)!
       return (
         <OptionSelect
           key={option.key}
           controlId={option.key}
           label={option.label}
-          value={optionState.value!}
+          value={value}
           onChange={this.onChangeCache[index]}>
           {selectOptions}
         </OptionSelect>

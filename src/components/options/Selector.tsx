@@ -30,12 +30,12 @@ export default class Selector extends React.Component<Props> {
     const { option, defaultOption } = this.props
     const { optionContext } = this
     const defaultValue = getComponentOptionValue(defaultOption)
-    optionContext.addListener(this.optionContextUpdate)
+    optionContext.addStateChangeListener(this.optionContextUpdate)
     optionContext.optionEnter(option.key)
     const optionState = optionContext.getOptionState(option.key)
     this.updateOptionValues()
-    if (optionState && !optionState.value) {
-      optionContext.setValue(option.key, defaultValue, true)
+    if (optionState) {
+      optionContext.setDefaultValue(option.key, defaultValue)
     }
   }
 
@@ -44,15 +44,14 @@ export default class Selector extends React.Component<Props> {
   }
 
   componentWillUnmount () {
-    this.optionContext.removeListener(this.optionContextUpdate)
+    this.optionContext.removeStateChangeListener(this.optionContextUpdate)
     this.optionContext.optionExit(this.props.option.key)
   }
 
   render () {
     let result: React.ReactNode | null = null
     const { option, children } = this.props
-    const optionState = this.optionContext.getOptionState(option.key)!
-    const { value } = optionState
+    const value = this.optionContext.getValue(option.key)!
     React.Children.forEach(children, child => {
       if (getComponentOptionValue((child as any).type) === value) {
         result = child

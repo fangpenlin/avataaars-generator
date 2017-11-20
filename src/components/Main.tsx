@@ -14,24 +14,10 @@ import { fromPairs } from 'lodash'
 
 import Avatar from './avatar'
 import AvatarForm from './AvatarForm'
-import { OptionContext, OptionContextState, allOptions } from './options'
+import { OptionContext, allOptions } from './options'
 
 interface Props {
-  topType: string
-  eyeType: string
-  eyebrowType: string
-  mouthType: string
-  clotheType: string
-  clotheColor: string
-  accessoriesType: string
   __render__?: string
-  onChangeTopType: (topType: string) => void
-  onChangeEyeType: (eyeType: string) => void
-  onChangeEyebrowType: (eyebrowType: string) => void
-  onChangeMouthType: (mouthType: string) => void
-  onChangeClotheType: (clotheType: string) => void
-  onChangeClotheColor: (clotheColor: string) => void
-  onChangeAccessoriesType: (accessoriesType: string) => void
   onChangeUrlQueryParams: (params: any) => void
 }
 
@@ -63,7 +49,6 @@ export class Main extends React.Component<Props> {
   private avatarRef: Avatar | null = null
   private canvasRef: HTMLCanvasElement | null = null
   private optionContext: OptionContext = new OptionContext(allOptions)
-  private optionContextState: OptionContextState | null = null
 
   getChildContext () {
     return { optionContext: this.optionContext }
@@ -74,7 +59,7 @@ export class Main extends React.Component<Props> {
   }
 
   componentWillMount () {
-    this.optionContext.addListener(this.onAvatarChange)
+    this.optionContext.addValueChangeListener(this.onOptionValueChange)
     this.updateOptionContext(this.props)
   }
 
@@ -86,7 +71,7 @@ export class Main extends React.Component<Props> {
   }
 
   componentWillUnmount () {
-    this.optionContext.removeListener(this.onAvatarChange)
+    this.optionContext.removeValueChangeListener(this.onOptionValueChange)
   }
 
   render () {
@@ -152,35 +137,15 @@ export class Main extends React.Component<Props> {
     this.canvasRef = ref
   }
 
-  private onAvatarChange = () => {
-    for (const option of this.optionContext.options) {
-      const oldState = this.optionContextState
-        ? this.optionContextState[option.key]
-        : null
-      const nextState = this.optionContext.state[option.key]
-      if (
-        oldState &&
-        oldState.value !== nextState.value &&
-        oldState.defaultValue === nextState.defaultValue
-      ) {
-        const name = capitalizeFirstLetter(option.key)
-        const updateHandler = this.props[`onChange${name}`] as (
-          value: string
-        ) => void
-        updateHandler(nextState.value!)
-      }
-    }
-    this.optionContextState = this.optionContext.state
+  private onOptionValueChange = (key: string, value: string) => {
+    const name = capitalizeFirstLetter(key)
+    const handlerName = `onChange${name}`
+    const updateHandler = this.props[handlerName] as (value: string) => void
+    updateHandler(value)
   }
 
   private updateOptionContext (nextProps: Props) {
-    for (const option of this.optionContext.options) {
-      const value = nextProps[option.key]
-      if (!value) {
-        continue
-      }
-      this.optionContext.setValue(option.key, value)
-    }
+    this.optionContext.setData(nextProps as any)
   }
 
   private onDownload = () => {

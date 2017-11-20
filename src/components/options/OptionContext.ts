@@ -3,7 +3,6 @@ import Option from './Option'
 export interface OptionState {
   key: string
   options: Array<string>
-  value?: string
   defaultValue?: string
   available: number
 }
@@ -11,8 +10,10 @@ export interface OptionState {
 export type OptionContextState = { [index: string]: OptionState }
 
 export default class OptionContext {
-  private listeners = new Set<Function>()
+  private stateChangeListeners = new Set<Function>()
+  private valueChangeListeners = new Set<Function>()
   private _state: OptionContextState = {}
+  private _data: { [index: string]: string } = {}
   private readonly _options: Array<Option>
 
   get options () {
@@ -34,12 +35,20 @@ export default class OptionContext {
     }
   }
 
-  addListener (listener: () => void) {
-    this.listeners.add(listener)
+  addStateChangeListener (listener: () => void) {
+    this.stateChangeListeners.add(listener)
   }
 
-  removeListener (listener: () => void) {
-    this.listeners.delete(listener)
+  removeStateChangeListener (listener: () => void) {
+    this.stateChangeListeners.delete(listener)
+  }
+
+  addValueChangeListener (listener: (key: string, value: string) => void) {
+    this.valueChangeListeners.add(listener)
+  }
+
+  removeValueChangeListener (listener: (key: string, value: string) => void) {
+    this.valueChangeListeners.delete(listener)
   }
 
   optionEnter (key: string) {
@@ -67,17 +76,36 @@ export default class OptionContext {
     return this.state[key] || null
   }
 
-  setValue (key: string, value: string, defaultValue: boolean = false) {
+  getValue (key: string): string | null {
     const optionState = this.getOptionState(key)!
-    if (optionState.value === value) {
-      return
+    if (!optionState) {
+      return null
     }
+    const value = this._data[key]
+    if (value) {
+      return value
+    }
+    return optionState.defaultValue || null
+  }
+
+  setValue (key: string, value: string) {
+    for (const listener of Array.from(this.valueChangeListeners)) {
+      listener(key, value)
+    }
+  }
+
+  // set single source of truth
+  setData (data: { [index: string]: string }) {
+    this._data = data
+    this.notifyListener()
+  }
+
+  setDefaultValue (key: string, defaultValue: string) {
+    const optionState = this.getOptionState(key)!
     this.setState({
       [key]: {
         ...optionState,
-        key,
-        value,
-        defaultValue: defaultValue ? value : optionState.defaultValue
+        defaultValue
       }
     })
   }
@@ -101,7 +129,7 @@ export default class OptionContext {
   }
 
   private notifyListener () {
-    for (const listener of Array.from(this.listeners)) {
+    for (const listener of Array.from(this.stateChangeListeners)) {
       listener()
     }
   }
