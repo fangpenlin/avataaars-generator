@@ -1,6 +1,8 @@
 import * as React from 'react'
 
 export default class Cry extends React.Component {
+  static optionValue = 'Cry'
+
   render () {
     return (
       <g id='Eyes/Cry-😢' transform='translate(0.000000, 8.000000)'>

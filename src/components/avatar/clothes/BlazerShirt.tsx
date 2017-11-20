@@ -2,6 +2,8 @@ import * as React from 'react'
 import { uniqueId } from 'lodash'
 
 export default class BlazerShirt extends React.Component {
+  static optionValue = 'BlazerShirt'
+
   private path1 = uniqueId('react-path-')
   private mask1 = uniqueId('react-mask-')
 

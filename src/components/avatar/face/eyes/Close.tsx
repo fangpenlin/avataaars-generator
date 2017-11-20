@@ -1,6 +1,8 @@
 import * as React from 'react'
 
 export default class Close extends React.Component {
+  static optionValue = 'Close'
+
   render () {
     return (
       <g

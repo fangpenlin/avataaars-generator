@@ -22,6 +22,7 @@ function makeColor (name: string, color: string) {
   }
   const anyComponent = ColorComponent as any
   anyComponent.displayName = name
+  anyComponent.optionValue = name
   return anyComponent
 }
 

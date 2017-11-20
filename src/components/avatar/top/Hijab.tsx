@@ -2,6 +2,8 @@ import * as React from 'react'
 import { uniqueId } from 'lodash'
 
 export default class Hijab extends React.Component {
+  static optionValue = 'Hijab'
+
   private filter1 = uniqueId('react-filter-')
   private mask1 = uniqueId('react-mask-')
   private mask2 = uniqueId('react-mask-')

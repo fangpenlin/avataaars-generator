@@ -5,6 +5,8 @@ import Colors from './Colors'
 import Graphics from './Graphics'
 
 export default class GraphicShirt extends React.Component {
+  static optionValue = 'GraphicShirt'
+
   private path1 = uniqueId('react-path-')
   private mask1 = uniqueId('react-mask-')
 

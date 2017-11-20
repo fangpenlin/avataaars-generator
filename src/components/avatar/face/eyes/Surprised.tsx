@@ -1,6 +1,8 @@
 import * as React from 'react'
 
 export default class Surprised extends React.Component {
+  static optionValue = 'Surprised'
+
   render () {
     return (
       <g id='Eyes/Surprised-😳' transform='translate(0.000000, 8.000000)'>

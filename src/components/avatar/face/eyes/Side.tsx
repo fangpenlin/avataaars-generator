@@ -1,6 +1,8 @@
 import * as React from 'react'
 
 export default class Side extends React.Component {
+  static optionValue = 'Side'
+
   render () {
     return (
       <g

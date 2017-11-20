@@ -4,6 +4,8 @@ import { uniqueId } from 'lodash'
 import HairColor from './HairColor'
 
 export default class LongHairFroBand extends React.Component {
+  static optionValue = 'LongHairFroBand'
+
   private mask1 = uniqueId('react-mask-')
   private mask2 = uniqueId('react-mask-')
   private path1 = uniqueId('react-path-')

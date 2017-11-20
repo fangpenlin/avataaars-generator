@@ -1,6 +1,8 @@
 import * as React from 'react'
 
 export default class Eating extends React.Component {
+  static optionValue = 'Eating'
+
   render () {
     return (
       <g id='Mouth/Eating' transform='translate(2.000000, 52.000000)'>

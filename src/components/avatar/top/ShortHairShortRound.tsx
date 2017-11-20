@@ -5,6 +5,8 @@ import FacialHair from './facialHair'
 import HairColor from './HairColor'
 
 export default class ShortHairShortRound extends React.Component {
+  static optionValue = 'ShortHairShortRound'
+
   private filter1 = uniqueId('react-filter-')
   private mask1 = uniqueId('react-mask-')
   private mask2 = uniqueId('react-mask-')

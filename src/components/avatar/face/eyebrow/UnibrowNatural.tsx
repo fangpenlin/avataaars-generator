@@ -1,6 +1,8 @@
 import * as React from 'react'
 
 export default class UnibrowNatural extends React.Component {
+  static optionValue = 'UnibrowNatural'
+
   render () {
     return (
       <g id='Eyebrow/Natural/Unibrow-Natural' fillOpacity='0.599999964'>
