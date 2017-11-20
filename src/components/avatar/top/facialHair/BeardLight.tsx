@@ -1,6 +1,8 @@
 import * as React from 'react'
 import { uniqueId } from 'lodash'
 
+import Colors from './Colors'
+
 export default class BeardLight extends React.Component {
   private mask1 = uniqueId('react-mask-')
   private path1 = uniqueId('react-path-')
@@ -26,13 +28,7 @@ export default class BeardLight extends React.Component {
           fillRule='evenodd'
           xlinkHref={'#' + path1}
         />
-        <g
-          id='Color/Hair/Brown'
-          mask={`url(#${mask1})`}
-          fillRule='evenodd'
-          fill={'RED'}>
-          <rect id='Color' x='0' y='0' width='168' height='152' />
-        </g>
+        <Colors maskID={mask1} />
       </g>
     )
   }
