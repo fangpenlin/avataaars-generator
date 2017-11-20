@@ -9,8 +9,6 @@ import MoustacheMagnum from './MoustacheMagnum'
 import { FacialHairOption, Selector } from '../../../options'
 
 export default class FacialHair extends React.Component {
-  static optionValue = 'FacialHair'
-
   render () {
     return (
       <Selector option={FacialHairOption} defaultOption={BeardMedium}>

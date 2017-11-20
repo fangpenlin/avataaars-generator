@@ -27,8 +27,6 @@ import Turban from './Turban'
 import { Selector, TopOption } from '../../options'
 
 export default class Top extends React.Component {
-  static optionValue = 'Top'
-
   render () {
     const { children } = this.props
     return (
