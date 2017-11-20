@@ -19,6 +19,10 @@ import ShortHairFrizzle from './ShortHairFrizzle'
 import ShortHairShaggyMullet from './ShortHairShaggyMullet'
 import ShortHairShortCurly from './ShortHairShortCurly'
 import ShortHairShortFlat from './ShortHairShortFlat'
+import ShortHairShortRound from './ShortHairShortRound'
+import ShortHairShortWaved from './ShortHairShortWaved'
+import ShortHairTheCaesar from './ShortHairTheCaesar'
+import ShortHairTheCaesarSidePart from './ShortHairTheCaesarSidePart'
 import Turban from './Turban'
 import { Selector, TopOption } from '../../options'
 
@@ -28,6 +32,7 @@ export default class Top extends React.Component {
     return (
       <Selector defaultOption={LongHairStraight} option={TopOption}>
         <Eyepatch>{children}</Eyepatch>
+        <Hat>{children}</Hat>
         <Hijab>{children}</Hijab>
         <Turban>{children}</Turban>
         <LongHairBigHair>{children}</LongHairBigHair>
@@ -49,7 +54,10 @@ export default class Top extends React.Component {
         <ShortHairShaggyMullet>{children}</ShortHairShaggyMullet>
         <ShortHairShortCurly>{children}</ShortHairShortCurly>
         <ShortHairShortFlat>{children}</ShortHairShortFlat>
-        <Hat>{children}</Hat>
+        <ShortHairShortRound>{children}</ShortHairShortRound>
+        <ShortHairShortWaved>{children}</ShortHairShortWaved>
+        <ShortHairTheCaesar>{children}</ShortHairTheCaesar>
+        <ShortHairTheCaesarSidePart>{children}</ShortHairTheCaesarSidePart>
       </Selector>
     )
   }
