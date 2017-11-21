@@ -1,6 +1,8 @@
 import * as React from 'react'
 import { uniqueId } from 'lodash'
 
+import FacialHair from './facialHair'
+
 export default class NoHair extends React.Component {
   static optionValue = 'NoHair'
 
@@ -45,10 +47,7 @@ export default class NoHair extends React.Component {
         <g id='Mask' />
         <g id='Top/No-Hair' mask={`url(#${mask1})`}>
           <g transform='translate(-1.000000, 0.000000)'>
-            <g
-              id='Facial-Hair/-Blank'
-              transform='translate(49.000000, 72.000000)'
-            />
+            <FacialHair />
             {this.props.children}
           </g>
         </g>

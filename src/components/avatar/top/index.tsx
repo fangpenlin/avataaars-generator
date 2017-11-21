@@ -15,6 +15,7 @@ import LongHairShavedSides from './LongHairShavedSides'
 import LongHairStraight from './LongHairStraight'
 import LongHairStraight2 from './LongHairStraight2'
 import LongHairStraightStrand from './LongHairStraightStrand'
+import NoHair from './NoHair'
 import ShortHairFrizzle from './ShortHairFrizzle'
 import ShortHairShaggyMullet from './ShortHairShaggyMullet'
 import ShortHairShortCurly from './ShortHairShortCurly'
@@ -31,6 +32,7 @@ export default class Top extends React.Component {
     const { children } = this.props
     return (
       <Selector defaultOption={LongHairStraight} option={TopOption}>
+        <NoHair>{children}</NoHair>
         <Eyepatch>{children}</Eyepatch>
         <Hat>{children}</Hat>
         <Hijab>{children}</Hijab>
