@@ -4,6 +4,7 @@ import Eyepatch from './Eyepatch'
 import Hat from './Hat'
 import Hijab from './Hijab'
 import LongHairBigHair from './LongHairBigHair'
+import LongHairBob from './LongHairBob'
 import LongHairBun from './LongHairBun'
 import LongHairCurly from './LongHairCurly'
 import LongHairFrida from './LongHairFrida'
@@ -38,6 +39,7 @@ export default class Top extends React.Component {
         <Hijab>{children}</Hijab>
         <Turban>{children}</Turban>
         <LongHairBigHair>{children}</LongHairBigHair>
+        <LongHairBob>{children}</LongHairBob>
         <LongHairBun>{children}</LongHairBun>
         <LongHairCurly>{children}</LongHairCurly>
         <LongHairFrida>{children}</LongHairFrida>

@@ -1,12 +1,11 @@
 import * as React from 'react'
 import { uniqueId } from 'lodash'
 
+import FacialHair from './facialHair'
 import HairColor from './HairColor'
 
 export default class LongHairBigHair extends React.Component {
   static optionValue = 'LongHairBigHair'
-
-  private filter1 = uniqueId('react-filter-')
   private mask1 = uniqueId('react-mask-')
   private mask2 = uniqueId('react-mask-')
   private mask3 = uniqueId('react-mask-')
@@ -15,7 +14,7 @@ export default class LongHairBigHair extends React.Component {
   private path3 = uniqueId('react-path-')
 
   render () {
-    const { filter1, mask1, mask2, mask3, path1, path2, path3 } = this
+    const { mask1, mask2, mask3, path1, path2, path3 } = this
     return (
       <g id='Top' strokeWidth='1' fillRule='evenodd'>
         <defs>
@@ -28,54 +27,32 @@ export default class LongHairBigHair extends React.Component {
             d='M222.384814,182.806274 C217.011239,188.518122 211.648364,192.127879 211.831204,198 C212.148076,209.888877 255.439069,245.051165 216.999964,267.00001 L16.0053198,267 C-22.4337677,245.051165 20.8572256,209.888877 21.1740982,198 C21.3569373,192.127879 15.9940628,188.518122 10.6204878,182.806274 C5.24691269,177.094426 -0.137362978,169.280486 0.00267373922,155 C0.944497502,125.971596 31.3716806,128.588232 31.2026676,109 C31.3716806,89.9992744 19.8139454,82.1607482 31.2026676,46 C42.8395963,9.53932757 72.9165934,0.768171773 116.002651,0.0159928999 L116.002651,0 C116.16951,0.002426813 116.336177,0.0049705256 116.502651,0.0076322645 C116.669125,0.0049705256 116.835791,0.002426813 117.002651,0 L117.002651,0.0159928999 C160.088708,0.768171773 190.165705,9.53932757 201.802634,46 C213.191356,82.1607482 201.633621,89.9992744 201.802634,109 C201.633621,128.588232 232.060804,125.971596 233.002628,155 C233.142665,169.280486 227.758389,177.094426 222.384814,182.806274 Z M93,186 L89,186 L89,186 C49.235498,186 17,218.235498 17,258 L17,267 L217,267 L217,258 C217,218.235498 184.764502,186 145,186 L141,186 L141,140 L93,140 L93,186 Z'
             id={path3}
           />
-          <filter
-            x='-0.8%'
-            y='-2.0%'
-            width='101.5%'
-            height='108.0%'
-            filterUnits='objectBoundingBox'
-            id={filter1}>
-            <feOffset
-              dx='0'
-              dy='2'
-              in='SourceAlpha'
-              result='shadowOffsetOuter1'
-            />
-            <feColorMatrix
-              values='0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.16 0'
-              type='matrix'
-              in='shadowOffsetOuter1'
-              result='shadowMatrixOuter1'
-            />
-            <feMerge>
-              <feMergeNode in='shadowMatrixOuter1' />
-              <feMergeNode in='SourceGraphic' />
-            </feMerge>
-          </filter>
         </defs>
-        <mask id={mask1} fill='white'>
+        <mask id={mask2} fill='white'>
           <use xlinkHref={'#' + path1} />
         </mask>
         <g id='Mask' />
-        <g id='Top/Long-Hair/Big-Hair' mask={`url(#${mask1})`}>
+        <g id='Top/Long-Hair/Big-Hair' mask={`url(#${mask2})`}>
           <g transform='translate(-1.000000, 0.000000)'>
             <g
               id='Hair'
               strokeWidth='1'
               fill='none'
+              fillRule='evenodd'
               transform='translate(16.000000, 13.000000)'>
-              <mask id={mask2} fill='white'>
+              <mask id={mask3} fill='white'>
                 <use xlinkHref={'#' + path2} />
               </mask>
               <use fill='#314756' xlinkHref={'#' + path2} />
-              <HairColor maskID={mask2} />
+              <HairColor maskID={mask3} />
             </g>
             <g
               id='Shadow'
               strokeWidth='1'
               fill='none'
+              fillRule='evenodd'
               transform='translate(16.000000, 13.000000)'>
-              <mask id={mask3} fill='white'>
+              <mask id={mask1} fill='white'>
                 <use xlinkHref={'#' + path3} />
               </mask>
               <g id='Shape' />
@@ -84,7 +61,7 @@ export default class LongHairBigHair extends React.Component {
                 id='Shadow-Mask'
                 fillOpacity='0.16'
                 fill='#000000'
-                mask={`url(#${mask3})`}
+                mask={`url(#${mask1})`}
               />
             </g>
             <path
@@ -92,7 +69,9 @@ export default class LongHairBigHair extends React.Component {
               id='Light'
               fillOpacity='0.1'
               fill='#FFFFFF'
+              fillRule='evenodd'
             />
+            <FacialHair />
             {this.props.children}
           </g>
         </g>
