@@ -7,6 +7,8 @@ import LongHairBigHair from './LongHairBigHair'
 import LongHairBob from './LongHairBob'
 import LongHairBun from './LongHairBun'
 import LongHairCurly from './LongHairCurly'
+import LongHairCurvy from './LongHairCurvy'
+import LongHairDreads from './LongHairDreads'
 import LongHairFrida from './LongHairFrida'
 import LongHairFro from './LongHairFro'
 import LongHairFroBand from './LongHairFroBand'
@@ -42,6 +44,8 @@ export default class Top extends React.Component {
         <LongHairBob>{children}</LongHairBob>
         <LongHairBun>{children}</LongHairBun>
         <LongHairCurly>{children}</LongHairCurly>
+        <LongHairCurvy>{children}</LongHairCurvy>
+        <LongHairDreads>{children}</LongHairDreads>
         <LongHairFrida>{children}</LongHairFrida>
         <LongHairFro>{children}</LongHairFro>
         <LongHairFroBand>{children}</LongHairFroBand>

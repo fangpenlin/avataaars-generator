@@ -1,11 +1,11 @@
 import * as React from 'react'
 import { uniqueId } from 'lodash'
 
+import FacialHair from './facialHair'
 import HairColor from './HairColor'
 
 export default class LongHairCurly extends React.Component {
   static optionValue = 'LongHairCurly'
-
   private mask1 = uniqueId('react-mask-')
   private mask2 = uniqueId('react-mask-')
   private path1 = uniqueId('react-path-')
@@ -47,6 +47,7 @@ export default class LongHairCurly extends React.Component {
               <use id='Curly!' fill='#314756' xlinkHref={'#' + path2} />
               <HairColor maskID={mask2} />
             </g>
+            <FacialHair />
             {this.props.children}
           </g>
         </g>
