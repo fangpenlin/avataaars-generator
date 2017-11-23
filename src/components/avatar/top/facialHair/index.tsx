@@ -11,7 +11,7 @@ import { FacialHairOption, Selector } from '../../../options'
 export default class FacialHair extends React.Component {
   render () {
     return (
-      <Selector option={FacialHairOption} defaultOption={BeardMedium}>
+      <Selector option={FacialHairOption} defaultOption={Blank}>
         <Blank />
         <BeardMedium />
         <BeardLight />
