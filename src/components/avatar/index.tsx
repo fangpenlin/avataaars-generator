@@ -6,12 +6,20 @@ import Face from './face'
 import Skin from './Skin'
 import Top from './top'
 
+export enum AvatarStyle {
+  Circle = 'Circle',
+  Transparent = 'Transparent'
+}
+
 export interface Props {
+  avatarStyle: AvatarStyle
   style?: React.CSSProperties
 }
 
 export default class Avatar extends React.Component<Props> {
   render () {
+    const { avatarStyle } = this.props
+    const circle = avatarStyle === AvatarStyle.Circle
     return (
       <svg
         style={this.props.style}
@@ -43,29 +51,33 @@ export default class Avatar extends React.Component<Props> {
             transform='translate(-825.000000, -1100.000000)'
             id='Avataaar/Circle'>
             <g transform='translate(825.000000, 1100.000000)'>
-              <g
-                id='Circle'
-                strokeWidth='1'
-                fillRule='evenodd'
-                transform='translate(12.000000, 40.000000)'>
-                <mask id='mask-2' fill='white'>
-                  <use xlinkHref='#path-1' />
-                </mask>
-                <use
-                  id='Circle-Background'
-                  fill='#E6E6E6'
-                  xlinkHref='#path-1'
-                />
+              {circle ? (
                 <g
-                  id='Color/Palette/Blue-01'
-                  mask='url(#mask-2)'
-                  fill='#65C9FF'>
-                  <rect id='🖍Color' x='0' y='0' width='240' height='240' />
+                  id='Circle'
+                  strokeWidth='1'
+                  fillRule='evenodd'
+                  transform='translate(12.000000, 40.000000)'>
+                  <mask id='mask-2' fill='white'>
+                    <use xlinkHref='#path-1' />
+                  </mask>
+                  <use
+                    id='Circle-Background'
+                    fill='#E6E6E6'
+                    xlinkHref='#path-1'
+                  />
+                  <g
+                    id='Color/Palette/Blue-01'
+                    mask='url(#mask-2)'
+                    fill='#65C9FF'>
+                    <rect id='🖍Color' x='0' y='0' width='240' height='240' />
+                  </g>
                 </g>
-              </g>
-              <mask id='mask-4' fill='white'>
-                <use xlinkHref='#path-3' />
-              </mask>
+              ) : null}
+              {circle ? (
+                <mask id='mask-4' fill='white'>
+                  <use xlinkHref='#path-3' />
+                </mask>
+              ) : null}
               <g id='Mask' />
               <g
                 id='Avataaar'

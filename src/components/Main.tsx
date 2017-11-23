@@ -13,13 +13,15 @@ import {
 } from 'react-url-query'
 import { fromPairs, sample } from 'lodash'
 
-import Avatar from './avatar'
 import AvatarForm from './AvatarForm'
+import Avatar, { AvatarStyle } from './avatar'
 import { OptionContext, allOptions } from './options'
 
 interface Props {
   __render__?: string
+  avatarStyle: AvatarStyle
   onChangeUrlQueryParams: (params: any, updateType: string) => void
+  onChangeAvatarStyle: (avatarStyle: AvatarStyle) => void
 }
 
 const updateType = UrlUpdateTypes.pushIn
@@ -33,6 +35,10 @@ const urlPropsQueryConfig = {
       }
     ])
   ),
+  avatarStyle: {
+    type: UrlQueryParamTypes.string,
+    updateType
+  },
   __render__: {
     type: UrlQueryParamTypes.string
   }
@@ -45,6 +51,9 @@ function capitalizeFirstLetter (text: string) {
 export class Main extends React.Component<Props> {
   static childContextTypes = {
     optionContext: PropTypes.instanceOf(OptionContext)
+  }
+  static defaultProps = {
+    avatarStyle: AvatarStyle.Circle
   }
 
   private avatarRef: Avatar | null = null
@@ -76,7 +85,7 @@ export class Main extends React.Component<Props> {
   }
 
   render () {
-    const { __render__ } = this.props
+    const { __render__, avatarStyle } = this.props
     const title = 'Avataaars Generator - Generate your own avataaars!'
     const imageURL = process.env.REACT_APP_IMG_RENDERER_URL + location.search
     return (
@@ -110,7 +119,7 @@ export class Main extends React.Component<Props> {
         </Helmet>
         {__render__ !== '1' ? (
           <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
-            <Avatar ref={this.onAvatarRef} />
+            <Avatar ref={this.onAvatarRef} avatarStyle={avatarStyle} />
           </div>
         ) : (
           <Avatar
@@ -123,13 +132,16 @@ export class Main extends React.Component<Props> {
               width: '100%',
               height: '100%'
             }}
+            avatarStyle={avatarStyle}
             ref={this.onAvatarRef}
           />
         )}
         {__render__ !== '1' ? (
           <AvatarForm
             optionContext={this.optionContext}
+            avatarStyle={avatarStyle}
             onDownload={this.onDownload}
+            onAvatarStyleChange={this.onAvatarStyleChange}
           />
         ) : null}
         <canvas
@@ -159,6 +171,10 @@ export class Main extends React.Component<Props> {
 
   private updateOptionContext (nextProps: Props) {
     this.optionContext.setData(nextProps as any)
+  }
+
+  private onAvatarStyleChange = (avatarStyle: AvatarStyle) => {
+    this.props.onChangeAvatarStyle(avatarStyle)
   }
 
   private onRandom = () => {
