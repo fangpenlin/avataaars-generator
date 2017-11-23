@@ -19,12 +19,15 @@ import LongHairStraight from './LongHairStraight'
 import LongHairStraight2 from './LongHairStraight2'
 import LongHairStraightStrand from './LongHairStraightStrand'
 import NoHair from './NoHair'
+import ShortHairDreads01 from './ShortHairDreads01'
+import ShortHairDreads02 from './ShortHairDreads02'
 import ShortHairFrizzle from './ShortHairFrizzle'
 import ShortHairShaggyMullet from './ShortHairShaggyMullet'
 import ShortHairShortCurly from './ShortHairShortCurly'
 import ShortHairShortFlat from './ShortHairShortFlat'
 import ShortHairShortRound from './ShortHairShortRound'
 import ShortHairShortWaved from './ShortHairShortWaved'
+import ShortHairSides from './ShortHairSides'
 import ShortHairTheCaesar from './ShortHairTheCaesar'
 import ShortHairTheCaesarSidePart from './ShortHairTheCaesarSidePart'
 import Turban from './Turban'
@@ -55,6 +58,8 @@ export default class Top extends React.Component {
         <LongHairStraight>{children}</LongHairStraight>
         <LongHairStraight2>{children}</LongHairStraight2>
         <LongHairStraightStrand>{children}</LongHairStraightStrand>
+        <ShortHairDreads01>{children}</ShortHairDreads01>
+        <ShortHairDreads02>{children}</ShortHairDreads02>
         <ShortHairFrizzle>{children}</ShortHairFrizzle>
         {/*
         XXX: broken, fix it later
@@ -64,6 +69,7 @@ export default class Top extends React.Component {
         <ShortHairShortFlat>{children}</ShortHairShortFlat>
         <ShortHairShortRound>{children}</ShortHairShortRound>
         <ShortHairShortWaved>{children}</ShortHairShortWaved>
+        <ShortHairSides>{children}</ShortHairSides>
         <ShortHairTheCaesar>{children}</ShortHairTheCaesar>
         <ShortHairTheCaesarSidePart>{children}</ShortHairTheCaesarSidePart>
       </Selector>
