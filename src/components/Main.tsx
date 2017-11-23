@@ -179,7 +179,10 @@ export class Main extends React.Component<Props> {
 
   private onRandom = () => {
     const { optionContext } = this
-    let values: { [index: string]: string } = {}
+    let values: { [index: string]: string } = {
+      avatarStyle: this.props.avatarStyle
+    }
+
     for (const option of optionContext.options) {
       if (option.key in values) {
         continue
