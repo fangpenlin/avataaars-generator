@@ -101,23 +101,23 @@ export default class AvatarForm extends React.Component<Props> {
             <label>
               <input
                 type='radio'
-                id='avatar-style'
+                id='avatar-style-circle'
                 name='avatar-style'
                 value={AvatarStyle.Circle}
                 checked={avatarStyle === AvatarStyle.Circle}
                 onChange={this.onAvatarStyleChange}
-              />
+              />{' '}
               Circle
-            </label>
+            </label>{' '}
             <label>
               <input
                 type='radio'
-                id='avatar-style'
+                id='avatar-style-transparent'
                 name='avatar-style'
                 value={AvatarStyle.Transparent}
                 checked={avatarStyle === AvatarStyle.Transparent}
                 onChange={this.onAvatarStyleChange}
-              />
+              />{' '}
               Transparent
             </label>
           </Col>
