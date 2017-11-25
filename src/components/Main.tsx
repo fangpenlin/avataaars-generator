@@ -38,9 +38,6 @@ const urlPropsQueryConfig = {
   avatarStyle: {
     type: UrlQueryParamTypes.string,
     updateType
-  },
-  __render__: {
-    type: UrlQueryParamTypes.string
   }
 }
 
@@ -85,7 +82,7 @@ export class Main extends React.Component<Props> {
   }
 
   render () {
-    const { __render__, avatarStyle } = this.props
+    const { avatarStyle } = this.props
     const title = 'Avataaars Generator - Generate your own avataaars!'
     const imageURL = process.env.REACT_APP_IMG_RENDERER_URL + location.search
     return (
@@ -117,33 +114,15 @@ export class Main extends React.Component<Props> {
           <meta name='twitter:image' content={imageURL} />
           <meta name='twitter:url' content={document.location.href} />
         </Helmet>
-        {__render__ !== '1' ? (
-          <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
-            <Avatar ref={this.onAvatarRef} avatarStyle={avatarStyle} />
-          </div>
-        ) : (
-          <Avatar
-            style={{
-              position: 'absolute',
-              left: '0',
-              right: '0',
-              bottom: '0',
-              top: '0',
-              width: '100%',
-              height: '100%'
-            }}
-            avatarStyle={avatarStyle}
-            ref={this.onAvatarRef}
-          />
-        )}
-        {__render__ !== '1' ? (
-          <AvatarForm
-            optionContext={this.optionContext}
-            avatarStyle={avatarStyle}
-            onDownload={this.onDownload}
-            onAvatarStyleChange={this.onAvatarStyleChange}
-          />
-        ) : null}
+        <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
+          <Avatar ref={this.onAvatarRef} avatarStyle={avatarStyle} />
+        </div>
+        <AvatarForm
+          optionContext={this.optionContext}
+          avatarStyle={avatarStyle}
+          onDownload={this.onDownload}
+          onAvatarStyleChange={this.onAvatarStyleChange}
+        />
         <canvas
           style={{ display: 'none' }}
           width='264'
