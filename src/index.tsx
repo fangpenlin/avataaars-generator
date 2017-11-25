@@ -5,6 +5,7 @@ import * as ReactDOM from 'react-dom'
 import { configureUrlQuery } from 'react-url-query'
 
 import App from './components/App'
+import Renderer from './components/Renderer'
 import history from './history'
 import registerServiceWorker from './registerServiceWorker'
 
@@ -18,5 +19,5 @@ if (params.get('__render__') !== '1') {
   registerServiceWorker()
   // server rendering mode
 } else {
-  ReactDOM.render(<App />, document.body)
+  ReactDOM.render(<Renderer />, document.body)
 }
