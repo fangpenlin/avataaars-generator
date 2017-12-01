@@ -125,8 +125,8 @@ export class Main extends React.Component<Props> {
         />
         <canvas
           style={{ display: 'none' }}
-          width='264'
-          height='280'
+          width='528'
+          height='560'
           ref={this.onCanvasRef}
         />
       </main>
@@ -198,7 +198,10 @@ export class Main extends React.Component<Props> {
     const url = DOMURL.createObjectURL(svg)
 
     img.onload = () => {
+      ctx.save()
+      ctx.scale(2, 2)
       ctx.drawImage(img, 0, 0)
+      ctx.restore()
       DOMURL.revokeObjectURL(url)
       this.canvasRef!.toBlob(imageBlob => {
         this.triggerDownload(imageBlob!)
