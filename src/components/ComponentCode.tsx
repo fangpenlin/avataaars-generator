@@ -42,7 +42,15 @@ ${propsStr}
 />`
     return (
       <div>
-        <h3 style={{ color: '#6A39D7' }}>React Code</h3>
+        <h3 style={{ color: '#6A39D7' }}>
+          React Code{' '}
+          <a
+            href='https://github.com/fangpenlin/avataaars'
+            style={{ fontSize: '0.8em' }}
+            target='_blank'>
+            <i className='fa fa-github' /> Repo
+          </a>
+        </h3>
         <p>
           To use Avataaars in your React app, you need to install the package
           first. You can do it by running
@@ -58,19 +66,16 @@ ${propsStr}
           if you are using npm. Once you have avataaars package installed, you
           can copy and paste following code into your React component
         </p>
-        <div>
-          <textarea
-            readOnly
-            style={{ width: '100%', height: '10em' }}
-            value={code}
-          />
-        </div>
+        <textarea
+          readOnly
+          style={{ width: '100%', height: '10em' }}
+          value={code}
+        />
       </div>
     )
   }
 
   private onOptionValueChange = (key: string, value: string) => {
-    console.info('@@@@@@@@', key, value)
     this.forceUpdate()
   }
 }
