@@ -4,6 +4,7 @@ import * as FileSaver from 'file-saver'
 import * as PropTypes from 'prop-types'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
+import { Avatar, AvatarStyle, OptionContext, allOptions } from 'avataaars'
 import { Button } from 'react-bootstrap'
 import { Helmet } from 'react-helmet'
 import {
@@ -14,8 +15,6 @@ import {
 import { fromPairs, sample } from 'lodash'
 
 import AvatarForm from './AvatarForm'
-import Avatar, { AvatarStyle } from './avatar'
-import { OptionContext, allOptions } from './options'
 
 interface Props {
   __render__?: string

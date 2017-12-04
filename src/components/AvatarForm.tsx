@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { AvatarStyle, Option, OptionContext } from 'avataaars'
 import {
   Button,
   Col,
@@ -7,9 +8,6 @@ import {
   FormControl,
   FormGroup
 } from 'react-bootstrap'
-
-import { AvatarStyle } from './avatar'
-import { Option, OptionContext } from './options'
 
 interface SelectProps {
   controlId: string
