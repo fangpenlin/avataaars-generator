@@ -15,6 +15,7 @@ import {
 import { fromPairs, sample } from 'lodash'
 
 import AvatarForm from './AvatarForm'
+import ComponentCode from './ComponentCode'
 
 interface Props {
   __render__?: string
@@ -40,16 +41,24 @@ const urlPropsQueryConfig = {
   }
 }
 
+interface State {
+  displayComponentCode: boolean
+}
+
 function capitalizeFirstLetter (text: string) {
   return text.charAt(0).toUpperCase() + text.slice(1)
 }
 
-export class Main extends React.Component<Props> {
+export class Main extends React.Component<Props, State> {
   static childContextTypes = {
     optionContext: PropTypes.instanceOf(OptionContext)
   }
   static defaultProps = {
     avatarStyle: AvatarStyle.Circle
+  }
+
+  state = {
+    displayComponentCode: false
   }
 
   private avatarRef: Avatar | null = null
@@ -82,6 +91,7 @@ export class Main extends React.Component<Props> {
 
   render () {
     const { avatarStyle } = this.props
+    const { displayComponentCode } = this.state
     const title = 'Avataaars Generator - Generate your own avataaars!'
     const imageURL = process.env.REACT_APP_IMG_RENDERER_URL + location.search
     return (
@@ -119,9 +129,14 @@ export class Main extends React.Component<Props> {
         <AvatarForm
           optionContext={this.optionContext}
           avatarStyle={avatarStyle}
+          displayingCode={displayComponentCode}
           onDownload={this.onDownload}
           onAvatarStyleChange={this.onAvatarStyleChange}
+          onToggleCode={this.onToggleCode}
         />
+        {displayComponentCode ? (
+          <ComponentCode avatarStyle={avatarStyle} />
+        ) : null}
         <canvas
           style={{ display: 'none' }}
           width='528'
@@ -211,6 +226,13 @@ export class Main extends React.Component<Props> {
 
   private triggerDownload (imageBlob: Blob) {
     FileSaver.saveAs(imageBlob, 'avataaars.png')
+  }
+
+  private onToggleCode = () => {
+    this.setState(state => ({
+      ...state,
+      displayComponentCode: !state.displayComponentCode
+    }))
   }
 }
 

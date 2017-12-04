@@ -46,8 +46,10 @@ class OptionSelect extends React.Component<SelectProps> {
 export interface Props {
   avatarStyle: AvatarStyle
   optionContext: OptionContext
+  displayingCode: boolean
   onDownload?: () => void
   onAvatarStyleChange?: (avatarStyle: AvatarStyle) => void
+  onToggleCode?: () => void
 }
 
 export default class AvatarForm extends React.Component<Props> {
@@ -64,7 +66,7 @@ export default class AvatarForm extends React.Component<Props> {
   }
 
   render () {
-    const { optionContext, avatarStyle } = this.props
+    const { optionContext, avatarStyle, displayingCode } = this.props
     const selects = optionContext.options.map((option, index) => {
       const optionState = optionContext.getOptionState(option.key)!
       if (optionState.available <= 0) {
@@ -139,6 +141,13 @@ export default class AvatarForm extends React.Component<Props> {
             sm={inputCol}>
             <Button bsStyle='primary' type='submit' onClick={this.onDownload}>
               <i className='fa fa-download' /> Download
+            </Button>{' '}
+            <Button
+              bsStyle='secondary'
+              type='submit'
+              onClick={this.onToggleCode}>
+              <i className='fa fa-code' />{' '}
+              {displayingCode ? 'Hide React' : 'Show React'}
             </Button>
             <div style={{ marginTop: '10px' }}>
               <a
@@ -172,6 +181,13 @@ export default class AvatarForm extends React.Component<Props> {
     event.preventDefault()
     if (this.props.onDownload) {
       this.props.onDownload()
+    }
+  }
+
+  private onToggleCode = (event: React.FormEvent<FormControl>) => {
+    event.preventDefault()
+    if (this.props.onToggleCode) {
+      this.props.onToggleCode()
     }
   }
 }
