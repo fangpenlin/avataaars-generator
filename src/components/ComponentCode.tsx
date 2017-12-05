@@ -11,6 +11,8 @@ export default class ComponentCode extends React.Component<Props> {
     optionContext: PropTypes.instanceOf(OptionContext)
   }
 
+  private textArea: HTMLTextAreaElement | null = null
+
   private get optionContext (): OptionContext {
     return this.context.optionContext
   }
@@ -70,9 +72,20 @@ ${propsStr}
           readOnly
           style={{ width: '100%', height: '10em' }}
           value={code}
+          ref={this.onTextAreaRef}
+          onFocus={this.onTextAreaClick}
         />
       </div>
     )
+  }
+
+  private onTextAreaRef = (ref: any) => {
+    this.textArea = ref
+  }
+
+  private onTextAreaClick = (event: React.FormEvent<HTMLTextAreaElement>) => {
+    this.textArea!.focus()
+    this.textArea!.select()
   }
 
   private onOptionValueChange = (key: string, value: string) => {
