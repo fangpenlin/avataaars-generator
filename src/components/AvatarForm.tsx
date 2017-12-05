@@ -47,7 +47,8 @@ export interface Props {
   avatarStyle: AvatarStyle
   optionContext: OptionContext
   displayingCode: boolean
-  onDownload?: () => void
+  onDownloadPNG?: () => void
+  onDownloadSVG?: () => void
   onAvatarStyleChange?: (avatarStyle: AvatarStyle) => void
   onToggleCode?: () => void
 }
@@ -139,8 +140,17 @@ export default class AvatarForm extends React.Component<Props> {
             className={'offset-sm-' + labelCol}
             smOffset={labelCol}
             sm={inputCol}>
-            <Button bsStyle='primary' type='submit' onClick={this.onDownload}>
-              <i className='fa fa-download' /> Download
+            <Button
+              bsStyle='primary'
+              type='submit'
+              onClick={this.onDownloadPNG}>
+              <i className='fa fa-download' /> Download PNG
+            </Button>{' '}
+            <Button
+              bsStyle='primary'
+              type='submit'
+              onClick={this.onDownloadSVG}>
+              <i className='fa fa-download' /> Download SVG
             </Button>{' '}
             <Button
               bsStyle='secondary'
@@ -177,10 +187,17 @@ export default class AvatarForm extends React.Component<Props> {
     }
   }
 
-  private onDownload = (event: React.FormEvent<FormControl>) => {
+  private onDownloadPNG = (event: React.FormEvent<FormControl>) => {
     event.preventDefault()
-    if (this.props.onDownload) {
-      this.props.onDownload()
+    if (this.props.onDownloadPNG) {
+      this.props.onDownloadPNG()
+    }
+  }
+
+  private onDownloadSVG = (event: React.FormEvent<FormControl>) => {
+    event.preventDefault()
+    if (this.props.onDownloadSVG) {
+      this.props.onDownloadSVG()
     }
   }
 

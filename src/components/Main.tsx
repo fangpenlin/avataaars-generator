@@ -130,7 +130,8 @@ export class Main extends React.Component<Props, State> {
           optionContext={this.optionContext}
           avatarStyle={avatarStyle}
           displayingCode={displayComponentCode}
-          onDownload={this.onDownload}
+          onDownloadPNG={this.onDownloadPNG}
+          onDownloadSVG={this.onDownloadSVG}
           onAvatarStyleChange={this.onAvatarStyleChange}
           onToggleCode={this.onToggleCode}
         />
@@ -197,7 +198,7 @@ export class Main extends React.Component<Props, State> {
     this.props.onChangeUrlQueryParams!(values, UrlUpdateTypes.push)
   }
 
-  private onDownload = () => {
+  private onDownloadPNG = () => {
     const svgNode = ReactDOM.findDOMNode(this.avatarRef!)
     const canvas = this.canvasRef!
     const ctx = canvas.getContext('2d')!
@@ -218,14 +219,21 @@ export class Main extends React.Component<Props, State> {
       ctx.restore()
       DOMURL.revokeObjectURL(url)
       this.canvasRef!.toBlob(imageBlob => {
-        this.triggerDownload(imageBlob!)
+        this.triggerDownload(imageBlob!, 'avataaars.png')
       })
     }
     img.src = url
   }
 
-  private triggerDownload (imageBlob: Blob) {
-    FileSaver.saveAs(imageBlob, 'avataaars.png')
+  private onDownloadSVG = () => {
+    const svgNode = ReactDOM.findDOMNode(this.avatarRef!)
+    const data = svgNode.outerHTML
+    const svg = new Blob([data], { type: 'image/svg+xml' })
+    this.triggerDownload(svg, 'avataaars.svg')
+  }
+
+  private triggerDownload (imageBlob: Blob, fileName: string) {
+    FileSaver.saveAs(imageBlob, fileName)
   }
 
   private onToggleCode = () => {
