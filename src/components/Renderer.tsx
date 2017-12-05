@@ -2,15 +2,13 @@ import '../assets/App.css'
 
 import * as PropTypes from 'prop-types'
 import * as React from 'react'
+import { Avatar, AvatarStyle, OptionContext, allOptions } from 'avataaars'
 import {
   UrlQueryParamTypes,
   UrlUpdateTypes,
   addUrlProps
 } from 'react-url-query'
 import { fromPairs } from 'lodash'
-
-import Avatar, { AvatarStyle } from './avatar'
-import { OptionContext, allOptions } from './options'
 
 interface Props {
   __render__?: string

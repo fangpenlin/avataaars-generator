@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { AvatarStyle, Option, OptionContext } from 'avataaars'
 import {
   Button,
   Col,
@@ -7,9 +8,6 @@ import {
   FormControl,
   FormGroup
 } from 'react-bootstrap'
-
-import { AvatarStyle } from './avatar'
-import { Option, OptionContext } from './options'
 
 interface SelectProps {
   controlId: string
@@ -48,8 +46,11 @@ class OptionSelect extends React.Component<SelectProps> {
 export interface Props {
   avatarStyle: AvatarStyle
   optionContext: OptionContext
-  onDownload?: () => void
+  displayingCode: boolean
+  onDownloadPNG?: () => void
+  onDownloadSVG?: () => void
   onAvatarStyleChange?: (avatarStyle: AvatarStyle) => void
+  onToggleCode?: () => void
 }
 
 export default class AvatarForm extends React.Component<Props> {
@@ -66,7 +67,7 @@ export default class AvatarForm extends React.Component<Props> {
   }
 
   render () {
-    const { optionContext, avatarStyle } = this.props
+    const { optionContext, avatarStyle, displayingCode } = this.props
     const selects = optionContext.options.map((option, index) => {
       const optionState = optionContext.getOptionState(option.key)!
       if (optionState.available <= 0) {
@@ -139,8 +140,24 @@ export default class AvatarForm extends React.Component<Props> {
             className={'offset-sm-' + labelCol}
             smOffset={labelCol}
             sm={inputCol}>
-            <Button bsStyle='primary' type='submit' onClick={this.onDownload}>
-              <i className='fa fa-download' /> Download
+            <Button
+              bsStyle='primary'
+              type='submit'
+              onClick={this.onDownloadPNG}>
+              <i className='fa fa-download' /> Download PNG
+            </Button>{' '}
+            <Button
+              bsStyle='primary'
+              type='submit'
+              onClick={this.onDownloadSVG}>
+              <i className='fa fa-download' /> Download SVG
+            </Button>{' '}
+            <Button
+              bsStyle='secondary'
+              type='submit'
+              onClick={this.onToggleCode}>
+              <i className='fa fa-code' />{' '}
+              {displayingCode ? 'Hide React' : 'Show React'}
             </Button>
             <div style={{ marginTop: '10px' }}>
               <a
@@ -170,10 +187,24 @@ export default class AvatarForm extends React.Component<Props> {
     }
   }
 
-  private onDownload = (event: React.FormEvent<FormControl>) => {
+  private onDownloadPNG = (event: React.FormEvent<FormControl>) => {
     event.preventDefault()
-    if (this.props.onDownload) {
-      this.props.onDownload()
+    if (this.props.onDownloadPNG) {
+      this.props.onDownloadPNG()
+    }
+  }
+
+  private onDownloadSVG = (event: React.FormEvent<FormControl>) => {
+    event.preventDefault()
+    if (this.props.onDownloadSVG) {
+      this.props.onDownloadSVG()
+    }
+  }
+
+  private onToggleCode = (event: React.FormEvent<FormControl>) => {
+    event.preventDefault()
+    if (this.props.onToggleCode) {
+      this.props.onToggleCode()
     }
   }
 }

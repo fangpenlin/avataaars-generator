@@ -4,6 +4,7 @@ import * as FileSaver from 'file-saver'
 import * as PropTypes from 'prop-types'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
+import { Avatar, AvatarStyle, OptionContext, allOptions } from 'avataaars'
 import { Button } from 'react-bootstrap'
 import { Helmet } from 'react-helmet'
 import {
@@ -14,8 +15,7 @@ import {
 import { fromPairs, sample } from 'lodash'
 
 import AvatarForm from './AvatarForm'
-import Avatar, { AvatarStyle } from './avatar'
-import { OptionContext, allOptions } from './options'
+import ComponentCode from './ComponentCode'
 
 interface Props {
   __render__?: string
@@ -41,16 +41,24 @@ const urlPropsQueryConfig = {
   }
 }
 
+interface State {
+  displayComponentCode: boolean
+}
+
 function capitalizeFirstLetter (text: string) {
   return text.charAt(0).toUpperCase() + text.slice(1)
 }
 
-export class Main extends React.Component<Props> {
+export class Main extends React.Component<Props, State> {
   static childContextTypes = {
     optionContext: PropTypes.instanceOf(OptionContext)
   }
   static defaultProps = {
     avatarStyle: AvatarStyle.Circle
+  }
+
+  state = {
+    displayComponentCode: false
   }
 
   private avatarRef: Avatar | null = null
@@ -83,6 +91,7 @@ export class Main extends React.Component<Props> {
 
   render () {
     const { avatarStyle } = this.props
+    const { displayComponentCode } = this.state
     const title = 'Avataaars Generator - Generate your own avataaars!'
     const imageURL = process.env.REACT_APP_IMG_RENDERER_URL + location.search
     return (
@@ -120,9 +129,15 @@ export class Main extends React.Component<Props> {
         <AvatarForm
           optionContext={this.optionContext}
           avatarStyle={avatarStyle}
-          onDownload={this.onDownload}
+          displayingCode={displayComponentCode}
+          onDownloadPNG={this.onDownloadPNG}
+          onDownloadSVG={this.onDownloadSVG}
           onAvatarStyleChange={this.onAvatarStyleChange}
+          onToggleCode={this.onToggleCode}
         />
+        {displayComponentCode ? (
+          <ComponentCode avatarStyle={avatarStyle} />
+        ) : null}
         <canvas
           style={{ display: 'none' }}
           width='528'
@@ -183,7 +198,7 @@ export class Main extends React.Component<Props> {
     this.props.onChangeUrlQueryParams!(values, UrlUpdateTypes.push)
   }
 
-  private onDownload = () => {
+  private onDownloadPNG = () => {
     const svgNode = ReactDOM.findDOMNode(this.avatarRef!)
     const canvas = this.canvasRef!
     const ctx = canvas.getContext('2d')!
@@ -204,14 +219,28 @@ export class Main extends React.Component<Props> {
       ctx.restore()
       DOMURL.revokeObjectURL(url)
       this.canvasRef!.toBlob(imageBlob => {
-        this.triggerDownload(imageBlob!)
+        this.triggerDownload(imageBlob!, 'avataaars.png')
       })
     }
     img.src = url
   }
 
-  private triggerDownload (imageBlob: Blob) {
-    FileSaver.saveAs(imageBlob, 'avataaars.png')
+  private onDownloadSVG = () => {
+    const svgNode = ReactDOM.findDOMNode(this.avatarRef!)
+    const data = svgNode.outerHTML
+    const svg = new Blob([data], { type: 'image/svg+xml' })
+    this.triggerDownload(svg, 'avataaars.svg')
+  }
+
+  private triggerDownload (imageBlob: Blob, fileName: string) {
+    FileSaver.saveAs(imageBlob, fileName)
+  }
+
+  private onToggleCode = () => {
+    this.setState(state => ({
+      ...state,
+      displayComponentCode: !state.displayComponentCode
+    }))
   }
 }
 
