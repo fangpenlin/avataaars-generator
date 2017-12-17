@@ -103,7 +103,8 @@ export class Main extends React.Component<Props, State> {
               type='submit'
               bsStyle='secondary'
               style={{ marginLeft: '1rem' }}
-              onClick={this.onRandom}>
+              onClick={this.onRandom}
+              className='pull-right'>
               <i className='fa fa-random' /> Random
             </Button>
           </h2>
