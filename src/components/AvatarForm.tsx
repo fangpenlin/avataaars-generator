@@ -147,7 +147,7 @@ export default class AvatarForm extends React.Component<Props> {
               <i className='fa fa-download' /> Download PNG
             </Button>{' '}
             <Button
-              bsStyle='primary'
+              bsStyle='secondary'
               type='submit'
               onClick={this.onDownloadSVG}>
               <i className='fa fa-download' /> Download SVG
