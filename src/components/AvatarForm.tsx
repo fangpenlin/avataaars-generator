@@ -58,10 +58,12 @@ export interface Props {
   avatarStyle: AvatarStyle
   optionContext: OptionContext
   displayingCode: boolean
+  displayingImg: boolean
   onDownloadPNG?: () => void
   onDownloadSVG?: () => void
   onAvatarStyleChange?: (avatarStyle: AvatarStyle) => void
   onToggleCode?: () => void
+  onToggleImg?: () => void
 }
 
 export default class AvatarForm extends React.Component<Props> {
@@ -78,7 +80,7 @@ export default class AvatarForm extends React.Component<Props> {
   }
 
   render () {
-    const { optionContext, avatarStyle, displayingCode } = this.props
+    const { optionContext, avatarStyle, displayingImg, displayingCode } = this.props
     const selects = optionContext.options.map((option, index) => {
       const optionState = optionContext.getOptionState(option.key)!
       if (optionState.available <= 0) {
@@ -155,13 +157,13 @@ export default class AvatarForm extends React.Component<Props> {
               bsStyle='primary'
               type='submit'
               onClick={this.onDownloadPNG}>
-              <i className='fa fa-download' /> Download PNG
+              <i className='fa fa-download' /> PNG
             </Button>{' '}
             <Button
               bsStyle='secondary'
               type='submit'
               onClick={this.onDownloadSVG}>
-              <i className='fa fa-download' /> Download SVG
+              <i className='fa fa-download' /> SVG
             </Button>{' '}
             <Button
               bsStyle='secondary'
@@ -169,6 +171,13 @@ export default class AvatarForm extends React.Component<Props> {
               onClick={this.onToggleCode}>
               <i className='fa fa-code' />{' '}
               {displayingCode ? 'Hide React' : 'Show React'}
+            </Button>{' '}
+            <Button
+              bsStyle='secondary'
+              type='submit'
+              onClick={this.onToggleImg}>
+              <i className='fa fa-code' />{' '}
+              {displayingImg ? 'Hide <img>' : 'Show <img>'}
             </Button>
             <div style={{ marginTop: '10px' }}>
               <iframe
@@ -223,6 +232,13 @@ export default class AvatarForm extends React.Component<Props> {
     event.preventDefault()
     if (this.props.onToggleCode) {
       this.props.onToggleCode()
+    }
+  }
+
+  private onToggleImg = (event: React.FormEvent<FormControl>) => {
+    event.preventDefault()
+    if (this.props.onToggleImg) {
+      this.props.onToggleImg()
     }
   }
 }

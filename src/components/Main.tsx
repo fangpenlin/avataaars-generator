@@ -16,6 +16,7 @@ import { fromPairs, sample } from 'lodash'
 
 import AvatarForm from './AvatarForm'
 import ComponentCode from './ComponentCode'
+import ComponentImg from './ComponentImg'
 
 interface Props {
   __render__?: string
@@ -42,7 +43,8 @@ const urlPropsQueryConfig = {
 }
 
 interface State {
-  displayComponentCode: boolean
+  displayComponentCode: boolean,
+  displayComponentImg: boolean
 }
 
 function capitalizeFirstLetter (text: string) {
@@ -58,7 +60,8 @@ export class Main extends React.Component<Props, State> {
   }
 
   state = {
-    displayComponentCode: false
+    displayComponentCode: false,
+    displayComponentImg: false
   }
 
   private avatarRef: Avatar | null = null
@@ -91,7 +94,7 @@ export class Main extends React.Component<Props, State> {
 
   render () {
     const { avatarStyle } = this.props
-    const { displayComponentCode } = this.state
+    const { displayComponentCode, displayComponentImg } = this.state
     const title = 'Avataaars Generator - Generate your own avataaars!'
     const imageURL = process.env.REACT_APP_IMG_RENDERER_URL + location.search
     return (
@@ -131,11 +134,16 @@ export class Main extends React.Component<Props, State> {
           optionContext={this.optionContext}
           avatarStyle={avatarStyle}
           displayingCode={displayComponentCode}
+          displayingImg={displayComponentImg}
           onDownloadPNG={this.onDownloadPNG}
           onDownloadSVG={this.onDownloadSVG}
           onAvatarStyleChange={this.onAvatarStyleChange}
           onToggleCode={this.onToggleCode}
+          onToggleImg={this.onToggleImg}
         />
+        {displayComponentImg ? (
+          <ComponentImg avatarStyle={avatarStyle} />
+        ) : null}
         {displayComponentCode ? (
           <ComponentCode avatarStyle={avatarStyle} />
         ) : null}
@@ -240,7 +248,16 @@ export class Main extends React.Component<Props, State> {
   private onToggleCode = () => {
     this.setState(state => ({
       ...state,
-      displayComponentCode: !state.displayComponentCode
+      displayComponentCode: !state.displayComponentCode,
+      displayComponentImg: false
+    }))
+  }
+
+  private onToggleImg = () => {
+    this.setState(state => ({
+      ...state,
+      displayComponentImg: !state.displayComponentImg,
+      displayComponentCode: false
     }))
   }
 }
