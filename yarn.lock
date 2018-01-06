@@ -316,9 +316,9 @@ autoprefixer@^6.3.1:
     postcss "^5.2.16"
     postcss-value-parser "^3.2.3"
 
-avataaars@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/avataaars/-/avataaars-1.0.4.tgz#2a45f5074357521aa927550d9d787b8d2bf23141"
+avataaars@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/avataaars/-/avataaars-1.1.0.tgz#257f3b868b0f1868ebce256956ea8ed3c01a054c"
   dependencies:
     lodash "^4.17.4"
     prop-types "^15.6.0"
