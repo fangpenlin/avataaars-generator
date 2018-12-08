@@ -21,8 +21,10 @@ import ComponentImg from './ComponentImg'
 interface Props {
   __render__?: string
   avatarStyle: AvatarStyle
+  avatarBackground: string
   onChangeUrlQueryParams: (params: any, updateType: string) => void
   onChangeAvatarStyle: (avatarStyle: AvatarStyle) => void
+  onChangeAvatarBackground: (avatarBackground: string) => void
 }
 
 const updateType = UrlUpdateTypes.pushIn
@@ -37,6 +39,10 @@ const urlPropsQueryConfig = {
     ])
   ),
   avatarStyle: {
+    type: UrlQueryParamTypes.string,
+    updateType
+  },
+  avatarBackground: {
     type: UrlQueryParamTypes.string,
     updateType
   }
@@ -93,7 +99,7 @@ export class Main extends React.Component<Props, State> {
   }
 
   render () {
-    const { avatarStyle } = this.props
+    const { avatarStyle, avatarBackground } = this.props
     const { displayComponentCode, displayComponentImg } = this.state
     const title = 'Avataaars Generator - Generate your own avataaars!'
     const imageURL = process.env.REACT_APP_IMG_RENDERER_URL + location.search
@@ -128,24 +134,36 @@ export class Main extends React.Component<Props, State> {
           <meta name='twitter:url' content={document.location.href} />
         </Helmet>
         <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
-          <Avatar ref={this.onAvatarRef} avatarStyle={avatarStyle} />
+          <Avatar
+            ref={this.onAvatarRef}
+            avatarStyle={avatarStyle}
+            avatarBackground={avatarBackground}
+          />
         </div>
         <AvatarForm
           optionContext={this.optionContext}
           avatarStyle={avatarStyle}
+          avatarBackground={avatarBackground}
           displayingCode={displayComponentCode}
           displayingImg={displayComponentImg}
           onDownloadPNG={this.onDownloadPNG}
           onDownloadSVG={this.onDownloadSVG}
           onAvatarStyleChange={this.onAvatarStyleChange}
+          onAvatarBackgroundChange={this.onAvatarBackgroundChange}
           onToggleCode={this.onToggleCode}
           onToggleImg={this.onToggleImg}
         />
         {displayComponentImg ? (
-          <ComponentImg avatarStyle={avatarStyle} />
+          <ComponentImg
+            avatarStyle={avatarStyle}
+            avatarBackground={avatarBackground}
+          />
         ) : null}
         {displayComponentCode ? (
-          <ComponentCode avatarStyle={avatarStyle} />
+          <ComponentCode
+            avatarStyle={avatarStyle}
+            avatarBackground={avatarBackground}
+          />
         ) : null}
         <canvas
           style={{ display: 'none' }}
@@ -180,10 +198,15 @@ export class Main extends React.Component<Props, State> {
     this.props.onChangeAvatarStyle(avatarStyle)
   }
 
+  private onAvatarBackgroundChange = (avatarBackground: string) => {
+    this.props.onChangeAvatarBackground(avatarBackground)
+  }
+
   private onRandom = () => {
     const { optionContext } = this
     let values: { [index: string]: string } = {
-      avatarStyle: this.props.avatarStyle
+      avatarStyle: this.props.avatarStyle,
+      avatarBackground: this.props.avatarBackground
     }
 
     for (const option of optionContext.options) {

@@ -4,6 +4,7 @@ import { AvatarStyle, OptionContext, allOptions } from 'avataaars'
 
 export interface Props {
   avatarStyle: AvatarStyle
+  avatarBackground: string
 }
 
 export default class ComponentCode extends React.Component<Props> {
@@ -26,9 +27,14 @@ export default class ComponentCode extends React.Component<Props> {
   }
 
   render () {
-    const { avatarStyle } = this.props
+    const { avatarStyle, avatarBackground } = this.props
     const { optionContext } = this
     const props: Array<string> = []
+
+    if (avatarBackground) {
+      props.push('avatarBackground=' + encodeURIComponent(avatarBackground))
+    }
+
     for (const option of allOptions) {
       const state = optionContext.getOptionState(option.key)
       if (!state || !state.available) {
@@ -51,9 +57,7 @@ export default class ComponentCode extends React.Component<Props> {
             <i className='fa fa-github' /> Repo
           </a>
         </h3>
-        <p>
-          You can include this as an SVG &lt;img&gt; from the API.
-        </p>
+        <p>You can include this as an SVG &lt;img&gt; from the API.</p>
         <textarea
           readOnly
           style={{ width: '100%', height: '10em' }}

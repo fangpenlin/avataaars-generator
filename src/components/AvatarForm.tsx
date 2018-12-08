@@ -32,10 +32,10 @@ class OptionSelect extends React.Component<SelectProps> {
     const { controlId, label, value, children } = this.props
     return (
       <FormGroup className='row' controlId={controlId}>
-        <Col componentClass={ControlLabel} sm={3}>
+        <Col componentClass={ControlLabel} sm={4}>
           {label}
         </Col>
-        <Col sm={9}>
+        <Col sm={8}>
           <FormControl
             componentClass='select'
             value={value}
@@ -59,11 +59,13 @@ export interface Props {
   optionContext: OptionContext
   displayingCode: boolean
   displayingImg: boolean
+  avatarBackground?: string
   onDownloadPNG?: () => void
   onDownloadSVG?: () => void
   onAvatarStyleChange?: (avatarStyle: AvatarStyle) => void
   onToggleCode?: () => void
   onToggleImg?: () => void
+  onAvatarBackgroundChange?: (avatarBackground: string) => void
 }
 
 export default class AvatarForm extends React.Component<Props> {
@@ -80,7 +82,13 @@ export default class AvatarForm extends React.Component<Props> {
   }
 
   render () {
-    const { optionContext, avatarStyle, displayingImg, displayingCode } = this.props
+    const {
+      optionContext,
+      avatarStyle,
+      displayingImg,
+      displayingCode,
+      avatarBackground
+    } = this.props
     const selects = optionContext.options.map((option, index) => {
       const optionState = optionContext.getOptionState(option.key)!
       if (optionState.available <= 0) {
@@ -108,10 +116,10 @@ export default class AvatarForm extends React.Component<Props> {
     return (
       <Form horizontal>
         <FormGroup className='row' controlId='avatar-style'>
-          <Col componentClass={ControlLabel} sm={3}>
+          <Col componentClass={ControlLabel} sm={4}>
             Avatar Style
           </Col>
-          <Col sm={9}>
+          <Col sm={8}>
             <label>
               <input
                 type='radio'
@@ -136,6 +144,27 @@ export default class AvatarForm extends React.Component<Props> {
             </label>
           </Col>
         </FormGroup>
+        {avatarStyle === AvatarStyle.Circle ? (
+          <FormGroup className='row' controlId='avatar-background'>
+            <Col componentClass={ControlLabel} sm={4}>
+              Background Color
+            </Col>
+            <Col sm={8}>
+              <label>
+                <input
+                  className='form-control'
+                  type='text'
+                  id='avatar-background'
+                  name='avatar-background'
+                  placeholder='any valid color code'
+                  value={avatarBackground}
+                  onChange={this.onAvatarBackgroundChange}
+                />{' '}
+                <em>#FF0000, #C117BE, rgb(245,100,255), yellow, purple</em> {' '}
+              </label>{' '}
+            </Col>
+          </FormGroup>
+        ) : null}
         {selects}
         <FormGroup className='row'>
           <Col
@@ -202,6 +231,14 @@ export default class AvatarForm extends React.Component<Props> {
   private onAvatarStyleChange = (event: React.FormEvent<HTMLInputElement>) => {
     if (this.props.onAvatarStyleChange) {
       this.props.onAvatarStyleChange((event.target as any).value)
+    }
+  }
+
+  private onAvatarBackgroundChange = (
+    event: React.FormEvent<HTMLInputElement>
+  ) => {
+    if (this.props.onAvatarBackgroundChange) {
+      this.props.onAvatarBackgroundChange((event.target as any).value)
     }
   }
 

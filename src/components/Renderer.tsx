@@ -13,8 +13,10 @@ import { fromPairs } from 'lodash'
 interface Props {
   __render__?: string
   avatarStyle: AvatarStyle
+  avatarBackground: string
   onChangeUrlQueryParams: (params: any, updateType: string) => void
   onChangeAvatarStyle: (avatarStyle: AvatarStyle) => void
+  onChangeAvatarBackground: (avatarBackground: string) => void
 }
 
 const updateType = UrlUpdateTypes.pushIn
@@ -29,6 +31,10 @@ const urlPropsQueryConfig = {
     ])
   ),
   avatarStyle: {
+    type: UrlQueryParamTypes.string,
+    updateType
+  },
+  avatarBackground: {
     type: UrlQueryParamTypes.string,
     updateType
   }
@@ -64,7 +70,7 @@ export class Renderer extends React.Component<Props> {
   }
 
   render () {
-    const { avatarStyle } = this.props
+    const { avatarStyle, avatarBackground } = this.props
     return (
       <main role='main'>
         <Avatar
@@ -77,6 +83,7 @@ export class Renderer extends React.Component<Props> {
             width: '100%',
             height: '100%'
           }}
+          avatarBackground={avatarBackground}
           avatarStyle={avatarStyle}
         />
       </main>

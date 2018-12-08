@@ -4,6 +4,7 @@ import { AvatarStyle, OptionContext, allOptions } from 'avataaars'
 
 export interface Props {
   avatarStyle: AvatarStyle
+  avatarBackground: string
 }
 
 export default class ComponentCode extends React.Component<Props> {
@@ -26,9 +27,14 @@ export default class ComponentCode extends React.Component<Props> {
   }
 
   render () {
-    const { avatarStyle } = this.props
+    const { avatarStyle, avatarBackground } = this.props
     const { optionContext } = this
     const props: Array<string> = []
+
+    if (avatarBackground) {
+      props.push(`  avatarBackground='${avatarBackground}'`)
+    }
+
     for (const option of allOptions) {
       const state = optionContext.getOptionState(option.key)
       if (!state || !state.available) {
@@ -37,6 +43,7 @@ export default class ComponentCode extends React.Component<Props> {
       const value = optionContext.getValue(option.key)
       props.push(`  ${option.key}='${value}'`)
     }
+
     const propsStr = props.join('\n')
     const code = `<Avatar
   avatarStyle='${avatarStyle}'
