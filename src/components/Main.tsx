@@ -43,7 +43,7 @@ const urlPropsQueryConfig = {
 }
 
 interface State {
-  displayComponentCode: boolean,
+  displayComponentCode: boolean
   displayComponentImg: boolean
 }
 
@@ -104,7 +104,7 @@ export class Main extends React.Component<Props, State> {
             avataaars generator
             <Button
               type='submit'
-              bsStyle='secondary'
+              bsStyle='info'
               style={{ marginLeft: '1rem' }}
               onClick={this.onRandom}
               className='pull-right'>
