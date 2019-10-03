@@ -2,7 +2,7 @@ import '../assets/App.css'
 
 import * as PropTypes from 'prop-types'
 import * as React from 'react'
-import { Avatar, AvatarStyle, OptionContext, allOptions } from 'avataaars'
+import { Avatar, OptionContext, allOptions } from 'avataaars'
 import {
   UrlQueryParamTypes,
   UrlUpdateTypes,
@@ -12,9 +12,7 @@ import { fromPairs } from 'lodash'
 
 interface Props {
   __render__?: string
-  avatarStyle: AvatarStyle
   onChangeUrlQueryParams: (params: any, updateType: string) => void
-  onChangeAvatarStyle: (avatarStyle: AvatarStyle) => void
 }
 
 const updateType = UrlUpdateTypes.pushIn
@@ -27,44 +25,36 @@ const urlPropsQueryConfig = {
         updateType
       }
     ])
-  ),
-  avatarStyle: {
-    type: UrlQueryParamTypes.string,
-    updateType
-  }
+  )
 }
 
 export class Renderer extends React.Component<Props> {
   static childContextTypes = {
     optionContext: PropTypes.instanceOf(OptionContext)
   }
-  static defaultProps = {
-    avatarStyle: AvatarStyle.Circle
-  }
 
   private optionContext: OptionContext = new OptionContext(allOptions)
 
-  getChildContext () {
+  getChildContext() {
     return { optionContext: this.optionContext }
   }
 
-  componentWillReceiveProps (nextProps: Props) {
+  componentWillReceiveProps(nextProps: Props) {
     this.updateOptionContext(nextProps)
   }
 
-  componentWillMount () {
+  componentWillMount() {
     this.updateOptionContext(this.props)
   }
 
-  componentDidMount () {
+  componentDidMount() {
     const anyWindow = window as any
     setTimeout(() => {
       anyWindow.prerenderReady = true
     }, 500)
   }
 
-  render () {
-    const { avatarStyle } = this.props
+  render() {
     return (
       <main role='main'>
         <Avatar
@@ -77,13 +67,12 @@ export class Renderer extends React.Component<Props> {
             width: '100%',
             height: '100%'
           }}
-          avatarStyle={avatarStyle}
         />
       </main>
     )
   }
 
-  private updateOptionContext (nextProps: Props) {
+  private updateOptionContext(nextProps: Props) {
     this.optionContext.setData(nextProps as any)
   }
 }

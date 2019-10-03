@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { AvatarStyle, Option, OptionContext } from 'avataaars'
+import { Option, OptionContext } from 'avataaars'
 import {
   Button,
   Col,
@@ -28,7 +28,7 @@ const serializeQuery = function (obj: any) {
 }
 
 class OptionSelect extends React.Component<SelectProps> {
-  render () {
+  render() {
     const { controlId, label, value, children } = this.props
     return (
       <FormGroup className='row' controlId={controlId}>
@@ -55,13 +55,11 @@ class OptionSelect extends React.Component<SelectProps> {
 }
 
 export interface Props {
-  avatarStyle: AvatarStyle
   optionContext: OptionContext
   displayingCode: boolean
   displayingImg: boolean
   onDownloadPNG?: () => void
   onDownloadSVG?: () => void
-  onAvatarStyleChange?: (avatarStyle: AvatarStyle) => void
   onToggleCode?: () => void
   onToggleImg?: () => void
 }
@@ -69,7 +67,7 @@ export interface Props {
 export default class AvatarForm extends React.Component<Props> {
   private onChangeCache: Array<(value: string) => void> = []
 
-  componentWillMount () {
+  componentWillMount() {
     const { optionContext } = this.props
     optionContext.addStateChangeListener(() => {
       this.forceUpdate()
@@ -79,8 +77,8 @@ export default class AvatarForm extends React.Component<Props> {
     )
   }
 
-  render () {
-    const { optionContext, avatarStyle, displayingImg, displayingCode } = this.props
+  render() {
+    const { optionContext, displayingImg, displayingCode } = this.props
     const selects = optionContext.options.map((option, index) => {
       const optionState = optionContext.getOptionState(option.key)!
       if (optionState.available <= 0) {
@@ -107,35 +105,6 @@ export default class AvatarForm extends React.Component<Props> {
     const inputCol = 9
     return (
       <Form horizontal>
-        <FormGroup className='row' controlId='avatar-style'>
-          <Col componentClass={ControlLabel} sm={3}>
-            Avatar Style
-          </Col>
-          <Col sm={9}>
-            <label>
-              <input
-                type='radio'
-                id='avatar-style-circle'
-                name='avatar-style'
-                value={AvatarStyle.Circle}
-                checked={avatarStyle === AvatarStyle.Circle}
-                onChange={this.onAvatarStyleChange}
-              />{' '}
-              Circle
-            </label>{' '}
-            <label>
-              <input
-                type='radio'
-                id='avatar-style-transparent'
-                name='avatar-style'
-                value={AvatarStyle.Transparent}
-                checked={avatarStyle === AvatarStyle.Transparent}
-                onChange={this.onAvatarStyleChange}
-              />{' '}
-              Transparent
-            </label>
-          </Col>
-        </FormGroup>
         {selects}
         <FormGroup className='row'>
           <Col
@@ -203,15 +172,9 @@ export default class AvatarForm extends React.Component<Props> {
     )
   }
 
-  private onChange (option: Option, value: string) {
+  private onChange(option: Option, value: string) {
     const { optionContext } = this.props
     optionContext.setValue(option.key, value)
-  }
-
-  private onAvatarStyleChange = (event: React.FormEvent<HTMLInputElement>) => {
-    if (this.props.onAvatarStyleChange) {
-      this.props.onAvatarStyleChange((event.target as any).value)
-    }
   }
 
   private onDownloadPNG = (event: React.FormEvent<FormControl>) => {
