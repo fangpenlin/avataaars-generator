@@ -4,13 +4,6 @@ Avataaars generator is a simple web-based app for generating avatars developed b
 
 You can see it here: http://getavataaars.com
 
-## Supporting the project
-
-avataaars-generator is being sponsored by the following tool; please help to support us by taking a look and signing up to a free trial
-
-<a href="https://tracking.gitads.io/?repo=avataaars-generator">
-<img src="https://images.gitads.io/avataaars-generator" alt="GitAds"/> </a>
-
 ### Run the server
 
 To run the web app locally for development, you can run
