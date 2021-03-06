@@ -4,7 +4,7 @@ import * as FileSaver from 'file-saver'
 import * as PropTypes from 'prop-types'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import { Avatar, AvatarStyle, OptionContext, allOptions } from 'avataaars'
+import { Avatar, OptionContext, allOptions } from 'avataaars'
 import { Button } from 'react-bootstrap'
 import { Helmet } from 'react-helmet'
 import {
@@ -20,9 +20,7 @@ import ComponentImg from './ComponentImg'
 
 interface Props {
   __render__?: string
-  avatarStyle: AvatarStyle
   onChangeUrlQueryParams: (params: any, updateType: string) => void
-  onChangeAvatarStyle: (avatarStyle: AvatarStyle) => void
 }
 
 const updateType = UrlUpdateTypes.pushIn
@@ -35,11 +33,7 @@ const urlPropsQueryConfig = {
         updateType
       }
     ])
-  ),
-  avatarStyle: {
-    type: UrlQueryParamTypes.string,
-    updateType
-  }
+  )
 }
 
 interface State {
@@ -47,7 +41,7 @@ interface State {
   displayComponentImg: boolean
 }
 
-function capitalizeFirstLetter (text: string) {
+function capitalizeFirstLetter(text: string) {
   return text.charAt(0).toUpperCase() + text.slice(1)
 }
 
@@ -55,10 +49,6 @@ export class Main extends React.Component<Props, State> {
   static childContextTypes = {
     optionContext: PropTypes.instanceOf(OptionContext)
   }
-  static defaultProps = {
-    avatarStyle: AvatarStyle.Circle
-  }
-
   state = {
     displayComponentCode: false,
     displayComponentImg: false
@@ -68,32 +58,31 @@ export class Main extends React.Component<Props, State> {
   private canvasRef: HTMLCanvasElement | null = null
   private optionContext: OptionContext = new OptionContext(allOptions)
 
-  getChildContext () {
+  getChildContext() {
     return { optionContext: this.optionContext }
   }
 
-  componentWillReceiveProps (nextProps: Props) {
+  componentWillReceiveProps(nextProps: Props) {
     this.updateOptionContext(nextProps)
   }
 
-  componentWillMount () {
+  componentWillMount() {
     this.optionContext.addValueChangeListener(this.onOptionValueChange)
     this.updateOptionContext(this.props)
   }
 
-  componentDidMount () {
+  componentDidMount() {
     const anyWindow = window as any
     setTimeout(() => {
       anyWindow.prerenderReady = true
     }, 500)
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     this.optionContext.removeValueChangeListener(this.onOptionValueChange)
   }
 
-  render () {
-    const { avatarStyle } = this.props
+  render() {
     const { displayComponentCode, displayComponentImg } = this.state
     const title = 'Avataaars Generator - Generate your own avataaars!'
     const imageURL = process.env.REACT_APP_IMG_RENDERER_URL + location.search
@@ -128,24 +117,22 @@ export class Main extends React.Component<Props, State> {
           <meta name='twitter:url' content={document.location.href} />
         </Helmet>
         <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
-          <Avatar ref={this.onAvatarRef} avatarStyle={avatarStyle} />
+          <Avatar ref={this.onAvatarRef} />
         </div>
         <AvatarForm
           optionContext={this.optionContext}
-          avatarStyle={avatarStyle}
           displayingCode={displayComponentCode}
           displayingImg={displayComponentImg}
           onDownloadPNG={this.onDownloadPNG}
           onDownloadSVG={this.onDownloadSVG}
-          onAvatarStyleChange={this.onAvatarStyleChange}
           onToggleCode={this.onToggleCode}
           onToggleImg={this.onToggleImg}
         />
         {displayComponentImg ? (
-          <ComponentImg avatarStyle={avatarStyle} />
+          <ComponentImg />
         ) : null}
         {displayComponentCode ? (
-          <ComponentCode avatarStyle={avatarStyle} />
+          <ComponentCode />
         ) : null}
         <canvas
           style={{ display: 'none' }}
@@ -172,19 +159,13 @@ export class Main extends React.Component<Props, State> {
     updateHandler(value)
   }
 
-  private updateOptionContext (nextProps: Props) {
+  private updateOptionContext(nextProps: Props) {
     this.optionContext.setData(nextProps as any)
-  }
-
-  private onAvatarStyleChange = (avatarStyle: AvatarStyle) => {
-    this.props.onChangeAvatarStyle(avatarStyle)
   }
 
   private onRandom = () => {
     const { optionContext } = this
-    let values: { [index: string]: string } = {
-      avatarStyle: this.props.avatarStyle
-    }
+    let values: { [index: string]: string } = {}
 
     for (const option of optionContext.options) {
       if (option.key in values) {
@@ -241,7 +222,7 @@ export class Main extends React.Component<Props, State> {
     this.triggerDownload(svg, 'avataaars.svg')
   }
 
-  private triggerDownload (imageBlob: Blob, fileName: string) {
+  private triggerDownload(imageBlob: Blob, fileName: string) {
     FileSaver.saveAs(imageBlob, fileName)
   }
 

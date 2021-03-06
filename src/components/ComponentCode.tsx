@@ -1,32 +1,27 @@
 import * as PropTypes from 'prop-types'
 import * as React from 'react'
-import { AvatarStyle, OptionContext, allOptions } from 'avataaars'
+import { OptionContext, allOptions } from 'avataaars'
 
-export interface Props {
-  avatarStyle: AvatarStyle
-}
-
-export default class ComponentCode extends React.Component<Props> {
+export default class ComponentCode extends React.Component {
   static contextTypes = {
     optionContext: PropTypes.instanceOf(OptionContext)
   }
 
   private textArea: HTMLTextAreaElement | null = null
 
-  private get optionContext (): OptionContext {
+  private get optionContext(): OptionContext {
     return this.context.optionContext
   }
 
-  componentWillMount () {
+  componentWillMount() {
     this.optionContext.addValueChangeListener(this.onOptionValueChange)
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     this.optionContext.removeValueChangeListener(this.onOptionValueChange)
   }
 
-  render () {
-    const { avatarStyle } = this.props
+  render() {
     const { optionContext } = this
     const props: Array<string> = []
     for (const option of allOptions) {
@@ -39,7 +34,6 @@ export default class ComponentCode extends React.Component<Props> {
     }
     const propsStr = props.join('\n')
     const code = `<Avatar
-  avatarStyle='${avatarStyle}'
 ${propsStr}
 />`
     return (
