@@ -11,7 +11,7 @@
     "prop-types": "^15.6.0",
     "react": "^16.1.1",
     "react-bootstrap": "^0.31.5",
-    "react-dom": "^16.1.1",
+    "react-dom": "^16.1.2",
     "react-helmet": "^5.2.0",
     "react-scripts-ts": "2.8.0",
     "react-url-query": "^1.2.0",
