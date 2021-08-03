@@ -15,7 +15,7 @@
     "react-helmet": "^5.2.0",
     "react-scripts-ts": "2.8.0",
     "react-url-query": "^1.2.0",
-    "tar": "^4.4.2"
+    "tar": "^4.4.15"
   },
   "scripts": {
     "start": "react-scripts-ts start",
