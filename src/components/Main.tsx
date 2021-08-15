@@ -10,7 +10,7 @@ import { Helmet } from 'react-helmet'
 import {
   UrlQueryParamTypes,
   UrlUpdateTypes,
-  addUrlProps
+  addUrlProps,
 } from 'react-url-query'
 import { fromPairs, sample } from 'lodash'
 
@@ -28,71 +28,71 @@ interface Props {
 const updateType = UrlUpdateTypes.pushIn
 const urlPropsQueryConfig = {
   ...fromPairs(
-    allOptions.map(option => [
+    allOptions.map((option) => [
       option.key,
       {
         type: UrlQueryParamTypes.string,
-        updateType
-      }
+        updateType,
+      },
     ])
   ),
   avatarStyle: {
     type: UrlQueryParamTypes.string,
-    updateType
-  }
+    updateType,
+  },
 }
 
 interface State {
-  displayComponentCode: boolean,
+  displayComponentCode: boolean
   displayComponentImg: boolean
 }
 
-function capitalizeFirstLetter (text: string) {
+function capitalizeFirstLetter(text: string) {
   return text.charAt(0).toUpperCase() + text.slice(1)
 }
 
 export class Main extends React.Component<Props, State> {
   static childContextTypes = {
-    optionContext: PropTypes.instanceOf(OptionContext)
+    optionContext: PropTypes.instanceOf(OptionContext),
   }
   static defaultProps = {
-    avatarStyle: AvatarStyle.Circle
+    avatarStyle: AvatarStyle.Circle,
   }
 
   state = {
     displayComponentCode: false,
-    displayComponentImg: false
+    displayComponentImg: false,
   }
 
   private avatarRef: Avatar | null = null
   private canvasRef: HTMLCanvasElement | null = null
   private optionContext: OptionContext = new OptionContext(allOptions)
 
-  getChildContext () {
+  getChildContext() {
     return { optionContext: this.optionContext }
   }
 
-  componentWillReceiveProps (nextProps: Props) {
+  componentWillReceiveProps(nextProps: Props) {
     this.updateOptionContext(nextProps)
   }
 
-  componentWillMount () {
+  componentWillMount() {
     this.optionContext.addValueChangeListener(this.onOptionValueChange)
     this.updateOptionContext(this.props)
   }
 
-  componentDidMount () {
+  componentDidMount() {
     const anyWindow = window as any
     setTimeout(() => {
       anyWindow.prerenderReady = true
     }, 500)
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     this.optionContext.removeValueChangeListener(this.onOptionValueChange)
   }
 
-  render () {
+  render() {
     const { avatarStyle } = this.props
     const { displayComponentCode, displayComponentImg } = this.state
     const title = 'Avataaars Generator - Generate your own avataaars!'
@@ -172,7 +172,7 @@ export class Main extends React.Component<Props, State> {
     updateHandler(value)
   }
 
-  private updateOptionContext (nextProps: Props) {
+  private updateOptionContext(nextProps: Props) {
     this.optionContext.setData(nextProps as any)
   }
 
@@ -183,7 +183,7 @@ export class Main extends React.Component<Props, State> {
   private onRandom = () => {
     const { optionContext } = this
     let values: { [index: string]: string } = {
-      avatarStyle: this.props.avatarStyle
+      avatarStyle: this.props.avatarStyle,
     }
 
     for (const option of optionContext.options) {
@@ -204,11 +204,11 @@ export class Main extends React.Component<Props, State> {
       values[option.key] = sample(optionState.options)!
     }
     this.optionContext.setData(values)
-    this.props.onChangeUrlQueryParams!(values, UrlUpdateTypes.push)
+    this.props.onChangeUrlQueryParams(values, UrlUpdateTypes.push)
   }
 
   private onDownloadPNG = () => {
-    const svgNode = ReactDOM.findDOMNode(this.avatarRef!)
+    const svgNode = ReactDOM.findDOMNode(this.avatarRef!)! as Element
     const canvas = this.canvasRef!
     const ctx = canvas.getContext('2d')!
     ctx.clearRect(0, 0, canvas.width, canvas.height)
@@ -227,7 +227,7 @@ export class Main extends React.Component<Props, State> {
       ctx.drawImage(img, 0, 0)
       ctx.restore()
       DOMURL.revokeObjectURL(url)
-      this.canvasRef!.toBlob(imageBlob => {
+      this.canvasRef!.toBlob((imageBlob) => {
         this.triggerDownload(imageBlob!, 'avataaars.png')
       })
     }
@@ -235,29 +235,29 @@ export class Main extends React.Component<Props, State> {
   }
 
   private onDownloadSVG = () => {
-    const svgNode = ReactDOM.findDOMNode(this.avatarRef!)
+    const svgNode = ReactDOM.findDOMNode(this.avatarRef!)! as Element
     const data = svgNode.outerHTML
     const svg = new Blob([data], { type: 'image/svg+xml' })
     this.triggerDownload(svg, 'avataaars.svg')
   }
 
-  private triggerDownload (imageBlob: Blob, fileName: string) {
+  private triggerDownload(imageBlob: Blob, fileName: string) {
     FileSaver.saveAs(imageBlob, fileName)
   }
 
   private onToggleCode = () => {
-    this.setState(state => ({
+    this.setState((state) => ({
       ...state,
       displayComponentCode: !state.displayComponentCode,
-      displayComponentImg: false
+      displayComponentImg: false,
     }))
   }
 
   private onToggleImg = () => {
-    this.setState(state => ({
+    this.setState((state) => ({
       ...state,
       displayComponentImg: !state.displayComponentImg,
-      displayComponentCode: false
+      displayComponentCode: false,
     }))
   }
 }

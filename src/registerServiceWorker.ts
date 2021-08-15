@@ -88,7 +88,9 @@ function checkValidServiceWorker (swUrl: string) {
         response.headers.get('content-type')!.indexOf('javascript') === -1
       ) {
         // No service worker found. Probably a different app. Reload the page.
+        // tslint:disable-next-line:no-floating-promises
         navigator.serviceWorker.ready.then(registration => {
+          // tslint:disable-next-line:no-floating-promises
           registration.unregister().then(() => {
             window.location.reload()
           })
@@ -107,7 +109,9 @@ function checkValidServiceWorker (swUrl: string) {
 
 export function unregister () {
   if ('serviceWorker' in navigator) {
+    // tslint:disable-next-line:no-floating-promises
     navigator.serviceWorker.ready.then(registration => {
+      // tslint:disable-next-line:no-floating-promises
       registration.unregister()
     })
   }
