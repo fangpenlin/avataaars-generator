@@ -104,7 +104,7 @@ export class Main extends React.Component<Props, State> {
             avataaars generator
             <Button
               type='submit'
-              bsStyle='secondary'
+              variant='secondary'
               style={{ marginLeft: '1rem' }}
               onClick={this.onRandom}
               className='pull-right'>

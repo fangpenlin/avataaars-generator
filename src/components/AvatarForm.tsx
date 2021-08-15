@@ -104,7 +104,7 @@ export default class AvatarForm extends React.Component<Props> {
     const labelCol = 3
     const inputCol = 9
     return (
-      <Form horizontal>
+      <Form>
         <FormGroup className='row' controlId='avatar-style'>
           <Col as={FormLabel} sm={3}>
             Avatar Style
@@ -138,8 +138,7 @@ export default class AvatarForm extends React.Component<Props> {
         <FormGroup className='row'>
           <Col
             className={`offset-sm-${labelCol}`}
-            smOffset={labelCol}
-            sm={inputCol}>
+            sm={{ span: inputCol, offset: labelCol }}>
             More options coming soon,{' '}
             <a href='http://eepurl.com/c_7fN9' target='_blank'>
               subscribe for updates
@@ -149,29 +148,28 @@ export default class AvatarForm extends React.Component<Props> {
         <FormGroup className='row'>
           <Col
             className={'offset-sm-' + labelCol}
-            smOffset={labelCol}
-            sm={inputCol}>
+            sm={{ span: inputCol, offset: labelCol }}>
             <Button
-              bsStyle='primary'
+              variant='primary'
               type='submit'
               onClick={this.onDownloadPNG}>
               <i className='fa fa-download' /> PNG
             </Button>{' '}
             <Button
-              bsStyle='secondary'
+              variant='secondary'
               type='submit'
               onClick={this.onDownloadSVG}>
               <i className='fa fa-download' /> SVG
             </Button>{' '}
             <Button
-              bsStyle='secondary'
+              variant='secondary'
               type='submit'
               onClick={this.onToggleCode}>
               <i className='fa fa-code' />{' '}
               {displayingCode ? 'Hide React' : 'Show React'}
             </Button>{' '}
             <Button
-              bsStyle='secondary'
+              variant='secondary'
               type='submit'
               onClick={this.onToggleImg}>
               <i className='fa fa-code' />{' '}
