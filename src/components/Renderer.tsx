@@ -6,7 +6,7 @@ import { Avatar, AvatarStyle, OptionContext, allOptions } from 'avataaars'
 import {
   UrlQueryParamTypes,
   UrlUpdateTypes,
-  addUrlProps
+  addUrlProps,
 } from 'react-url-query'
 import { fromPairs } from 'lodash'
 
@@ -20,50 +20,50 @@ interface Props {
 const updateType = UrlUpdateTypes.pushIn
 const urlPropsQueryConfig = {
   ...fromPairs(
-    allOptions.map(option => [
+    allOptions.map((option) => [
       option.key,
       {
         type: UrlQueryParamTypes.string,
-        updateType
-      }
+        updateType,
+      },
     ])
   ),
   avatarStyle: {
     type: UrlQueryParamTypes.string,
-    updateType
-  }
+    updateType,
+  },
 }
 
 export class Renderer extends React.Component<Props> {
   static childContextTypes = {
-    optionContext: PropTypes.instanceOf(OptionContext)
+    optionContext: PropTypes.instanceOf(OptionContext),
   }
   static defaultProps = {
-    avatarStyle: AvatarStyle.Circle
+    avatarStyle: AvatarStyle.Circle,
   }
 
   private optionContext: OptionContext = new OptionContext(allOptions)
 
-  getChildContext () {
+  getChildContext() {
     return { optionContext: this.optionContext }
   }
 
-  componentWillReceiveProps (nextProps: Props) {
+  UNSAFE_componentWillReceiveProps(nextProps: Props) {
     this.updateOptionContext(nextProps)
   }
 
-  componentWillMount () {
+  UNSAFE_componentWillMount() {
     this.updateOptionContext(this.props)
   }
 
-  componentDidMount () {
+  componentDidMount() {
     const anyWindow = window as any
     setTimeout(() => {
       anyWindow.prerenderReady = true
     }, 500)
   }
 
-  render () {
+  render() {
     const { avatarStyle } = this.props
     return (
       <main role='main'>
@@ -75,7 +75,7 @@ export class Renderer extends React.Component<Props> {
             bottom: '0',
             top: '0',
             width: '100%',
-            height: '100%'
+            height: '100%',
           }}
           avatarStyle={avatarStyle}
         />
@@ -83,7 +83,7 @@ export class Renderer extends React.Component<Props> {
     )
   }
 
-  private updateOptionContext (nextProps: Props) {
+  private updateOptionContext(nextProps: Props) {
     this.optionContext.setData(nextProps as any)
   }
 }

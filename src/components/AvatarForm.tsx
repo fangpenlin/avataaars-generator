@@ -66,7 +66,7 @@ export interface Props {
 export default class AvatarForm extends React.Component<Props> {
   private onChangeCache: Array<(value: string) => void> = []
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     const { optionContext } = this.props
     optionContext.addStateChangeListener(() => {
       this.forceUpdate()

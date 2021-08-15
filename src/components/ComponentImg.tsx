@@ -8,24 +8,24 @@ export interface Props {
 
 export default class ComponentCode extends React.Component<Props> {
   static contextTypes = {
-    optionContext: PropTypes.instanceOf(OptionContext)
+    optionContext: PropTypes.instanceOf(OptionContext),
   }
 
   private textArea: HTMLTextAreaElement | null = null
 
-  private get optionContext (): OptionContext {
+  private get optionContext(): OptionContext {
     return this.context.optionContext
   }
 
-  componentWillMount () {
+  UNSAFE_componentWillMount() {
     this.optionContext.addValueChangeListener(this.onOptionValueChange)
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     this.optionContext.removeValueChangeListener(this.onOptionValueChange)
   }
 
-  render () {
+  render() {
     const { avatarStyle } = this.props
     const { optionContext } = this
     const props: Array<string> = []
@@ -51,9 +51,7 @@ export default class ComponentCode extends React.Component<Props> {
             <i className='fa fa-github' /> Repo
           </a>
         </h3>
-        <p>
-          You can include this as an SVG &lt;img&gt; from the API.
-        </p>
+        <p>You can include this as an SVG &lt;img&gt; from the API.</p>
         <textarea
           readOnly
           style={{ width: '100%', height: '10em' }}

@@ -72,11 +72,11 @@ export class Main extends React.Component<Props, State> {
     return { optionContext: this.optionContext }
   }
 
-  componentWillReceiveProps(nextProps: Props) {
+  UNSAFE_componentWillReceiveProps(nextProps: Props) {
     this.updateOptionContext(nextProps)
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     this.optionContext.addValueChangeListener(this.onOptionValueChange)
     this.updateOptionContext(this.props)
   }
