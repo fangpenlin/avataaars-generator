@@ -32,14 +32,11 @@ class OptionSelect extends React.Component<SelectProps> {
     const { controlId, label, value, children } = this.props
     return (
       <FormGroup className='row' controlId={controlId}>
-        <Col componentClass={FormLabel} sm={3}>
+        <Col as={FormLabel} sm={3}>
           {label}
         </Col>
         <Col sm={9}>
-          <FormControl
-            componentClass='select'
-            value={value}
-            onChange={this.onChange}>
+          <FormControl as='select' value={value} onChange={this.onChange}>
             {children}
           </FormControl>
         </Col>
@@ -109,7 +106,7 @@ export default class AvatarForm extends React.Component<Props> {
     return (
       <Form horizontal>
         <FormGroup className='row' controlId='avatar-style'>
-          <Col componentClass={FormLabel} sm={3}>
+          <Col as={FormLabel} sm={3}>
             Avatar Style
           </Col>
           <Col sm={9}>

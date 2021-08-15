@@ -10,7 +10,7 @@
     "lodash": "^4.17.19",
     "prop-types": "^15.6.0",
     "react": "^17.0.0",
-    "react-bootstrap": "^1.6.0",
+    "react-bootstrap": "^1.6.1",
     "react-dom": "^17.0.0",
     "react-helmet": "^6.1.0",
     "react-scripts-ts": "^3.1.0",
