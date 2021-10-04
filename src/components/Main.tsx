@@ -127,7 +127,15 @@ export class Main extends React.Component<Props, State> {
           <meta name='twitter:image' content={imageURL} />
           <meta name='twitter:url' content={document.location.href} />
         </Helmet>
-        <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
+        <div
+          style={{
+            position: 'sticky',
+            zIndex: 1,
+            top: 0,
+            textAlign: 'center',
+            paddingBottom: '1rem',
+            backgroundColor: '#FFFFFF'
+          }}>
           <Avatar ref={this.onAvatarRef} avatarStyle={avatarStyle} />
         </div>
         <AvatarForm
