@@ -9,9 +9,9 @@
     "history": "^4.7.2",
     "lodash": "^4.17.19",
     "prop-types": "^15.7.2",
-    "react": "^17.0.0",
+    "react": "^18.2.0",
     "react-bootstrap": "^1.6.1",
-    "react-dom": "^17.0.0",
+    "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",
     "react-scripts-ts": "^3.1.0",
     "react-url-query": "^1.2.0",
@@ -30,9 +30,9 @@
     "@types/lodash": "^4.14.172",
     "@types/node": "^8.0.53",
     "@types/prop-types": "^15.5.2",
-    "@types/react": "^17.0.18",
+    "@types/react": "^18.0.21",
     "@types/react-bootstrap": "^0.32.26",
-    "@types/react-dom": "^17.0.0",
+    "@types/react-dom": "^18.0.6",
     "@types/react-helmet": "^6.1.0",
     "import-sort-style-renke": "^3.0.0",
     "tslint-config-prettier": "^1.18.0",
@@ -59,5 +59,9 @@
     "trailingComma": "es5",
     "bracketSpacing": true,
     "jsxBracketSameLine": true
+  },
+  "resolutions": {
+    "@types/react": "17.0.2",
+    "@types/react-dom": "17.0.2"
   }
 }

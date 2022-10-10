@@ -13,6 +13,7 @@ interface SelectProps {
   controlId: string
   label: string
   value: string
+  children: React.ReactNode
   onChange?: (value: string) => void
 }
 
@@ -26,10 +27,13 @@ const serializeQuery = function (obj: any) {
   }
   return str.join('&')
 }
-
+export interface AuxProps  { 
+  children: React.ReactNode
+}
+  
 class OptionSelect extends React.Component<SelectProps> {
   render() {
-    const { controlId, label, value, children } = this.props
+    const { controlId, label, value, children} = this.props
     return (
       <FormGroup className='row' controlId={controlId}>
         <Col as={FormLabel} sm={3}>
@@ -104,7 +108,8 @@ export default class AvatarForm extends React.Component<Props> {
     const labelCol = 3
     const inputCol = 9
     return (
-      <Form>
+      
+      <Form >
         <FormGroup className='row' controlId='avatar-style'>
           <Col as={FormLabel} sm={3}>
             Avatar Style

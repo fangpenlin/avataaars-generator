@@ -1,5 +1,4 @@
 import * as React from 'react'
-
 import Main from './Main'
 import history from '../history'
 
@@ -10,6 +9,11 @@ export default class App extends React.Component {
   }
 
   render () {
-    return <Main />
+    return (
+      <div>
+      <Main/>
+      </div>
+    
+    );
   }
 }
