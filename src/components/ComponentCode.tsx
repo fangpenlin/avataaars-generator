@@ -14,7 +14,9 @@ export default class ComponentCode extends React.Component<Props> {
   private textArea: HTMLTextAreaElement | null = null
 
   private get optionContext(): OptionContext {
-    return this.context.optionContext
+    return  this.optionContext
+
+    
   }
 
   UNSAFE_componentWillMount() {

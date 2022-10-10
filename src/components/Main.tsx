@@ -6,7 +6,7 @@ import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import { Avatar, AvatarStyle, OptionContext, allOptions } from 'avataaars'
 import { Button } from 'react-bootstrap'
-import { Helmet } from 'react-helmet'
+// import { Helmet } from 'react-helmet'
 import {
   UrlQueryParamTypes,
   UrlUpdateTypes,
@@ -98,6 +98,7 @@ export class Main extends React.Component<Props, State> {
     const title = 'Avataaars Generator - Generate your own avataaars!'
     const imageURL = process.env.REACT_APP_IMG_RENDERER_URL + location.search
     return (
+      <>
       <main role='main'>
         <header className='header clearfix'>
           <h2 style={{ color: '#6A39D7' }}>
@@ -112,7 +113,7 @@ export class Main extends React.Component<Props, State> {
             </Button>
           </h2>
         </header>
-        <Helmet>
+        {/* <Helmet> */}
           <meta property='og:title' content={title} />
           <meta property='og:site_name' content='Avataaars Generator' />
           <meta property='og:url' content={document.location.href} />
@@ -126,11 +127,13 @@ export class Main extends React.Component<Props, State> {
           <meta name='twitter:title' content={title} />
           <meta name='twitter:image' content={imageURL} />
           <meta name='twitter:url' content={document.location.href} />
-        </Helmet>
-        <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
-          <Avatar ref={this.onAvatarRef} avatarStyle={avatarStyle} />
-        </div>
-        <AvatarForm
+        {/* </Helmet> */}
+        <div>
+          <div style={{position:"fixed",left:"20px",top:"100px",border:"9px solid green"}}> 
+            <Avatar ref={this.onAvatarRef} avatarStyle={avatarStyle} />
+           </div>
+           <div style={{position:"relative",textAlign:"center"}}>
+           <AvatarForm 
           optionContext={this.optionContext}
           avatarStyle={avatarStyle}
           displayingCode={displayComponentCode}
@@ -142,7 +145,7 @@ export class Main extends React.Component<Props, State> {
           onToggleImg={this.onToggleImg}
         />
         {displayComponentImg ? (
-          <ComponentImg avatarStyle={avatarStyle} />
+          <ComponentImg  avatarStyle={avatarStyle} />
         ) : null}
         {displayComponentCode ? (
           <ComponentCode avatarStyle={avatarStyle} />
@@ -153,7 +156,13 @@ export class Main extends React.Component<Props, State> {
           height='560'
           ref={this.onCanvasRef}
         />
+           </div>
+        </div>
+
+        
       </main>
+      </>
+
     )
   }
 
@@ -261,5 +270,6 @@ export class Main extends React.Component<Props, State> {
     }))
   }
 }
+
 
 export default addUrlProps({ urlPropsQueryConfig })(Main)

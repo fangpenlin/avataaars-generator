@@ -14,7 +14,7 @@ export default class ComponentCode extends React.Component<Props> {
   private textArea: HTMLTextAreaElement | null = null
 
   private get optionContext(): OptionContext {
-    return this.context.optionContext
+    return this.optionContext;
   }
 
   UNSAFE_componentWillMount() {
@@ -42,7 +42,7 @@ export default class ComponentCode extends React.Component<Props> {
 />`
     return (
       <div>
-        <h3 style={{ color: '#6A39D7' }}>
+        <h3 style={{ color: '#FFFFFF' }}>
           &lt;img&gt; Code{' '}
           <a
             href='https://github.com/gkoberger/avataaars'
