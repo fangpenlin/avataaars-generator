@@ -9,6 +9,10 @@ You can see it here: http://getavataaars.com
 To run the web app locally for development, you can run
 
 ```bash
+yarn install --frozen-lockfile
+```
+
+```bash
 yarn start
 ```
 
