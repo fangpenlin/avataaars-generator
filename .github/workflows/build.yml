@@ -10,4 +10,4 @@ jobs:
         with:
           registry: ghcr.io
           password: ${{ secrets.GITHUB_TOKEN }}
-          image: '${GITHUB_REF##*/}'
+          image: test
