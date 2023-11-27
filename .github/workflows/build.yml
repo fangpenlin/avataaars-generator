@@ -10,5 +10,5 @@ jobs:
         with:
           registry: ghcr.io
           password: ${{ secrets.GITHUB_TOKEN }}
-          image: test
+          image: ${{ github.ref_name }}
           tag: ${{ github.sha }}
