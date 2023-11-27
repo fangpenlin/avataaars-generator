@@ -11,5 +11,3 @@ jobs:
           registry: ghcr.io
           password: ${{ secrets.GITHUB_TOKEN }}
           image: '${GITHUB_REF##*/}'
-          cache: true
-          cache_registry: cache
