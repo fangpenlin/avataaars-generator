@@ -1,0 +1,14 @@
+name: Docker Image Build
+on: push
+jobs:
+  kaniko-job:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Kaniko build
+        uses: aevea/action-kaniko@master
+        with:
+          registry: ghcr.io
+          password: ${{ secrets.GITHUB_TOKEN }}
+          image: ${{ github.ref_name }}
+          tag: ${{ github.sha }}

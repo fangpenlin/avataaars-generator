@@ -9,7 +9,19 @@ You can see it here: http://getavataaars.com
 To run the web app locally for development, you can run
 
 ```bash
+yarn install --frozen-lockfile
+```
+
+```bash
 yarn start
+```
+
+### Run the server with Docker
+
+Run in docker with this command
+
+```bash
+docker build -t avataaars-generator:latest . && docker run --rm -it --name avataaars-generator -p 3000:8080 avataaars-generator:latest
 ```
 
 ### React component
